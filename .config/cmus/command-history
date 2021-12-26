@@ -1,0 +1,38 @@
+h
+?
+help
+pass
+n
+next
+skip
+vol -1
+colorscheme green
+colorscheme amazon
+colorscheme zenburn
+colorscheme xterm-white
+colorscheme solarized-light
+colorscheme solarized-dark
+colorscheme night
+colorscheme jellybeans
+colorscheme gruvbox-warm
+colorscheme gruvbox-alt
+colorscheme gruvbox
+colorscheme green-mono-88
+colorscheme gray-88
+colorscheme dracula
+colorscheme default
+colorscheme cyan
+w
+bind -f common h win-toggle
+bind -f common l win-next
+bind -f common l win-next 
+bind -f common h w
+delete
+add 07 You Shook Me All Night Long.m4a
+add 06 Back In Black.m4a
+add 05 Let Me Put My Love Into You.m4a
+add 04 Given The Dog A Bone.m4a
+add 03 What Do You Do For Money Honey.m4a
+add 02 Shoot To Thrill.m4a
+add *
+add 01 Hells Bells.m4a

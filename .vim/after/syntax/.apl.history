@@ -1,0 +1,12 @@
++/
+)clear
+)clear
+)help
++/⍳10
+call AutoPairInsert('{')
+:call AutoPairInsert('{')
++/⍳10
++/d
+)off
++/⍳10
+)off

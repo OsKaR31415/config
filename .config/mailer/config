@@ -1,0 +1,7 @@
+
+[oscar.plaisant@icloud.com]
+username = oscar.plaisant@icloud.com
+server = appleid.apple.com
+smtp_server = smtp.mail.me.com # apple's smtp server
+
+

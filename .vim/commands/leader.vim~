@@ -1,0 +1,16 @@
+
+nmap <leader>w <C-W>
+nmap <leader>q <C-W>
+nmap <leader>qq <C-W><C-W>
+
+" m: maximize
+nnoremap <C-W>m <C-W>_<C-W>|
+
+nnoremap <leader>t :tabnew<cr>
+nnoremap <leader>s :new<cr>
+nnoremap <leader>v :vert new<cr>
+nnoremap <leader>x :close<cr>
+
+nnoremap <leader>oo :!open %:h:p<cr>
+
+
