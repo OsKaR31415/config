@@ -6,9 +6,7 @@
 "   ▀▀▀▀     ▀▀▀▀▀▀   ▀▀    ▀▀   ▀▀▀▀ ▀▀  ▀▀    ▀▀▀  ▀▀▀▀▀    ▀▀▀▀▀▀▀▀       ▀▀   ▀▀▀▀▀▀▀▀   ▀▀▀▀▀
 " my .vimrc
 " not perfect for me, awfull for others
-" full of plugins
-" a complete mess
-" slow
+" a complete mess, full of plugins
 " but i'm quite proud of it
 " since it does the job I want it to :
 " makes me be quick and feel comfortable in vim
@@ -19,12 +17,9 @@
 " ╹╹ ╹╹ ╹ ╹╹ ╹┗━╸╹┗━┛╹ ╹ ╹ ╹┗━┛╹ ╹
 
 set nocompatible
-let mapleader=" "
 
 " cool vim logo at starting
 silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
-
-set timeout timeoutlen=300
 
 " graphical menu for command-line autocompletion (else nothing is shown)
 set wildmenu
@@ -186,7 +181,8 @@ let g:tex_conceal = "abdmgs" " vim builtin latex preview
 let g:tex_conceal_frac = 1
 
 
- " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸ " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
+ " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
+ " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 " markdown live preview on localhost:9090
 " Plug 'iamcco/markdown-preview.nvim', {'for': ['markdown', 'tex', 'latex']}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
@@ -201,7 +197,6 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ 'content_editable': v:true,
     \ 'disable_filename': 0
     \ }
-
 
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⢹⠁ ⡎⢱ ⡎⠑
@@ -536,19 +531,6 @@ vnoremap gr :Ripple<cr>
 nnoremap <leader>gr :%Ripple<cr>
 
 
- " " ⡷⣸ ⡎⢱ ⢹⠁ ⣏⡉ ⣏⡱ ⡎⢱ ⡎⢱ ⣇⠜ ⢎⡑   ⡇ ⡷⣸   ⡇⢸ ⡇ ⡷⢾
- " " ⠇⠹ ⠣⠜ ⠸  ⠧⠤ ⠧⠜ ⠣⠜ ⠣⠜ ⠇⠱ ⠢⠜   ⠇ ⠇⠹   ⠸⠃ ⠇ ⠇⠸
-" " like jupyter notebooks
-" " TODO: make it work !
-" " could be replaced by ripple in terms of workflow, but mkd is cool
-" Plug 'baruchel/vim-notebook'
-" let g:notebook_cmd = '/bin/sh 2>&1'
-" let g:notebook_stop = 'exit'
-" let g:notebook_send = 'echo NOTEBOOK-VIM-INTERNAL-KEY'
-" let g:notebook_detect = 'NOTEBOOK-VIM-INTERNAL-KEY'
-" let g:notebook_send0 = ''
-
-
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸
  " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠸  ⠣⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸
 " send text to a tmux pane
@@ -598,21 +580,13 @@ let g:rainbow_conf = {
 " (((((((((((((((())))))))))))))))
 
 
- " ⡇ ⣏⡱ ⡎⠑   ⡎⠑ ⡇  ⡇ ⣏⡉ ⡷⣸ ⢹⠁
- " ⠇ ⠇⠱ ⠣⠔   ⠣⠔ ⠧⠤ ⠇ ⠧⠤ ⠇⠹ ⠸ 
-" simple IRC client running in vim
-Plug 'vim-scripts/VimIRC.vim'
-
  " ⡎⠑ ⣇⣸ ⢹⠁   ⢎⡑ ⣇⣸
  " ⠣⠔ ⠇⠸ ⠸  ⠶ ⠢⠜ ⠇⠸
 " have cht.sh directly inside vim
 " queries the current line
 " use :Cheat
 Plug 'dbeniamine/cheat.sh-vim'
-au filetype java let g:CheatSheetFt='java'
-au filetype python let g:CheatSheetFt='python'
-au filetype scheme let g:CheatSheetFt='scheme'
-
+let g:CheatSheetFt=&ft
 
  " ⡏⢱ ⣏⡉ ⡇⢸ ⡇ ⡎⠑ ⡎⢱ ⡷⣸ ⢎⡑
  " ⠧⠜ ⠧⠤ ⠸⠃ ⠇ ⠣⠔ ⠣⠜ ⠇⠹ ⠢⠜
@@ -632,7 +606,7 @@ Plug 'vim/killersheep'
 
  " ⡇  ⣏⡉ ⣎⣱ ⣏⡱ ⡷⣸   ⣏⡱ ⣏⡉ ⡇  ⣎⣱ ⢹⠁ ⡇ ⡇⢸ ⣏⡉   ⡷⣸ ⡇⢸ ⡷⢾ ⣏⡱ ⣏⡉ ⣏⡱ ⡇ ⡷⣸ ⡎⠑
  " ⠧⠤ ⠧⠤ ⠇⠸ ⠇⠱ ⠇⠹   ⠇⠱ ⠧⠤ ⠧⠤ ⠇⠸ ⠸  ⠇ ⠸⠃ ⠧⠤   ⠇⠹ ⠣⠜ ⠇⠸ ⠧⠜ ⠧⠤ ⠇⠱ ⠇ ⠇⠹ ⠣⠝
-if has('nvim')
+if has('nvim')  " sadly only works on neovim...
     Plug 'ThePrimeagen/vim-be-good'
     let g:vim_be_good_delete_me_offset = 100
 endif
@@ -649,6 +623,10 @@ filetype plugin indent on
 " ┃┗┫┣╸ ┃╻┃   ┃┃┃┣━┫┣━┛┣━┛┃┃┗┫┃╺┓┗━┓
 " ╹ ╹┗━╸┗┻┛   ╹ ╹╹ ╹╹  ╹  ╹╹ ╹┗━┛┗━┛
 " motions or mappings shortcuts i defined myself
+
+set timeout timeoutlen=300
+
+let mapleader=" "
 
 " reload config file
 command! SO :wa | so ~/.vimrc | e
@@ -695,10 +673,9 @@ nnoremap <silent> <down> :tabmove -1<cr>
 " show a clock
 nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
 
-
-" ┏━╸┏━┓╻  ┏━┓┏━┓┏━┓╺┳╸╻┏━┓┏┓╻   ┏━┓╻ ╻┏┓╻╺┳╸┏━┓╻ ╻╻┏━┓╻ ╻┏━╸
-" ┃  ┃ ┃┃  ┃ ┃┣┳┛┣━┫ ┃ ┃┃ ┃┃┗┫   ┗━┓┗┳┛┃┗┫ ┃ ┣━┫┏╋┛┃┃┓┃┃ ┃┣╸
-" ┗━╸┗━┛┗━╸┗━┛╹┗╸╹ ╹ ╹ ╹┗━┛╹ ╹   ┗━┛ ╹ ╹ ╹ ╹ ╹ ╹╹ ╹╹┗┻┛┗━┛┗━╸
+" ┏━┓╻ ╻┏┓╻╺┳╸┏━┓╻ ╻   ╻ ╻╻┏━╸╻ ╻╻  ╻┏━╸╻ ╻╺┳╸╻┏┓╻┏━╸
+" ┗━┓┗┳┛┃┗┫ ┃ ┣━┫┏╋┛   ┣━┫┃┃╺┓┣━┫┃  ┃┃╺┓┣━┫ ┃ ┃┃┗┫┃╺┓
+" ┗━┛ ╹ ╹ ╹ ╹ ╹ ╹╹ ╹   ╹ ╹╹┗━┛╹ ╹┗━╸╹┗━┛╹ ╹ ╹ ╹╹ ╹┗━┛
 
 " colorscheme
 syntax on
@@ -733,9 +710,9 @@ hi Title ctermbg=none ctermfg=none
 hi IncSearch cterm=reverse ctermfg=106
 
 
-" ┏┳┓╻┏━┓┏━╸   ┏━╸┏┓╻   ┏━╸┏━┓┏━┓┏┳┓┏━╸
-" ┃┃┃┃┗━┓┣╸    ┣╸ ┃┗┫   ┣╸ ┃ ┃┣┳┛┃┃┃┣╸
-" ╹ ╹╹┗━┛┗━╸   ┗━╸╹ ╹   ╹  ┗━┛╹┗╸╹ ╹┗━╸
+" ╻ ╻╻┏━╸╻ ╻
+" ┃┏┛┃┣╸ ┃╻┃
+" ┗┛ ╹┗━╸┗┻┛
 
 " do redraw only after a command execution (eg. not during a macro)
 set lazyredraw
@@ -754,11 +731,11 @@ set tabstop=4
 " 0 to disable it
 set tw=0
 
-" Coloration des caractères particuliers
+" Special caracters
 set list
 set listchars=nbsp:~,trail:¤,extends:>,precedes:<,tab:>-
 
-" forme du curseur en fonction du mode
+" change cursor shape following the mode
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SI = "\<Esc>[6 q" " Vertical bar in insert mode
 " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -780,9 +757,9 @@ silent nnoremap <silent> n nzz
 silent nnoremap <silent> N Nzz
 
 
-" ┏━┓╻ ╻╺┳╸┏━┓┏━╸┏━┓   ┏━┓┏━╸┏━╸╻  ┏━┓┏━╸┏━╸┏━┓
-" ┣━┫┃ ┃ ┃ ┣┳┛┣╸ ┗━┓   ┣┳┛┣╸ ┃╺┓┃  ┣━┫┃╺┓┣╸ ┗━┓
-" ╹ ╹┗━┛ ╹ ╹┗╸┗━╸┗━┛   ╹┗╸┗━╸┗━┛┗━╸╹ ╹┗━┛┗━╸┗━┛
+" ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
+" ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓┣╸  ┃  ┃ ┃┃┗┫┃╺┓┗━┓
+" ┗━┛ ╹ ╹ ╹┗━╸╹┗╸   ┗━┛┗━╸ ╹  ╹ ╹╹ ╹┗━┛┗━┛
 
 set hidden
 
@@ -799,22 +776,22 @@ nnoremap <ScrollWheelUp> <C-Y>
 nnoremap <ScrollWheelDown> <C-e>
 
 
-" ┏━╸┏━╸┏┓╻┏━╸╺┳╸┏━┓┏━╸┏━┓   ┏━╸╺┳╸   ┏━┓┏━┓╻  ╻╺┳╸┏━┓
-" ┣╸ ┣╸ ┃┗┫┣╸  ┃ ┣┳┛┣╸ ┗━┓   ┣╸  ┃    ┗━┓┣━┛┃  ┃ ┃ ┗━┓
-" ╹  ┗━╸╹ ╹┗━╸ ╹ ╹┗╸┗━╸┗━┛   ┗━╸ ╹    ┗━┛╹  ┗━╸╹ ╹ ┗━┛
+" ┏━┓┏━┓╻  ╻╺┳╸┏━┓
+" ┗━┓┣━┛┃  ┃ ┃ ┗━┓
+" ┗━┛╹  ┗━╸╹ ╹ ┗━┛
 
 set splitright
 set splitbelow
 
-" usefull formatting commands
-command! RemoveTrailingWhiteSpaces :silent! %s/ \+$//g
-command! TabsToSpace :silent! %s/^	\+/    /g
-" autopep8 : see .vim/after/syntax/python.vim
 
 
 " ┏━╸╻╻  ╺┳╸┏━╸┏━┓   ┏━┓┏━╸┏━┓╻┏━┓╺┳╸┏━┓
 " ┣╸ ┃┃   ┃ ┣╸ ┣┳┛   ┗━┓┃  ┣┳┛┃┣━┛ ┃ ┗━┓
 " ╹  ╹┗━╸ ╹ ┗━╸╹┗╸   ┗━┛┗━╸╹┗╸╹╹   ╹ ┗━┛
+
+" usefull formatting commands
+command! RemoveTrailingWhiteSpaces :silent! %s/ \+$//g
+command! TabsToSpace :silent! %s/^	\+/    /g
 
 " for toilet !!
 nnoremap ytb !!toilet -f term -F border<cr>
@@ -832,12 +809,9 @@ vnoremap T5   !toilet  -w 130 -f smbraille<cr>
 vnoremap Tb5  !toilet  -w 130 -f smbraille -F border<cr>
 
 " calculating values
-" xargs is used to support multiples lines
-nnoremap calc !!python xargs \| ~/.vim/python/calc.py<cr>
-vnoremap calc !python xargs \| ~/.vim/python/calc.py<cr>
-nnoremap g! !!python xargs \| ~/.vim/python/apl_calc.py<cr>
-vnoremap g! !python xargs \| ~/.vim/python/calc.py<cr>
-
+" (the script basically just evaluates the input with python)
+nnoremap calc !!python3 ~/.vim/python/calc.py<cr>
+vnoremap calc !python3 ~/.vim/python/calc.py<cr>
 
 " ┏━╸╻ ╻╺┳╸┏━╸┏━┓┏┓╻┏━┓╻     ┏━╸╻╻  ┏━╸┏━┓
 " ┣╸ ┏╋┛ ┃ ┣╸ ┣┳┛┃┗┫┣━┫┃     ┣╸ ┃┃  ┣╸ ┗━┓
