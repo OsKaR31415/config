@@ -5,7 +5,7 @@ let g:file_running_command = "VimuxRunCommand "
 fun! AsyncRunCurrentFile()
     wa
     if &ft == "python"
-        AsyncRun! python %
+        AsyncRun! python3 %
     elseif &ft == "scheme"
         AsycRun! cat % | guile
     elseif &ft == "markdown"
@@ -30,7 +30,7 @@ fun! RunCurrentFile()
         MarkdownCompile
 
     elseif &ft == "python"
-        call VimuxRunCommandInDir('python ' . filename, the_path)
+        call VimuxRunCommandInDir('python3 ' . filename, the_path)
 
     elseif &ft == "scheme"
         call VimuxRunCommandInDir('cat ' . filename . ' | guile', the_path)
