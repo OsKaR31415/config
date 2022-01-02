@@ -1,3 +1,5 @@
+set makeprg=pdflatex\ %
+
 " markdown headers coloration
 syn match htmlH1 "^# .\+$"
 syn match htmlH2 "^## .\+$"
