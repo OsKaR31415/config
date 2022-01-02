@@ -495,6 +495,7 @@ Arpeggio nnoremap sq :quit<cr>
 nnoremap <leader>t :tabnew<cr>
 " replacement for <C-W>
 nnoremap <leader>w <C-W>
+nnoremap <cr> <C-w>
 " <c-w>m: maximize
 nnoremap <C-W>m <C-W>_<C-W>\|
 " open a terminal on current window
@@ -662,12 +663,12 @@ nnoremap <silent> <leader>K :wa<cr>
 " $ does not include newline when doing visual selection
 vnoremap $ $<left>
 " move the lines of visual mode up or down
-" JK to move and keep autoindentation (with =)
-" <up><down> to move keeping the foreign indentation
-vnoremap <silent> J :m '>+1<cr>gv=gv
-vnoremap <silent> <down> :m '>+1<cr>gv
-vnoremap <silent> K :m '<-2<cr>gv=gv
-vnoremap <silent> <up> :m '<-2<cr>gv
+" <up><down> to move and keep autoindentation (with =)
+" JK to move keeping the foreign indentation
+vnoremap <silent> J :m '>+1<cr>gv
+vnoremap <silent> <down> :m '>+1<cr>gv=gv
+vnoremap <silent> K :m '<-2<cr>gv
+vnoremap <silent> <up> :m '<-2<cr>gv=gv
 
 " K and J
 " left and right equivalents in insert mode
@@ -677,7 +678,8 @@ inoremap kj <left>
 tmap kl <C-w>N
 tmap lk <C-w>N
 " got to stop using kl : i have an accessible esc key in my keyboard
-inoremap kl <esc>
+Arpeggio inoremap kl <esc>
+
 
 " TABS
 nnoremap <right> gt
@@ -692,6 +694,7 @@ nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
 " ┏━┓╻ ╻┏┓╻╺┳╸┏━┓╻ ╻   ╻ ╻╻┏━╸╻ ╻╻  ╻┏━╸╻ ╻╺┳╸╻┏┓╻┏━╸
 " ┗━┓┗┳┛┃┗┫ ┃ ┣━┫┏╋┛   ┣━┫┃┃╺┓┣━┫┃  ┃┃╺┓┣━┫ ┃ ┃┃┗┫┃╺┓
 " ┗━┛ ╹ ╹ ╹ ╹ ╹ ╹╹ ╹   ╹ ╹╹┗━┛╹ ╹┗━╸╹┗━┛╹ ╹ ╹ ╹╹ ╹┗━┛
+" syntax highlighting
 
 " colorscheme
 syntax on
@@ -700,7 +703,7 @@ colo solarized8
 au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none
 au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172
 au BufRead,BufNewFile,BufEnter, * hi WildMenu term=standout ctermfg=black ctermbg=148
-au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=234
+au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
 
 " add rulers at 80 and 100 lines
 au filetype python,java set cc=80,100
