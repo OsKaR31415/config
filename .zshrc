@@ -208,7 +208,7 @@ function fzf_cd() {
 
 bindkey -s "^e" "fzf_cd\n"
 bindkey -s "^p" "cd ..\n"
-bindkey -s "^n" "cd \"\$(ls -ap | grep /$ | fzf --preview='$fzf_preview_contents')\";clear;ls -a\n"
+bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;ls -a\n"
 bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
 bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
