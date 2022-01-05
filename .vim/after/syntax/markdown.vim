@@ -23,6 +23,73 @@ hi htmlH4 cterm=bold ctermfg=38
 hi htmlH5 cterm=bold ctermfg=25
 hi htmlH6 cterm=bold ctermfg=240
 
+" ┏━┓┏┓ ┏━┓╻╺┳┓╻┏━┓┏┓╻
+" ┃ ┃┣┻┓┗━┓┃ ┃┃┃┣━┫┃┗┫
+" ┗━┛┗━┛┗━┛╹╺┻┛╹╹ ╹╹ ╹
+" configuration pour obsidian
+
+" " select the current reference (text inside [[...]])
+" " also, we only
+" function! ObsidianVisualSelectReference()
+"     let s:current_char = strpart(getline('.'), col('.'), 1)
+"     if s:current_char == '['
+"         normal! f]
+"     endif
+"     " go to first ] or |
+"     while s:current_char != ']' && s:current_char != '|'
+"         normal! <right>
+"         let s:current_char = strpart(getline('.'), col('.'), 1)
+"     endwhile
+"     " start visual selection
+"     normal! v
+"     " go to previous [
+"     let s:current_char = strpart(getline('.'), col('.'), 1)
+"     while s:current_char != '['
+"         normal! <right>
+"         let s:current_char = strpart(getline('.'), col('.'), 1)
+"     endwhile
+" endfunction
+
+function! ObsidianOpenReference()
+    " copy in register f what is inside []
+    normal! "fyi[
+    " ensure that the reference name ends with ".md"
+    if strpart(@f, len(@f)-3) != ".md"
+        let @f = @f . ".md"
+    endif
+    " open the reference
+    exec "edit " . @f
+endfunction
+command! ObsidianOpenReference :call ObsidianOpenReference()
+nnoremap go :ObsidianOpenReference<cr>
+nnoremap <leader>oo :ObsidianOpenReference<cr>
+
+function! ObsidianTabOpenReference()
+    " copy in register f what is inside []
+    normal! "fyi[
+    " ensure that the reference name ends with ".md"
+    if strpart(@f, len(@f)-3) != ".md"
+        let @f = @f . ".md"
+    endif
+    " open the reference in a new tab
+    exec "tabedit " . @f
+endfunction
+command! ObsidianTabOpenReference :call ObsidianTabOpenReference()
+nnoremap <leader>ot :ObsidianTabOpenReference<cr>
+
+function! ObsidianSplitOpenReference()
+    " copy in register f what is inside []
+    normal! "fyi[
+    " ensure that the reference name ends with ".md"
+    if strpart(@f, len(@f)-3) != ".md"
+        let @f = @f . ".md"
+    endif
+    " open the reference in a new split
+    exec "split " . @f
+endfunction
+command! ObsidianSplitOpenReference :call ObsidianSplitOpenReference()
+nnoremap <leader>os :ObsidianSplitOpenReference<cr>
+nnoremap <leader>ov :vert ObsidianSplitOpenReference<cr>
 
 
 " call AddAbbreviation("^ *-o$", "○ ", 1)
