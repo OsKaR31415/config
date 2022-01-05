@@ -183,8 +183,6 @@ nnoremap <silent> <leader>, :Calc<cr>
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸  ⡜ ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡇ ⡷⣸ ⡇  ⡇ ⡷⣸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
-" required for vim-markdown
-" Plug 'godlygeek/tabular' " easy align is better
 Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex']}
 set conceallevel=2
 set concealcursor=c
@@ -232,6 +230,13 @@ Plug 'sotte/presenting.vim'
 " au filetype markdown let b:presenting_slide_separator = '---\+$'
 au filetype markdown let b:presenting_slide_separator = '---\+$'
 
+
+ " ⣏⡉ ⡷⢾ ⡷⢾ ⣏⡉ ⢹⠁
+ " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
+" emmet abbreviations for html
+" default shortcut to expand is <c-y>,
+Plug 'mattn/emmet-vim', {'for': 'html'}
+imap <c-l> <c-y>
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
  " ⠧⠤ ⠇⠸ ⠢⠜  ⠇ ⠉⠉ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠹
@@ -381,6 +386,7 @@ nmap <leader>c gc
  " ⠇⠹ ⠧⠤ ⠸  ⠇⠱ ⠟⠻
 " my config to make netrw usable (hard, i admit) (vinegar)
 " not a plugin but it could almost be one
+Plug 'tpope/vim-vinegar'
 let g:netrw_keepdir        = 0  " make vim root follow netrw's one
 let g:netrw_fastbrowse     = 2 " make netrw to update only when told (<c-l>, or <c-r> with my mappings)
 let g:netrw_winsize        = 25 " defauld win size
@@ -388,8 +394,8 @@ let g:netrw_banner         = 0  " no header
 let g:netrw_liststyle      = 3  " tree style
 let g:netrw_special_syntax = 1 " show per-extension coloration
 " use - to toggle explorer in current pane
-nnoremap - :Explore<cr>
-au filetype netrw silent! nnoremap - :Rexplore<cr>
+" nnoremap - :Explore<cr>
+" au filetype netrw silent! nnoremap - :Rexplore<cr>
 " shortcut to explore
 nnoremap <leader>e :Lexplore<cr>
 
@@ -401,7 +407,7 @@ nnoremap <leader>e :Lexplore<cr>
 " nnoremap <leader>f :RangerEdit<cr>
 " Plug 'rafazq/ranger.vim'
 Plug 'francoiscabrol/ranger.vim'
-" leader-f --> :Ranger
+" <leader>f --> :Ranger
 
 
  " ⣏⡉ ⢉⠝ ⣏⡉   ⡔⠁ ⣏⡉ ⡇⢸ ⢉⠝ ⢉⠝ ⢇⢸   ⣏⡉ ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⣏⡱ ⠈⢢
@@ -789,7 +795,7 @@ set signcolumn=number
 set path+=*,**
 
 " Enable mouse mode for command mode
-set mouse=c
+set mouse=a
 " set vertical scroll step (here : 1)
 nnoremap <ScrollWheelUp> <C-Y>
 nnoremap <ScrollWheelDown> <C-e>
