@@ -655,6 +655,10 @@ set timeout timeoutlen=300
 command! SO :wa | so ~/.vimrc | e
 Arpeggio nnoremap <silent> so :SO<cr>
 
+" Y copies the whole line by default.
+" strange because C or D are up to the EOL !
+nnoremap Y y$
+
 " MOTIONS
 " swap , and ; since the ; is less accessible in my keyboard layout
 nnoremap ; ,
