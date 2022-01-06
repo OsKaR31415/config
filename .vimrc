@@ -683,7 +683,9 @@ inoremap kj <left>
 " kj for normal mode in a terminal buffer
 tmap kl <C-w>N
 tmap lk <C-w>N
-" got to stop using kl : i have an accessible esc key in my keyboard
+" i start using kl again... hard to stop
+" still, i should try to stop because it is hard on the right hand
+" also, in english, 'kl' isn't the rarest digraph
 Arpeggio inoremap kl <esc>
 
 
