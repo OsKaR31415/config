@@ -159,12 +159,15 @@ alias lla="ls -la"
 
 alias v=vim
 alias nv=nvim
+alias c=clear # <c-l> switches trough
+alias t=task # task warrior
+
 alias google="w3m -sixel google.com"
 alias imgls="~/iterm2/imgls"
 alias imgcat="~/iterm2/imgcat"
 alias img="img2sixel"
-alias c=clear
 
+alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'"
 
@@ -223,3 +226,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # opam configuration
 [[ ! -r /Users/oscarplaisant/.opam/opam-init/init.zsh ]] || source /Users/oscarplaisant/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
