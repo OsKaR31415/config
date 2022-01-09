@@ -113,8 +113,8 @@ def configure(repl):
 
     # repl.color_depth = "DEPTH_1_BIT"  # Monochrome.
     # repl.color_depth = "DEPTH_4_BIT"  # ANSI colors only.
-    repl.color_depth = "DEPTH_8_BIT"  # The default, 256 colors.
-    # repl.color_depth = "DEPTH_24_BIT"  # True color.
+    # repl.color_depth = "DEPTH_8_BIT"  # The default, 256 colors.
+    repl.color_depth = "DEPTH_24_BIT"  # True color.
 
     # Min/max brightness
     repl.min_brightness = 0.0  # Increase for dark terminal backgrounds.
@@ -153,12 +153,10 @@ def configure(repl):
 
     # Typing 'jj' in Vi Insert mode, should send escape. (Go back to navigation
     # mode.)
-    """
-    @repl.add_key_binding("j", "j", filter=ViInsertMode())
+    @repl.add_key_binding("k", "l", filter=ViInsertMode())
     def _(event):
-        " Map 'jj' to Escape. "
+        " Map 'kl' to Escape. "
         event.cli.key_processor.feed(KeyPress("escape"))
-    """
 
     # Custom key binding for some simple autocorrection while typing.
     """
