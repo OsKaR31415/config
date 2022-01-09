@@ -160,7 +160,8 @@ nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
  " ⠸  ⠇⠸ ⠣⠝ ⠢⠜   ⠸⠃ ⠇ ⠢⠜ ⠣⠜ ⠇⠸ ⠧⠤ ⠇ ⠢⠜ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " TODO: fix the problem with ctags source not showing anything with python
 Plug 'liuchengxu/vista.vim'
-nnoremap <leader>uv :Vista!!<cr>
+" toggle vista
+nnoremap <leader>v :Vista!!<cr>
 let g:vista#render#enable_icon = 1
 let g:vista_default_executive = 'coc'
 let g:vista_ctags_cmd = {
@@ -802,9 +803,9 @@ set path+=*,**
 
 " Enable mouse mode for command mode
 set mouse=a
-" set vertical scroll step (here : 1)
-nnoremap <ScrollWheelUp> <C-Y>
-nnoremap <ScrollWheelDown> <C-e>
+" set vertical scroll step (here : 5)
+nnoremap <ScrollWheelUp> 4<C-Y>
+nnoremap <ScrollWheelDown> 4<C-e>
 
 
 " ┏━┓┏━┓╻  ╻╺┳╸┏━┓
