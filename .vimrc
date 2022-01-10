@@ -804,8 +804,8 @@ set path+=*,**
 " Enable mouse mode for command mode
 set mouse=a
 " set vertical scroll step (here : 5)
-nnoremap <ScrollWheelUp> 4<C-Y>
-nnoremap <ScrollWheelDown> 4<C-e>
+nnoremap <ScrollWheelUp> 3<C-Y>
+nnoremap <ScrollWheelDown> 3<C-e>
 
 
 " ┏━┓┏━┓╻  ╻╺┳╸┏━┓
