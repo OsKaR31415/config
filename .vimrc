@@ -58,7 +58,8 @@ call plug#begin('~/.vim/plugged')
  " ⠇⠸ ⠇⠱ ⠇  ⠧⠤ ⠣⠝ ⠣⠝ ⠇ ⠣⠜
 " plugin do map multiple keys at the same time
 Plug 'kana/vim-arpeggio'
-" the normal method does not work but that one does...
+" The plugin manager isn't sourcing these files...
+" have to do it manually
 source ~/.vim/plugged/vim-arpeggio/plugin/arpeggio.vim
 source ~/.vim/plugged/vim-arpeggio/autoload/arpeggio.vim
 let g:arpeggio_timeoutlen=50
@@ -78,19 +79,27 @@ let g:regex_abbreviations#expand_symbol = ":"
 " my first plugin !
 " toggles parts of the ui like tabline, statusline, line numbers or background
 Plug 'OsKaR31415/vim-ui-toggle'
-let g:background_colors_list = ["233", "234", "235", "none", "232"]
+let g:background_colors_list = ["none", "234", "235", "233", "232"]
+let g:background_color_index = 0
 " UI hide and show
-nnoremap <silent> <leader>us :StatuslineToggle<cr>
-nnoremap <silent> <leader>ut :TablineToggle<cr>
-nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
-nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
-nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
+Arpeggio nnoremap <silent> <leader>us :StatuslineToggle<cr>
+Arpeggio nnoremap <silent> <leader>ut :TablineToggle<cr>
+Arpeggio nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
+Arpeggio nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
+Arpeggio nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
 " cycle between different colors
-nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
-nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
+Arpeggio nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
+Arpeggio nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
 " toggle all of them
 nnoremap <silent> <leader>uu :UItoggle<cr>
-nnoremap <silent> <leader>ur :UIreset<cr>
+Arpeggio nnoremap <silent> <leader>uq :UItoggle<cr>
+Arpeggio nnoremap <silent> <leader>ur :UIreset<cr>
+
+
+ " ⢎⡑ ⡇⢸ ⣏⡱ ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉ ⢎⡑
+ " ⠢⠜ ⠣⠜ ⠧⠜ ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤ ⠢⠜
+" simple submodes !
+Plug 'tomtom/tinykeymap_vim'
 
 
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⡎⢱   ⢹⠁ ⣏⡉ ⣏⡱ ⡷⢾ ⡇ ⡷⣸ ⣎⣱ ⡇    ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
@@ -120,7 +129,7 @@ if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
-  set signcolumn=yes
+  set signcolumn=no
 endif
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -201,8 +210,13 @@ let g:tex_conceal_frac = 1
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 " markdown live preview on localhost:9090
-" Plug 'iamcco/markdown-preview.nvim', {'for': ['markdown', 'tex', 'latex']}
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" Set to 1, Vim will automatically open the preview window when you edit a Markdown file.
+let g:mkdp_auto_open = 1
+" automatically close the current preview when switching from one Markdown buffer to another
+let g:mkdp_auto_close = 1
+" make the :MarkdownPreview available for any filetype
+let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 1  " preview server available to others in your network
 let g:mkdp_port = '9090'
 let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
@@ -227,7 +241,7 @@ let g:vmt_auto_update_on_save = 1
  " ⣏⡱ ⣏⡱ ⣏⡉ ⢎⡑ ⣏⡉ ⡷⣸ ⢹⠁ ⡇ ⡷⣸ ⡎⠑   ⡔⠁ ⡷⢾ ⣇⠜ ⡏⢱   ⣏⡱ ⣏⡱ ⣏⡉ ⢎⡑ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸ ⢎⡑ ⠈⢢
  " ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇ ⠇⠹ ⠣⠝   ⠣⡀ ⠇⠸ ⠇⠱ ⠧⠜   ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹ ⠢⠜ ⢀⠜
 " presentations inside vim itself
-Plug 'sotte/presenting.vim'
+Plug 'sotte/presenting.vim', {'for': 'markdown'}
 " au filetype markdown let b:presenting_slide_separator = '---\+$'
 au filetype markdown let b:presenting_slide_separator = '---\+$'
 
@@ -238,6 +252,9 @@ au filetype markdown let b:presenting_slide_separator = '---\+$'
 " default shortcut to expand is <c-y>,
 Plug 'mattn/emmet-vim', {'for': 'html'}
 imap <c-l> <c-y>
+vmap <c-l> <c-y>
+
+
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
  " ⠧⠤ ⠇⠸ ⠢⠜  ⠇ ⠉⠉ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠹
@@ -487,26 +504,11 @@ map <silent> <leader>z :ZoomToggle<cr>
 
  " ⢹⠁ ⡇ ⡇  ⡇ ⡷⣸ ⡎⠑   ⢎⡑ ⡇⢸ ⣏⡱ ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉
  " ⠸  ⠇ ⠧⠤ ⠇ ⠇⠹ ⠣⠝   ⠢⠜ ⠣⠜ ⠧⠜ ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤
+" replaced by the plugin : tomtom/tinykeymap_vim
 " tiling submode
 " submode to deal with windows
-Plug 'OsKaR31415/vim-tiling-submode'
-nnoremap <leader>q :TilingSubmode<cr>
-
-" WINDOW SHORTCUTS
-Arpeggio nnoremap sj :below new<cr>
-Arpeggio nnoremap sk :above new<cr>
-Arpeggio nnoremap sh :above vnew<cr>
-Arpeggio nnoremap sl :below vnew<cr>
-Arpeggio nnoremap st :tabnew<cr>
-Arpeggio nnoremap sq :quit<cr>
-nnoremap <leader>t :tabnew<cr>
-" replacement for <C-W>
-nnoremap <leader>w <C-W>
-nnoremap <cr> <C-w>
-" <c-w>m: maximize
-nnoremap <C-W>m <C-W>_<C-W>\|
-" open a terminal on current window
-nnoremap <leader>! :term ++curwin<cr>
+" Plug 'OsKaR31415/vim-tiling-submode'
+" nnoremap <leader>q :TilingSubmode<cr>
 
 
  " ⡎⠑ ⡇⢸ ⢎⡑ ⢹⠁ ⡎⢱ ⡷⢾   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁ ⢎⡑
@@ -685,13 +687,36 @@ vnoremap <silent> <up> :m '<-2<cr>gv=gv
 " left and right equivalents in insert mode
 inoremap jk <right>
 inoremap kj <left>
-" kj for normal mode in a terminal buffer
-tmap kl <C-w>N
-tmap lk <C-w>N
-" i start using kl again... hard to stop
-" still, i should try to stop because it is hard on the right hand
-" also, in english, 'kl' isn't the rarest digraph
-Arpeggio inoremap kl <esc>
+" kl for normal mode in a terminal buffer
+" tmap kl <C-w>N
+" tmap lk <C-w>N
+" Arpeggio inoremap kl <esc>
+
+" WINDOWS
+Arpeggio nnoremap sj :below new<cr>
+Arpeggio nnoremap sk :above new<cr>
+Arpeggio nnoremap sh :above vnew<cr>
+Arpeggio nnoremap sl :below vnew<cr>
+Arpeggio nnoremap st :tabnew<cr>
+Arpeggio nnoremap sq :quit<cr>
+" replacement for <C-W>
+nnoremap <leader>w <C-W>
+nnoremap <cr> <C-w>
+" <c-w>m: maximize
+nnoremap <C-W>m <C-W>_<C-W>\|
+" open a terminal on current window
+nnoremap <leader>! :term ++curwin<cr>
+
+" window submode
+call tinykeymap#EnterMap("windows", "<leader>q", {"name": "Windows mode"})
+call tinykeymap#Map("windows", "s", "split")
+call tinykeymap#Map("windows", "v", "vsplit")
+call tinykeymap#Map("windows", "h", "TmuxNavigateLeft")
+call tinykeymap#Map("windows", "j", "TmuxNavigateDown")
+call tinykeymap#Map("windows", "k", "TmuxNavigateUp")
+call tinykeymap#Map("windows", "l", "TmuxNavigateRight")
+call tinykeymap#Map("windows", "z", "ZoomToggle")
+call tinykeymap#Map("windows", "x", "close")
 
 
 " TABS
@@ -699,6 +724,18 @@ nnoremap <right> gt
 nnoremap <left>  gT
 nnoremap <silent> <up> :tabmove +1<cr>
 nnoremap <silent> <down> :tabmove -1<cr>
+
+" tabs submode
+call tinykeymap#EnterMap("tabs", "\<c-t>", {"name": "Tabs mode"})
+call tinykeymap#Map("tabs", "l", "norm! gt")
+call tinykeymap#Map("tabs", "h", "norm! gT")
+call tinykeymap#Map("tabs", "\_", "tabfirst")
+call tinykeymap#Map("tabs", "$", "tablast")
+call tinykeymap#Map("tabs", "c", "tabclose")
+call tinykeymap#Map("tabs", "x", "tabclose")
+call tinykeymap#Map("tabs", "k", "tabmove +1")
+call tinykeymap#Map("tabs", "j", "tabmove -1")
+
 
 " MISC
 " show a clock
@@ -803,7 +840,8 @@ set path+=*,**
 
 " Enable mouse mode for command mode
 set mouse=a
-" set vertical scroll step (here : 5)
+set ttymouse=sgr
+" set vertical scroll step (here : 3)
 nnoremap <ScrollWheelUp> 3<C-Y>
 nnoremap <ScrollWheelDown> 3<C-e>
 
