@@ -690,7 +690,7 @@ inoremap kj <left>
 " kl for normal mode in a terminal buffer
 " tmap kl <C-w>N
 " tmap lk <C-w>N
-" Arpeggio inoremap kl <esc>
+Arpeggio inoremap kl <esc>:echo "c'est mal !!"<cr>
 
 " WINDOWS
 Arpeggio nnoremap sj :below new<cr>
@@ -720,6 +720,7 @@ call tinykeymap#Map("windows", "x", "close")
 
 
 " TABS
+nnoremap <leader>t :tabnew<cr>
 nnoremap <right> gt
 nnoremap <left>  gT
 nnoremap <silent> <up> :tabmove +1<cr>
