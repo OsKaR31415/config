@@ -226,6 +226,7 @@ alias todo="cat TODO.md | crop | bat --color=auto --style=plain --language=markd
 # Force colors when showing the todo-list
 alias todo-colored="cat TODO.md | crop | bat --color=always --style=plain --language=markdown"
 
+# THINGS TO LOAD AT THE END ######################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # zsh syntax highlighting
@@ -234,10 +235,10 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 # opam configuration
 [[ ! -r /Users/oscarplaisant/.opam/opam-init/init.zsh ]] || source /Users/oscarplaisant/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+##################################################
 
 # show todo-list at each session startup
-printf "━%.0s" {1..50}
-printf "\n"
+printf "━%.0s" {1..50}; printf "\n" # show a vertical line
 todo-colored
 
 
