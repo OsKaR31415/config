@@ -221,10 +221,10 @@ bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
 alias fzf="fzf --color=hl:28,hl+:34"
 
-# command to Show todo-list
-alias todo="bat --color=auto --style=plain ~/TODO.md | crop"
+# command to show todo-list
+alias todo="cat TODO.md | crop | bat --color=auto --style=plain --language=markdown"
 # Force colors when showing the todo-list
-alias todo-colored="bat --color=always --style=plain ~/TODO.md | crop"
+alias todo-colored="cat TODO.md | crop | bat --color=always --style=plain --language=markdown"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
