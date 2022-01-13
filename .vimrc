@@ -849,8 +849,8 @@ set path+=*,**
 set mouse=a
 set ttymouse=sgr
 " set vertical scroll step (here : 3)
-nnoremap <ScrollWheelUp> 3<C-Y>
-nnoremap <ScrollWheelDown> 3<C-e>
+nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y>
+nnoremap <ScrollWheelDown> <C-e><C-e><C-e>
 
 
 " ┏━┓┏━┓╻  ╻╺┳╸┏━┓
