@@ -304,6 +304,7 @@ Plug 'blueyed/vim-diminactive'
 let g:diminactive_use_colorcolumn = 1
 let g:diminactive_use_syntax = 0
 let g:diminactive_enable_focus = 1
+let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help', 'terminal']
 
 
  " ⡎⠑ ⡎⢱ ⡇  ⡎⢱ ⣏⡱   ⢎⡑ ⡎⠑ ⣇⣸ ⣏⡉ ⡷⢾ ⣏⡉ ⢎⡑
@@ -549,7 +550,7 @@ let g:ripple_repls = {
             \ "julia": "julia",
             \ "java": "jshell",
             \ "lua": "lua",
-            \ "ocaml": "ocaml",
+            \ "ocaml": "utop",
             \ "r": "R",
             \ "ruby": "irb",
             \ "scheme": "guile",
@@ -575,6 +576,11 @@ Plug 'preservim/vimux'
 " <C-h>, <C-j>, <C-k> and <C-l>
 " goes with a config in ~/.tmux.conf
 Plug 'christoomey/vim-tmux-navigator'
+tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
+tmap <c-j> <c-w>:TmuxNavigateDown<cr>
+tmap <c-k> <c-w>:TmuxNavigateUp<cr>
+tmap <c-l> <c-w>:TmuxNavigateRight<cr>
+
 
 
  " ⣏⡱ ⣎⣱ ⣏⡱ ⣏⡉ ⡷⣸ ⢹⠁ ⣇⣸ ⣏⡉ ⢎⡑ ⡇ ⢎⡑   ⡎⠑ ⡎⢱ ⡇  ⡎⢱ ⣏⡱ ⡇ ⢎⡑ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
