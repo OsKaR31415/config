@@ -221,23 +221,21 @@ bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
 alias fzf="fzf --color=hl:28,hl+:34"
 
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# opam configuration
-[[ ! -r /Users/oscarplaisant/.opam/opam-init/init.zsh ]] || source /Users/oscarplaisant/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Show todo-list
+# command to Show todo-list
 alias todo="bat --color=auto --style=plain ~/TODO.md | crop"
 # Force colors when showing the todo-list
 alias todo-colored="bat --color=always --style=plain ~/TODO.md | crop"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# zsh syntax highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# iterm shell integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# opam configuration
+[[ ! -r /Users/oscarplaisant/.opam/opam-init/init.zsh ]] || source /Users/oscarplaisant/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# show todo-list at each session startup
 printf "━%.0s" {1..50}
 printf "\n"
 todo-colored
