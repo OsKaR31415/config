@@ -238,7 +238,11 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ##################################################
 
 # show todo-list at each session startup
-printf "━%.0s" {1..50}; printf "\n" # show a vertical line
+
+# length of the longes line in ~/TODO.md
+length=$(awk "{print length}" ~/TODO.md | sort -n | tail -1)
+# horizontal line of that length
+printf "━%.0s" {1..$length}; printf "\n"
 todo-colored
 
 
