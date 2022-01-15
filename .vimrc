@@ -5,9 +5,8 @@
 "  ██▄▄██   █▄▄▄▄▄██  ██   ██▄  ██▄▄▄███  ██    ██  █▄▄▄▄██▀  ▄▄▄██▄▄▄       ██   ▄▄▄██▄▄▄  █▄▄▄▄██▀
 "   ▀▀▀▀     ▀▀▀▀▀▀   ▀▀    ▀▀   ▀▀▀▀ ▀▀  ▀▀    ▀▀▀  ▀▀▀▀▀    ▀▀▀▀▀▀▀▀       ▀▀   ▀▀▀▀▀▀▀▀   ▀▀▀▀▀
 " my .vimrc
-" not perfect for me, awfull for others
 " a complete mess, full of plugins
-" but i'm quite proud of it
+" but i like it
 " since it does the job I want it to :
 " makes me be quick and feel comfortable in vim
 
