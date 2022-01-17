@@ -836,6 +836,27 @@ Arpeggionnoremap <silent> noh :noh<cr>
 silent nnoremap <silent> n nzz
 silent nnoremap <silent> N Nzz
 
+" ╺┳╸┏━┓┏━┓╻┏    ╻ ╻┏━┓┏━┓┏━┓╻┏━┓┏━┓
+"  ┃ ┣━┫┗━┓┣┻┓   ┃╻┃┣━┫┣┳┛┣┳┛┃┃ ┃┣┳┛
+"  ╹ ╹ ╹┗━┛╹ ╹   ┗┻┛╹ ╹╹┗╸╹┗╸╹┗━┛╹┗╸
+" little simple integration with task warrior
+
+" command to call task warrior
+command! -nargs=* Task !task <args>
+" <c-t> in command mode to start that command
+cnoremap <c-t> Task<space>
+cnoremap <c-t><c-t> Task<space>
+
+" same for adding a given task
+command! -nargs=* TaskAdd !task add <args>
+cnoremap <c-t><c-a> TaskAdd<space>
+cnoremap <c-t>a TaskAdd<space>
+
+" same for modifying a given task
+command! -nargs=* TaskModify !task modify <args>
+cnoremap <c-t><c-m> TaskModify<space>
+cnoremap <c-t>m TaskModify<space>
+
 
 " ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
 " ┃ ┃ ┃ ┣━┫┣╸ ┣┳┛   ┗━┓┣╸  ┃  ┃ ┃┃┗┫┃╺┓┗━┓
