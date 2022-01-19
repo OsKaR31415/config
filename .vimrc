@@ -131,7 +131,7 @@ endif
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
+  set signcolumn=yes
 else
   set signcolumn=no
 endif
@@ -195,6 +195,20 @@ let g:VCalc_WindowPosition = 'top'
 nnoremap <silent> <leader>, :Calc<cr>
 
 
+ " ⣇⣸ ⢹⠁ ⡷⢾ ⡇    ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
+ " ⠇⠸ ⠸  ⠇⠸ ⠧⠤   ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
+" html live preview (with firefox plugin)
+Plug 'flomotlik/vim-livereload', {'for': ['html', 'css', 'js']}
+
+ " ⣏⡉ ⡷⢾ ⡷⢾ ⣏⡉ ⢹⠁
+ " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
+" emmet abbreviations for html
+" default shortcut to expand is <c-y>,
+Plug 'mattn/emmet-vim', {'for': 'html'}
+imap <c-l> <c-y>
+vmap <c-l> <c-y>
+
+
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸  ⡜ ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡇ ⡷⣸ ⡇  ⡇ ⡷⣸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex']}
@@ -248,16 +262,6 @@ let g:vmt_auto_update_on_save = 1
 Plug 'sotte/presenting.vim', {'for': 'markdown'}
 " au filetype markdown let b:presenting_slide_separator = '---\+$'
 au filetype markdown let b:presenting_slide_separator = '---\+$'
-
-
- " ⣏⡉ ⡷⢾ ⡷⢾ ⣏⡉ ⢹⠁
- " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
-" emmet abbreviations for html
-" default shortcut to expand is <c-y>,
-Plug 'mattn/emmet-vim', {'for': 'html'}
-imap <c-l> <c-y>
-vmap <c-l> <c-y>
-
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
@@ -843,19 +847,17 @@ silent nnoremap <silent> N Nzz
 
 " command to call task warrior
 command! -nargs=* Task !task <args>
+
 " <c-t> in command mode to start that command
-cnoremap <c-t> Task<space>
 cnoremap <c-t><c-t> Task<space>
 
 " same for adding a given task
-command! -nargs=* TaskAdd !task add <args>
-cnoremap <c-t><c-a> TaskAdd<space>
-cnoremap <c-t>a TaskAdd<space>
+cnoremap <c-t>a Task add<space>
+cnoremap <c-t><c-a> Task add<space>
 
 " same for modifying a given task
-command! -nargs=* TaskModify !task modify <args>
-cnoremap <c-t><c-m> TaskModify<space>
-cnoremap <c-t>m TaskModify<space>
+cnoremap <c-t>m Task modify<space>
+cnoremap <c-t><c-m> Task modify<space>
 
 
 " ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
@@ -865,8 +867,6 @@ cnoremap <c-t>m TaskModify<space>
 set hidden
 
 set shortmess+=c
-
-set signcolumn=number
 
 set path+=*,**
 
