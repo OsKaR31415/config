@@ -168,6 +168,8 @@ alias imgls="~/iterm2/imgls"
 alias imgcat="~/iterm2/imgcat"
 alias img="img2sixel"
 
+alias events="icalBuddy -f -n eventsToday+1 | less"
+
 # removes starting and trailing blank lines
 alias crop="sed -e :a -e '/[^[:blank:]]/,\$!d; /^[[:space:]]*\$/{ \$d; N; ba' -e '}'"
 
