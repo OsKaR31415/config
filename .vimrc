@@ -86,6 +86,7 @@ Arpeggio nnoremap <silent> <leader>ut :TablineToggle<cr>
 Arpeggio nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
 Arpeggio nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
 Arpeggio nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
+Arpeggio nnoremap <silent> <leader>ug :SignColumnToggle<cr>
 " cycle between different colors
 Arpeggio nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
 Arpeggio nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
@@ -117,6 +118,12 @@ omap <leader>x <Plug>(SendToTerm)
 nmap <leader>xx <Plug>(SendToTermLine)
 
 
+ " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱         ⡔⠁ ⢎⡑ ⡇  ⡇ ⡷⢾ ⣏⡉ ⠈⢢
+ " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠸  ⠣⠜ ⠶ ⠶ ⠶   ⠣⡀ ⠢⠜ ⠧⠤ ⠇ ⠇⠸ ⠧⠤ ⢀⠜
+" send text to various things (repls, tmux, etc...)
+Plug 'jpalardy/vim-slime'
+
+
  " ⡎⠑ ⡎⢱ ⡎⠑
  " ⠣⠔ ⠣⠜ ⠣⠔
 " auto completion and LSP support
@@ -131,7 +138,7 @@ endif
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
-  set signcolumn=yes
+  set signcolumn=no
 else
   set signcolumn=no
 endif
@@ -198,7 +205,9 @@ nnoremap <silent> <leader>, :Calc<cr>
  " ⣇⣸ ⢹⠁ ⡷⢾ ⡇    ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠸  ⠇⠸ ⠧⠤   ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 " html live preview (with firefox plugin)
-Plug 'flomotlik/vim-livereload', {'for': ['html', 'css', 'js']}
+" Plug 'flomotlik/vim-livereload' " , {'for': ['html', 'css', 'js']}
+" Plug 'greyblake/vim-preview'
+
 
  " ⣏⡉ ⡷⢾ ⡷⢾ ⣏⡉ ⢹⠁
  " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
@@ -247,6 +256,11 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ 'disable_filename': 0
     \ }
 
+
+Plug 'prabirshrestha/async.vim'
+Plug 'christianrondeau/vim-base64'
+" pandoc markdown live preview
+Plug 'tex/vimpreviewpandoc'
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⢹⠁ ⡎⢱ ⡎⠑
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠸  ⠣⠜ ⠣⠔
