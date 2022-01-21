@@ -155,12 +155,28 @@ bindkey -s "kl" "\e"
 bindkey -s '^f' ". ranger\n"
 
 alias lsa="ls -a"
-alias lla="ls -la"
+alias lla="ll -a"
+
+# exa is "the modern replacement for ls"
+alias l="exa --icons"
+alias ll="l -l"
+alias la="l -a"
+alias lla="l -la"
+alias lt="l -T"
+
+# 38;5;nnn is for 256 colors (replacing the nnn)
+export EXA_COLORS=$(echo -n "di=38;5;40
+fi=38;5;253
+ex=4;
+*.md=38;5;117:*.html=38;5;37:*.css=38;5;37:*.js=38;5;37:*.ts=38;5;37:*.php=38;5;37
+*.java=38;5;172:*.class=38;5;172
+*.pdf=38;5;184
+" | tr '\n' ':')
 
 
 alias v=vim
 alias nv=nvim
-alias c=clear # <c-l> switches trough
+alias c=clear # <c-l> goes to tmux pane right
 alias t=task # task warrior
 
 alias google="w3m -sixel google.com"
@@ -185,7 +201,12 @@ alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 # if {} is a file --> use bat
 # if {} is a dir ---> use exa
 # else -------------> echo ''
-fzf_preview_contents="if test -f {}; then; bat --color=always --number {}; elif test -d; then; exa -1 --color=always {}; else; echo ''; fi"
+fzf_preview_contents="if test -f {}
+then; bat --color=always --number {}
+elif test -d
+then; exa -1 --color=always {}
+else; echo ''
+fi"
 
 # function to create a simple file explorer based on fzf
 function fzf_cd() {
@@ -198,9 +219,9 @@ function fzf_cd() {
         # if the selection is empty (pressed <C-c>) or "./" (current dir)
         if [ -z $selected ] || [ $selected = "./" ]
         then
-            # ls
+            # show the directory contents
             clear
-            ls -ap
+            l
             # quit the loop
             return
         # if the selection is a file
@@ -224,9 +245,9 @@ bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 alias fzf="fzf --color=hl:28,hl+:34"
 
 # command to show todo-list
-alias todo="cat TODO.md | crop | bat --color=auto --style=plain --language=markdown"
+alias todo="cat ~/TODO.md | crop | bat --color=auto --style=plain --language=markdown"
 # Force colors when showing the todo-list
-alias todo-colored="cat TODO.md | crop | bat --color=always --style=plain --language=markdown"
+alias todo-colored="cat ~/TODO.md | crop | bat --color=always --style=plain --language=markdown"
 
 # THINGS TO LOAD AT THE END ######################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
