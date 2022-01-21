@@ -257,10 +257,10 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ }
 
 
-Plug 'prabirshrestha/async.vim'
-Plug 'christianrondeau/vim-base64'
-" pandoc markdown live preview
-Plug 'tex/vimpreviewpandoc'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'christianrondeau/vim-base64'
+" " pandoc markdown live preview
+" Plug 'tex/vimpreviewpandoc'
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⢹⠁ ⡎⢱ ⡎⠑
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠸  ⠣⠜ ⠣⠔
@@ -322,11 +322,11 @@ Plug 'vim-scripts/DrawIt'
  " ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸ ⠸    ⠣⠔ ⠣⠜ ⠇⠱ ⠇⠱ ⠧⠤ ⠇⠹ ⠸    ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
 " dim inactive panes (highlight current)
 " used in conjunction with tmux settings for the panes bg color
+let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help', 'terminal']
 Plug 'blueyed/vim-diminactive'
 let g:diminactive_use_colorcolumn = 1
 let g:diminactive_use_syntax = 0
 let g:diminactive_enable_focus = 1
-let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help', 'terminal']
 
 
  " ⡎⠑ ⡎⢱ ⡇  ⡎⢱ ⣏⡱   ⢎⡑ ⡎⠑ ⣇⣸ ⣏⡉ ⡷⢾ ⣏⡉ ⢎⡑
