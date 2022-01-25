@@ -1,10 +1,13 @@
+showbind 
+next
+nexp
+skip
+save
+help
 h
 ?
-help
 pass
 n
-next
-skip
 vol -1
 colorscheme green
 colorscheme amazon
