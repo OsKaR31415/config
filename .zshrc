@@ -193,6 +193,9 @@ alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'"
 
+# graphs of some stats
+alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | ttyplot -t 'ping to google.com' -u ms -s 50"
+
 alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 
 
@@ -234,6 +237,7 @@ function fzf_cd() {
         fi
     done
 }
+
 
 
 bindkey -s "^e" "fzf_cd\n"
