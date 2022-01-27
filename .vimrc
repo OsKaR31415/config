@@ -20,7 +20,15 @@ set nocompatible
 let mapleader=" "
 
 " cool vim logo at starting
-silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
+" if not in tmux, use sixel
+if len($TMUX) < 1
+    silent!chafa --format sixel ~/.vim/vim_logo.svg
+" if chafa in installed, and show the logo with it
+elseif system('which chafa') !~ "\w\+" && &term =~ "256color"
+    silent !chafa ~/.vim/vim_logo.svg
+else
+    " silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
+endif
 
 " graphical menu for command-line autocompletion (else nothing is shown)
 set wildmenu
@@ -274,8 +282,7 @@ let g:vmt_auto_update_on_save = 1
  " ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇ ⠇⠹ ⠣⠝   ⠣⡀ ⠇⠸ ⠇⠱ ⠧⠜   ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹ ⠢⠜ ⢀⠜
 " presentations inside vim itself
 Plug 'sotte/presenting.vim', {'for': 'markdown'}
-" au filetype markdown let b:presenting_slide_separator = '---\+$'
-au filetype markdown let b:presenting_slide_separator = '---\+$'
+nnoremap <leader>ps :PresentingStart<cr>
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
@@ -322,8 +329,9 @@ Plug 'vim-scripts/DrawIt'
  " ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸ ⠸    ⠣⠔ ⠣⠜ ⠇⠱ ⠇⠱ ⠧⠤ ⠇⠹ ⠸    ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
 " dim inactive panes (highlight current)
 " used in conjunction with tmux settings for the panes bg color
-let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help', 'terminal']
 Plug 'blueyed/vim-diminactive'
+let g:diminactive_buftype_blacklist = ['nofile', 'nowrite', 'acwrite', 'quickfix', 'help', 'terminal']
+let g:diminactive_filetype_blacklist = ['startify']
 let g:diminactive_use_colorcolumn = 1
 let g:diminactive_use_syntax = 0
 let g:diminactive_enable_focus = 1
@@ -552,12 +560,14 @@ Plug 'kana/vim-textobj-underscore'
  " ⠧⠤ ⠇⠸ ⠣⠔ ⠇⠸ ⠇⠸ ⠇⠹ ⠣⠝ ⠧⠤   ⠮⠤   ⠇⠱ ⠧⠤ ⠣⠝ ⠇ ⠣⠜ ⠇⠹ ⠢⠜
 " cx operator to exchange 2 regions
 " cx{motion 1}, then cx{motion 2} swaps the texts
+" in visual mode, X does the same thing
 Plug 'tommcdo/vim-exchange'
 
 
  " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
  " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
 Plug 'mhinz/vim-startify'
+let g:startify_fortune_use_unicode = 1
 
 
  " ⣏⡱ ⣏⡉ ⣏⡱ ⡇    ⡇ ⡷⣸ ⢹⠁ ⣏⡉ ⡎⠑ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
