@@ -28,9 +28,9 @@ hi htmlH6 cterm=bold ctermfg=240
 " ┗━┛┗━┛┗━┛╹╺┻┛╹╹ ╹╹ ╹
 " configuration pour obsidian
 
+nnoremap <leader>oo :silent !open 'obsidian://open?vault=VAULTNAME&file='.expand('%:r')
 " " select the current reference (text inside [[...]])
-" " also, we only
-" function! ObsidianVisualSelectReference()
+" fun! ObsidianVisualSelectReference()
 "     let s:current_char = strpart(getline('.'), col('.'), 1)
 "     if s:current_char == '['
 "         normal! f]
@@ -48,9 +48,9 @@ hi htmlH6 cterm=bold ctermfg=240
 "         normal! <right>
 "         let s:current_char = strpart(getline('.'), col('.'), 1)
 "     endwhile
-" endfunction
+" endfun
 
-function! ObsidianOpenReference()
+fun! ObsidianOpenReference()
     " copy in register f what is inside []
     normal! "fyi[
     " ensure that the reference name ends with ".md"
@@ -59,12 +59,11 @@ function! ObsidianOpenReference()
     endif
     " open the reference
     exec "edit " . @f
-endfunction
+endfun
 command! ObsidianOpenReference :call ObsidianOpenReference()
 nnoremap go :ObsidianOpenReference<cr>
-nnoremap <leader>oo :ObsidianOpenReference<cr>
 
-function! ObsidianTabOpenReference()
+fun! ObsidianTabOpenReference()
     " copy in register f what is inside []
     normal! "fyi[
     " ensure that the reference name ends with ".md"
@@ -73,11 +72,11 @@ function! ObsidianTabOpenReference()
     endif
     " open the reference in a new tab
     exec "tabedit " . @f
-endfunction
+endfun
 command! ObsidianTabOpenReference :call ObsidianTabOpenReference()
 nnoremap <leader>ot :ObsidianTabOpenReference<cr>
 
-function! ObsidianSplitOpenReference()
+fun! ObsidianSplitOpenReference()
     " copy in register f what is inside []
     normal! "fyi[
     " ensure that the reference name ends with ".md"
@@ -86,7 +85,7 @@ function! ObsidianSplitOpenReference()
     endif
     " open the reference in a new split
     exec "split " . @f
-endfunction
+endfun
 command! ObsidianSplitOpenReference :call ObsidianSplitOpenReference()
 nnoremap <leader>os :ObsidianSplitOpenReference<cr>
 nnoremap <leader>ov :vert ObsidianSplitOpenReference<cr>
@@ -135,42 +134,42 @@ let g:markdown_autocompile_enabled = 0
 let &makeprg = "pandoc % --pdf-engine=xelatex -o %:r.pdf -f markdown -t latex"
 
 
-function! MarkdownCompile()
+fun! MarkdownCompile()
     exec ":silent! AsyncRun -silent -save=0 pandoc % --pdf-engine=" . g:markdown_compiler . " -o %:r.pdf -f markdown -t " . g:markdown_output_format
-endfunction
+endfun
 command! MarkdownCompile call MarkdownCompile()
 
 
-function! s:MarkdownAutoCompile()
+fun! s:MarkdownAutoCompile()
     if g:markdown_autocompile_enabled
         call MarkdownCompile()
     endif
-endfunction
+endfun
 
 
-function! MarkdownAutocompileToggle()
+fun! MarkdownAutocompileToggle()
     if g:markdown_autocompile_enabled == 1
         let g:markdown_autocompile_enabled = 0
     else
         let g:markdown_autocompile_enabled = 1
     endif
-endfunction
+endfun
 command! MarkdownAutocompileToggle call MarkdownAutocompileToggle()
 
 
-function! MarkdownAutoCompileOn()
+fun! MarkdownAutoCompileOn()
     let g:markdown_autocompile_enabled = 1
-endfunction
+endfun
 command! MarkdownAutoCompileOn call MarkdownAutoCompileOn()
 
 
-function! MarkdownAutoCompileOff()
+fun! MarkdownAutoCompileOff()
     let g:markdown_autocompile_enabled = 0
-endfunction
+endfun
 command! MarkdownAutoCompileOff call MarkdownAutoCompileOff()
 
 
-function! MarkdownCompilerSettings()
+fun! MarkdownCompilerSettings()
     let g:markdown_compiler = input("markdown compiler (default xelatex): ")
     if g:markdown_compiler == ""
         let g:markdown_compiler = "xelatex"
@@ -180,7 +179,7 @@ function! MarkdownCompilerSettings()
         let g:markdown_output_format = "latex"
     endif
     let &makeprg = "pandoc % --pdf-engine=" . g:markdown_compiler . " -o %:r.pdf -f markdown -t " . g:markdown_output_format
-endfunction
+endfun
 command! MarkdownCompilerSettings call MarkdownCompilerSettings()
 
 
@@ -214,13 +213,13 @@ for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
 endfor
 
 
-function! BuildHeader()
+fun! BuildHeader()
     let title = input("title:")
     let subtitle = input("subtitle:")
     let author = input("author:")
     let imports = "\ndocumentclass: scrartcl\nheader-includes: |\n    \\usepackage[top=2cm, bottom=2.5cm, left=2cm, right=2cm]\{geometry\}\n\\usepackage{amsmath, amssymb, amsfonts, mathrsfs}"
     return "---\ntitle: ".title."\nsubtitle: ".subtitle."\nauthor: ".author.imports."\n\b\b\b\b---\n"
-endfunction
+endfun
 iabbrev header <C-R>=BuildHeader()<cr>
 
 
