@@ -108,6 +108,7 @@ Arpeggio nnoremap <silent> <leader>ur :UIreset<cr>
  " ⠢⠜ ⠣⠜ ⠧⠜ ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤ ⠢⠜
 " simple submodes !
 Plug 'tomtom/tinykeymap_vim'
+let g:tinykeymaps_defaults = 0 " don't use default mappings
 
 
  " ⡇⢸ ⡷⣸ ⡏⢱ ⡎⢱   ⢹⠁ ⣏⡱ ⣏⡉ ⣏⡉
