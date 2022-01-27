@@ -9,6 +9,9 @@ fi
 # terminal type (for tmux etc...)
 export TERM="xterm-256color"
 
+# path for cow files (ascii art for cowsay)
+export COWPATH="$HOME/.cowsay/cowfiles"
+
 # completion settings
 autoload -Uz compinit
 zstyle ':completion:*' menu select
