@@ -575,10 +575,12 @@ let g:startify_fortune_use_unicode = 1
  " ⠇⠱ ⠧⠤ ⠇  ⠧⠤   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " similar to vim-sendtoterm, but for a repl of the language
 " great for languages like scheme (or maybe for little python scripts)
+" \ "python": ["ptipython", "\<c-u>\<esc>[200~", "\<esc>[201~", 1],
 Plug 'urbainvaes/vim-ripple'
 let g:ripple_repls = {
-            \ "python": ["ptipython", "\<c-u>\<esc>[200~", "\<esc>[201~", 1],
+            \ "python": "ptpython",
             \ "apl": "apl",
+            \ "alda": "alda repl",
             \ "k": "k",
             \ "julia": "julia",
             \ "java": "jshell",
