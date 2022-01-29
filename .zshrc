@@ -207,12 +207,7 @@ alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 # if {} is a file --> use bat
 # if {} is a dir ---> use exa
 # else -------------> echo ''
-fzf_preview_contents="if test -f {}
-then; bat --color=always --number {}
-elif test -d
-then; exa -1 --color=always {}
-else; echo ''
-fi"
+fzf_preview_contents="if test -f {} then; bat --color=always --number {} elif test -d then; exa -1 --icons --color=always {} else; echo '' fi"
 
 # function to create a simple file explorer based on fzf
 function fzf_cd() {
@@ -245,7 +240,7 @@ function fzf_cd() {
 
 bindkey -s "^e" "fzf_cd\n"
 bindkey -s "^p" "cd ..\n"
-bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;ls -a\n"
+bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
 bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
 bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
