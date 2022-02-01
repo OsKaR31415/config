@@ -19,16 +19,16 @@ set nocompatible
 
 let mapleader=" "
 
-" cool vim logo at starting
-" if not in tmux, use sixel
-if len($TMUX) < 1
-    silent!chafa --format sixel ~/.vim/vim_logo.svg
-" if chafa in installed, and show the logo with it
-elseif system('which chafa') !~ "\w\+" && &term =~ "256color"
-    silent !chafa ~/.vim/vim_logo.svg
-else
-    " silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
-endif
+" " cool vim logo at starting
+" " if not in tmux, use sixel
+" if len($TMUX) < 1
+"     silent!chafa --format sixel ~/.vim/vim_logo.svg
+" " if chafa in installed, and show the logo with it
+" elseif system('which chafa') !~ "\w\+" && &term =~ "256color"
+"     silent !chafa ~/.vim/vim_logo.svg
+" else
+"     " silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
+" endif
 
 " graphical menu for command-line autocompletion (else nothing is shown)
 set wildmenu
