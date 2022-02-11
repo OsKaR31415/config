@@ -578,7 +578,7 @@ let g:startify_fortune_use_unicode = 1
 " \ "python": ["ptipython", "\<c-u>\<esc>[200~", "\<esc>[201~", 1],
 Plug 'urbainvaes/vim-ripple'
 let g:ripple_repls = {
-            \ "python": "ptpython",
+            \ "python": ["ptpython", "\<c-u>\<esc>[200~", "\<esc>[201~", 1],
             \ "apl": "apl",
             \ "alda": "alda repl",
             \ "k": "k",
