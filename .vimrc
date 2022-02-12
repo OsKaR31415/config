@@ -570,7 +570,6 @@ Plug 'tommcdo/vim-exchange'
 Plug 'mhinz/vim-startify'
 let g:startify_fortune_use_unicode = 1
 
-
  " ⣏⡱ ⣏⡉ ⣏⡱ ⡇    ⡇ ⡷⣸ ⢹⠁ ⣏⡉ ⡎⠑ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
  " ⠇⠱ ⠧⠤ ⠇  ⠧⠤   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " similar to vim-sendtoterm, but for a repl of the language
@@ -634,9 +633,12 @@ let g:rainbow_conf = {
             \ 'separately': {
                 \ '*': {},
                 \ 'markdown': { 'parentheses_options': 'containedin=markdownCode contained' },
+                \ 'ocaml': {
+                    \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold']
+                    \ },
                 \ 'haskell': {
                     \ 'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
-                \ },
+                    \ },
                 \ 'vim': { 'parentheses_options': 'containedin=vimFuncBody' },
                 \ 'perl': { 'syn_name_prefix': 'perlBlockFoldRainbow' },
                 \ 'stylus': { 'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'] },
