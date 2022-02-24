@@ -565,6 +565,12 @@ Plug 'kana/vim-textobj-underscore'
 Plug 'tommcdo/vim-exchange'
 
 
+ " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁  
+ " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸   
+" support for the BQN (big questions notation) languag
+Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
+let g:bqn_prefix_key = "="
+
  " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
  " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
 Plug 'mhinz/vim-startify'
@@ -580,6 +586,8 @@ let g:ripple_repls = {
             \ "python": ["ptpython", "\<c-u>\<esc>[200~", "\<esc>[201~", 1],
             \ "apl": "apl",
             \ "alda": "alda repl",
+            \ "bc": "bc",
+            \ "bqn": "bqn",
             \ "k": "k",
             \ "julia": "julia",
             \ "java": "jshell",
@@ -589,7 +597,7 @@ let g:ripple_repls = {
             \ "ruby": "irb",
             \ "scheme": "guile",
             \ "shell": "zsh"}
-nmap gr yr
+nmap <cr> yr
 vnoremap gr :Ripple<cr>
 nnoremap <leader>gr :%Ripple<cr>
 
@@ -744,7 +752,6 @@ Arpeggio nnoremap st :tabnew<cr>
 Arpeggio nnoremap sq :quit<cr>
 " replacement for <C-W>
 nnoremap <leader>w <C-W>
-nnoremap <cr> <C-w>
 " <c-w>m: maximize
 nnoremap <C-W>m <C-W>_<C-W>\|
 " open a terminal on current window
@@ -874,14 +881,6 @@ silent nnoremap <silent> N Nzz
 "  ╹ ╹ ╹┗━┛╹ ╹   ┗┻┛╹ ╹╹┗╸╹┗╸╹┗━┛╹┗╸
 " little simple integration with task warrior
 
-" command to call task warrior
-command! -nargs=* Task !task <args>
-
-" <c-t> in command mode to start that command
-cnoremap <c-t><c-t> Task<space>
-
-" same for adding a given task
-cnoremap <c-t>a Task add<space>
 cnoremap <c-t><c-a> Task add<space>
 
 " same for modifying a given task

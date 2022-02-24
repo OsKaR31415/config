@@ -6,6 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# add variables to the path
+export PATH=$PATH+":/Users/oscarplaisant/.zsh_scripts/"
+
 # terminal type (for tmux etc...)
 export TERM="xterm-256color"
 
@@ -117,13 +120,6 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -189,9 +185,6 @@ alias img="img2sixel"
 
 alias events="icalBuddy -f -n eventsToday+1 | less"
 
-# removes starting and trailing blank lines
-alias crop="sed -e :a -e '/[^[:blank:]]/,\$!d; /^[[:space:]]*\$/{ \$d; N; ba' -e '}'"
-
 alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}'"
@@ -209,35 +202,6 @@ alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 # else -------------> echo ''
 fzf_preview_contents="if test -f {}; then bat --color=always --number {}; elif test -d; then exa -1 --icons --color=always {}; else echo ''; fi"
 
-# function to create a simple file explorer based on fzf
-function fzf_cd() {
-    while true
-    do
-        # select the file/directory
-        # uses $fzf_preview_contents to show the file or directory
-        selected=$(ls -ap | grep $ | fzf --preview=$fzf_preview_contents)
-
-        # if the selection is empty (pressed <C-c>) or "./" (current dir)
-        if [ -z $selected ] || [ $selected = "./" ]
-        then
-            # show the directory contents
-            clear
-            l
-            # quit the loop
-            return
-        # if the selection is a file
-        elif test -f $selected
-        then
-            v $selected
-            return
-        else
-            cd "$selected"
-        fi
-    done
-}
-
-
-
 bindkey -s "^e" "fzf_cd\n"
 bindkey -s "^p" "cd ..\n"
 bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
@@ -245,11 +209,6 @@ bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
 bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
 alias fzf="fzf --color=hl:28,hl+:34"
-
-# command to show todo-list
-alias todo="cat ~/TODO.md | crop | bat --color=auto --style=plain --language=markdown"
-# Force colors when showing the todo-list
-alias todo-colored="cat ~/TODO.md | crop | bat --color=always --style=plain --language=markdown"
 
 # THINGS TO LOAD AT THE END ######################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -264,10 +223,5 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # show todo-list at each session startup
 
-# length of the longes line in ~/TODO.md
-length=$(awk "{print length}" ~/TODO.md | sort -n | tail -1)
-# horizontal line of that length
-printf "━%.0s" {1..$length}; printf "\n"
-todo-colored
-
+# todo
 
