@@ -598,8 +598,8 @@ let g:ripple_repls = {
             \ "scheme": "guile",
             \ "shell": "zsh"}
 nmap <cr> yr
-vnoremap gr :Ripple<cr>
-nnoremap <leader>gr :%Ripple<cr>
+vnoremap <cr> :Ripple<cr>
+nnoremap <leader><cr> :%Ripple<cr>
 
 
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸
