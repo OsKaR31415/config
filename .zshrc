@@ -202,7 +202,7 @@ alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 # else -------------> echo ''
 fzf_preview_contents="if test -f {}; then bat --color=always --number {}; elif test -d; then exa -1 --icons --color=always {}; else echo ''; fi"
 
-bindkey -s "^e" "fzf_cd\n"
+bindkey -s "^e" ". fzf_cd\n" # the . is to change the env variables with the script, so it actually changes the cwd
 bindkey -s "^p" "cd ..\n"
 bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
 bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
@@ -223,5 +223,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # show todo-list at each session startup
 
-# todo
+todo
+
 
