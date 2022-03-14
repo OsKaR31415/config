@@ -132,6 +132,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# mdp config
+export MDP_LIST_OPEN1=' ┃  '
+export MDP_LIST_OPEN2=' ┃  '
+export MDP_LIST_OPEN3=' ┃  '
+export MDP_LIST_OPEN4=' ┃  '
+export MDP_LIST_HEAD1=' ┗━> '
+export MDP_LIST_HEAD2=' ┖━> '
+export MDP_LIST_HEAD3=' ┖━> '
+
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
