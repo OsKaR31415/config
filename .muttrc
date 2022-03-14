@@ -11,7 +11,7 @@ set ssl_force_tls=yes
 
 # Configuration SMTP
 set smtp_url = "smtps://oscar.plaisant@orange.fr@smtp.orange.fr:465/"
-set smtp_pass = "BruceLee007"
+set smtp_pass = "coding25052005"
 set from = "oscar.plaisant@orange.fr"
 set use_envelope_from=yes
 
