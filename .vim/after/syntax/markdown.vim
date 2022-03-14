@@ -183,7 +183,7 @@ endfun
 command! MarkdownCompilerSettings call MarkdownCompilerSettings()
 
 
-command! PdfOpen silent! evince %:r.pdf &
+command! PdfOpen silent! open -a skim %:r.pdf &
 
 
 inoremap ^^ ^{}<left>
