@@ -222,7 +222,7 @@ nnoremap <silent> <leader>, :Calc<cr>
  " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
 " emmet abbreviations for html
 " default shortcut to expand is <c-y>,
-Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'mattn/emmet-vim', {'for': ['html', 'php']}
 imap <c-l> <c-y>
 vmap <c-l> <c-y>
 
@@ -733,6 +733,9 @@ vnoremap <silent> J :m '>+1<cr>gv
 vnoremap <silent> <down> :m '>+1<cr>gv=gv
 vnoremap <silent> K :m '<-2<cr>gv
 vnoremap <silent> <up> :m '<-2<cr>gv=gv
+" Move text left or right in visual mode
+vnoremap H dhhpgvohoh
+vnoremap L dpgvolol
 
 " K and J
 " left and right equivalents in insert mode
@@ -937,6 +940,7 @@ vnoremap T4   !toilet  -w 130 -f future<cr>
 vnoremap Tb4  !toilet  -w 130 -f future    -F border<cr>
 vnoremap T5   !toilet  -w 130 -f smbraille<cr>
 vnoremap Tb5  !toilet  -w 130 -f smbraille -F border<cr>
+
 
 " calculating values
 " (the script basically just evaluates the input with python)
