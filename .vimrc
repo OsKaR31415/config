@@ -19,16 +19,8 @@ set nocompatible
 
 let mapleader=" "
 
-" " cool vim logo at starting
-" " if not in tmux, use sixel
-" if len($TMUX) < 1
-"     silent!chafa --format sixel ~/.vim/vim_logo.svg
-" " if chafa in installed, and show the logo with it
-" elseif system('which chafa') !~ "\w\+" && &term =~ "256color"
-"     silent !chafa ~/.vim/vim_logo.svg
-" else
-"     " silent !echo "\n                    ░\n    ██████████████░░░░░ ██████████████\n    ██████████████░░░░░░██████████████\n      ██████████░░░░░░░░░░██████████\n      ██████████░░░░░░░░██████████\n      ██████████░░░░░░░██████████\n      ██████████░░░░░██████████░░\n      ██████████░░░░██████████░░░░░\n    ░░██████████░░██████████░░░░░░░░░\n  ░░░░██████████░█████████░░░░░░░░░░░░░\n    ░░███████████████░▓▓▓░░░░░░░░░░░░\n      ████████████████░░░░░░░░░░░░░\n      ██████████████░▓▓▓░▓▓▓▓▓▓▓▓▓▓\n      ████████████░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ██████████░░░░▓▓░░░▓▓░░▓▓  ▓▓\n      ████████░░░░░▓▓▓░░▓▓▓ ▓▓▓ ▓▓▓\n      ██████    ░░░░░░░░░\n                  ░░░░░\n                    ░\n"
-" endif
+" cool vim logo at starting
+" silent !cat $HOME/.vim/logo_vim.txt
 
 " graphical menu for command-line autocompletion (else nothing is shown)
 set wildmenu
@@ -565,11 +557,16 @@ Plug 'kana/vim-textobj-underscore'
 Plug 'tommcdo/vim-exchange'
 
 
- " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁  
- " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸   
+ " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+ " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
 " support for the BQN (big questions notation) languag
 Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 let g:bqn_prefix_key = "="
+
+" ⣎⣱ ⣏⡱ ⡇    ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+" ⠇⠸ ⠇  ⠧⠤   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+Plug 'bollu/vim-apl'
+let g:apl_prefix_key = "="
 
  " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
  " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
@@ -593,6 +590,7 @@ let g:ripple_repls = {
             \ "java": "jshell",
             \ "lua": "lua",
             \ "ocaml": "utop",
+            \ "prolog": "gprolog",
             \ "r": "R",
             \ "ruby": "irb",
             \ "scheme": "guile",
@@ -801,11 +799,12 @@ nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
 " syntax highlighting
 
 " colorscheme
+" set termguicolors
 syntax on
 set bg=dark
-colo solarized8
-au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none
-au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172
+colorscheme solarized8
+au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none guibg=black
+au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172 guibg=black
 au BufRead,BufNewFile,BufEnter, * hi WildMenu term=standout ctermfg=black ctermbg=148
 au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
 
@@ -884,11 +883,12 @@ silent nnoremap <silent> N Nzz
 "  ╹ ╹ ╹┗━┛╹ ╹   ┗┻┛╹ ╹╹┗╸╹┗╸╹┗━┛╹┗╸
 " little simple integration with task warrior
 
-cnoremap <c-t><c-a> Task add<space>
+" cnoremap <c-t><c-a> Task add<space>
+" cnoremap <c-t>a Task add<space>
 
-" same for modifying a given task
-cnoremap <c-t>m Task modify<space>
-cnoremap <c-t><c-m> Task modify<space>
+" " same for modifying a given task
+" cnoremap <c-t>m Task modify<space>
+" cnoremap <c-t><c-m> Task modify<space>
 
 
 " ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
