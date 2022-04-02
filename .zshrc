@@ -162,6 +162,7 @@ bindkey -s "kl" "\e"
 # shortcut that starts ranger
 bindkey -s '^f' ". ranger\n"
 
+
 alias lsa="ls -a"
 alias lla="ll -a"
 
