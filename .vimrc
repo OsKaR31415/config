@@ -588,6 +588,7 @@ let g:ripple_repls = {
             \ "k": "k",
             \ "julia": "julia",
             \ "java": "jshell",
+            \ "lisp": "clisp",
             \ "lua": "lua",
             \ "ocaml": "utop",
             \ "prolog": "gprolog",
