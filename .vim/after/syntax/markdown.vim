@@ -29,6 +29,7 @@ hi htmlH6 cterm=bold ctermfg=240
 " configuration pour obsidian
 
 nnoremap <leader>oo :silent !open 'obsidian://open?vault=VAULTNAME&file='.expand('%:r')
+
 " " select the current reference (text inside [[...]])
 " fun! ObsidianVisualSelectReference()
 "     let s:current_char = strpart(getline('.'), col('.'), 1)
