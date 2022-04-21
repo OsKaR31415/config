@@ -186,7 +186,9 @@ ex=4;
 alias v=vim
 alias nv=nvim
 alias c=clear # <c-l> goes to tmux pane right
+alias cl="clear;l" # clear and list files
 alias t=task # task warrior
+
 
 alias google="w3m -sixel google.com"
 alias imgls="~/iterm2/imgls"
