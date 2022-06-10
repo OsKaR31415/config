@@ -200,7 +200,7 @@ alias events="icalBuddy -f -n eventsToday+1 | less"
 alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 # alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}' | grep broadcast"
-alias myip="echo `ipconfig getifaddr en0` `ipconfig getifaddr en1`"
+alias myip="echo $(ipconfig getifaddr en0) $(ipconfig getifaddr en1)"
 
 # graphs of some stats
 alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | ttyplot -t 'ping to google.com' -u ms -s 50"
