@@ -25,8 +25,8 @@ fun! g:SetLatexCompiler()
 endfun
 command! SetLatexCompiler call g:SetLatexCompiler()
 
-" open matching pdf with evince
-command! PdfOpen !evince %:r.pdf &
+" open matching pdf (with the default engine : skim)
+command! PdfOpen !open %:r.pdf &
 
 function! BuildHeader()
     " protect the keyword : must be written on the first line.
