@@ -63,7 +63,6 @@ source ~/.vim/plugged/vim-arpeggio/plugin/arpeggio.vim
 source ~/.vim/plugged/vim-arpeggio/autoload/arpeggio.vim
 let g:arpeggio_timeoutlen=50
 
-
  " ⣏⡱ ⣏⡉ ⡎⠑ ⣏⡉ ⢇⡸   ⣎⣱ ⣏⡱ ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸ ⢎⡑
  " ⠇⠱ ⠧⠤ ⠣⠝ ⠧⠤ ⠇⠸   ⠇⠸ ⠧⠜ ⠧⠜ ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹ ⠢⠜
 " regex abbreviations
@@ -101,12 +100,17 @@ Arpeggio nnoremap <silent> <leader>ur :UIreset<cr>
 " simple submodes !
 Plug 'tomtom/tinykeymap_vim'
 let g:tinykeymaps_defaults = 0 " don't use default mappings
+" else the plugin overrides the default mappings
+nmap gt gt
+nmap gT gT
 
 
  " ⡇⢸ ⡷⣸ ⡏⢱ ⡎⢱   ⢹⠁ ⣏⡱ ⣏⡉ ⣏⡉
  " ⠣⠜ ⠇⠹ ⠧⠜ ⠣⠜   ⠸  ⠇⠱ ⠧⠤ ⠧⠤
 " simple undo tree
+" usefull sometimes to recover something you changed
 Plug 'mbbill/undotree'
+
 
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⡎⢱   ⢹⠁ ⣏⡉ ⣏⡱ ⡷⢾ ⡇ ⡷⣸ ⣎⣱ ⡇    ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
  " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠣⠜   ⠸  ⠧⠤ ⠇⠱ ⠇⠸ ⠇ ⠇⠹ ⠇⠸ ⠧⠤   ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
@@ -219,6 +223,12 @@ imap <c-l> <c-y>
 vmap <c-l> <c-y>
 
 
+ " ⡇⢸ ⡇ ⡷⢾   ⣏⡱ ⣏⡉ ⡷⣸ ⡎⠑ ⡇ ⡇
+ " ⠸⠃ ⠇ ⠇⠸   ⠇  ⠧⠤ ⠇⠹ ⠣⠔ ⠇ ⠧⠤
+" vim for writing natural languages
+" wrap by words (not splitting in the middle of a word)
+Plug 'reedes/vim-pencil'
+
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸  ⡜ ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡇ ⡷⣸ ⡇  ⡇ ⡷⣸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex']}
@@ -231,7 +241,7 @@ let g:vim_markdown_yaml_frontmatter = 1
 "
 " better Latex conceal for live preview !!
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['markdown', 'tex', 'latex']}
-let g:tex_conceal = "abdmgs" " vim builtin latex preview
+let g:tex_conceal = "abdmgs" " enable vim builtin latex preview
 let g:tex_conceal_frac = 1
 
 
@@ -360,6 +370,12 @@ Arpeggio nnoremap cop :Cope<cr>
 Plug 'tpope/vim-repeat'
 
 
+ " ⡷⢾ ⣎⣱ ⢹⠁ ⡎⠑ ⣇⣸ ⡇ ⢹⠁
+ " ⠇⠸ ⠇⠸ ⠸  ⠣⠔ ⠇⠸ ⠇ ⠸
+" matchit extanded % matching
+Plug 'tmhedberg/matchit'
+
+
  " ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⡇⢸ ⡷⣸ ⡏⢱
  " ⠢⠜ ⠣⠜ ⠇⠱ ⠇⠱ ⠣⠜ ⠣⠜ ⠇⠹ ⠧⠜
 " surround with brackets, with tags...
@@ -429,10 +445,10 @@ nmap <leader>c gc
 " my config to make netrw usable (hard, i admit) (vinegar)
 " not a plugin but it could almost be one
 Plug 'tpope/vim-vinegar'
+let g:netrw_banner         = 0  " get rid of the annoying banner
+let g:netrw_browse_split   = 4  " make netrw to open selected file in previous window
 let g:netrw_keepdir        = 0  " make vim root follow netrw's one
-let g:netrw_fastbrowse     = 2 " make netrw to update only when told (<c-l>, or <c-r> with my mappings)
 let g:netrw_winsize        = 25 " defauld win size
-let g:netrw_banner         = 0  " no header
 let g:netrw_liststyle      = 3  " tree style
 let g:netrw_special_syntax = 1 " show per-extension coloration
 " use - to toggle explorer in current pane
@@ -821,6 +837,9 @@ hi CursorColumn ctermbg=235
 hi CursorLine   ctermbg=235
 hi EndOfBuffer  ctermbg=235
 hi CursorLineNr ctermfg=256
+
+" folds colors
+hi Folded ctermbg=none ctermfg=236
 
 " Tabline colors
 hi Tabline ctermfg=239 ctermbg=none
