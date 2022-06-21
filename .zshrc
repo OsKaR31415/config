@@ -241,3 +241,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 todo
 
 
+source /Users/oscarplaisant/.config/broot/launcher/bash/br
