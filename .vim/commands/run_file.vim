@@ -42,6 +42,9 @@ fun! RunCurrentFile()
         exec run . g:latex_compiler . ' -- ' . filename . '"'
         call VimuxRunCommandInDir(g:latex_compiler . ' -- ' . filename . '"', the_path)
 
+    elseif &ft == "agda"
+        AgdaLoad
+
     else
         echo "no runner for filetype " . &ft
     endif
