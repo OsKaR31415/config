@@ -575,14 +575,20 @@ Plug 'tommcdo/vim-exchange'
 
  " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
  " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
-" support for the BQN (big questions notation) languag
+" support for the BQN (big questions notation) language
 Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
 let g:bqn_prefix_key = "="
 
 " ⣎⣱ ⣏⡱ ⡇    ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
 " ⠇⠸ ⠇  ⠧⠤   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+" support for the APL language
 Plug 'bollu/vim-apl'
 let g:apl_prefix_key = "="
+
+ " ⣎⣱ ⡎⠑ ⡏⢱ ⣎⣱   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+ " ⠇⠸ ⠣⠝ ⠧⠜ ⠇⠸   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+" support for the Agda language
+Plug 'derekelkins/agda-vim'
 
  " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
  " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
