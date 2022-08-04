@@ -4,14 +4,16 @@ let g:file_running_command = "VimuxRunCommand "
 " Run a file with AsyncRun
 fun! AsyncRunCurrentFile()
     wa
-    if &ft == "python"
+    if &ft == "haskell"
+        AsyncRun! ghci 
+    elseif &ft == "java"
+        AsyncRun! java %:t:r
+    elseif &ft == "markdown"
+        MarkdownCompile
+    elseif &ft == "python"
         AsyncRun! python3 %
     elseif &ft == "scheme"
         AsycRun! cat % | guile
-    elseif &ft == "markdown"
-        MarkdownCompile
-    elseif &ft == "java"
-        AsyncRun! java %:t:r
     endif
 endfun
 command! AsyncRunCurrentFile call AsyncRunCurrentFile()
@@ -22,7 +24,10 @@ fun! RunCurrentFile()
     let the_path = expand('%:p:h')
     let filename = ''.expand('%')
 
-    if &ft == "java"
+    if &ft == "haskell"
+        call VimuxRunCommandInDir('ghc ' . filename, the_path)
+
+    elseif &ft == "java"
         let classname = expand('%:t:r')
         call VimuxRunCommandInDir('java ' . filename, the_path)
 
