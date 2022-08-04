@@ -11,6 +11,7 @@
 " makes me be quick and feel comfortable in vim
 
 
+
 " ╻┏┓╻╻╺┳╸╻┏━┓╻  ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻
 " ┃┃┗┫┃ ┃ ┃┣━┫┃  ┃┗━┓┣━┫ ┃ ┃┃ ┃┃┗┫
 " ╹╹ ╹╹ ╹ ╹╹ ╹┗━╸╹┗━┛╹ ╹ ╹ ╹┗━┛╹ ╹
@@ -45,7 +46,7 @@ set nonumber
 " ███▄▄██▀    ██▄▄▄   ██▄▄▄███  ▀██▄▄███  ▄▄▄██▄▄▄  ██    ██  █▄▄▄▄▄██
 " ██ ▀▀▀       ▀▀▀▀    ▀▀▀▀ ▀▀   ▄▀▀▀ ██  ▀▀▀▀▀▀▀▀  ▀▀    ▀▀   ▀▀▀▀▀▀
 " ██                             ▀████▀▀
-" they are al lot, i don't use all of them, but they are definitely cool
+" they are a lot, i don't use all of them, but they are definitely cool
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -112,6 +113,7 @@ nmap gT gT
 Plug 'mbbill/undotree'
 
 
+
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⡎⢱   ⢹⠁ ⣏⡉ ⣏⡱ ⡷⢾ ⡇ ⡷⣸ ⣎⣱ ⡇    ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
  " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠣⠜   ⠸  ⠧⠤ ⠇⠱ ⠇⠸ ⠇ ⠇⠹ ⠇⠸ ⠧⠤   ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
 " command and operator to send text to a vim terminal
@@ -126,7 +128,17 @@ nmap <leader>xx <Plug>(SendToTermLine)
  " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱         ⡔⠁ ⢎⡑ ⡇  ⡇ ⡷⢾ ⣏⡉ ⠈⢢
  " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠸  ⠣⠜ ⠶ ⠶ ⠶   ⠣⡀ ⠢⠜ ⠧⠤ ⠇ ⠇⠸ ⠧⠤ ⢀⠜
 " send text to various things (repls, tmux, etc...)
-Plug 'jpalardy/vim-slime'
+" Plug 'jpalardy/vim-slime'
+
+
+ " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸
+ " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠸  ⠣⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸
+" send text to a tmux pane
+" is great used as asyncrun or as ripple
+" but dispatch exists, and :Start is almost the same
+" Plug 'christoomey/vim-tmux-runner'
+" Plug 'tpope/vim-tbone'
+Plug 'preservim/vimux'
 
 
  " ⡎⠑ ⡎⢱ ⡎⠑
@@ -565,6 +577,12 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-underscore'
 
 
+ " ⣏⡱ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⣏⡱   ⣏⡱ ⢇⢸ ⢹⠁ ⣇⣸ ⡎⢱ ⡷⣸    ⡜   ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+ " ⠧⠜ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠇⠱   ⠇   ⠇ ⠸  ⠇⠸ ⠣⠜ ⠇⠹   ⠎    ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+" intelligent support for languages with semantic indentation
+Plug 'tweekmonster/braceless.vim'
+
+
  " ⣏⡉ ⢇⡸ ⡎⠑ ⣇⣸ ⣎⣱ ⡷⣸ ⡎⠑ ⣏⡉   ⠊⡱   ⣏⡱ ⣏⡉ ⡎⠑ ⡇ ⡎⢱ ⡷⣸ ⢎⡑
  " ⠧⠤ ⠇⠸ ⠣⠔ ⠇⠸ ⠇⠸ ⠇⠹ ⠣⠝ ⠧⠤   ⠮⠤   ⠇⠱ ⠧⠤ ⠣⠝ ⠇ ⠣⠜ ⠇⠹ ⠢⠜
 " cx operator to exchange 2 regions
@@ -588,7 +606,7 @@ let g:apl_prefix_key = "="
  " ⣎⣱ ⡎⠑ ⡏⢱ ⣎⣱   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
  " ⠇⠸ ⠣⠝ ⠧⠜ ⠇⠸   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
 " support for the Agda language
-Plug 'derekelkins/agda-vim'
+" Plug 'derekelkins/agda-vim'
 
  " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
  " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
@@ -607,6 +625,8 @@ let g:ripple_repls = {
             \ "alda": "alda repl",
             \ "bc": "bc",
             \ "bqn": "bqn",
+            \ "coconut" : "coconut",
+            \ "haskell" : "ghci",
             \ "k": "k",
             \ "julia": "julia",
             \ "java": "jshell",
@@ -621,16 +641,6 @@ let g:ripple_repls = {
 nmap <cr> yr
 vnoremap <cr> :Ripple<cr>
 nnoremap <leader><cr> :%Ripple<cr>
-
-
- " ⢎⡑ ⣏⡉ ⡷⣸ ⡏⢱   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⢹⠁ ⡎⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸
- " ⠢⠜ ⠧⠤ ⠇⠹ ⠧⠜   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠸  ⠣⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸
-" send text to a tmux pane
-" is great used as asyncrun or as ripple
-" but dispatch exists, and :Start is almost the same
-" Plug 'christoomey/vim-tmux-runner'
-" Plug 'tpope/vim-tbone'
-Plug 'preservim/vimux'
 
 
  " ⡷⢾ ⡎⢱ ⡇⢸ ⡇ ⡷⣸ ⡎⠑   ⡇ ⡷⣸   ⡇⢸ ⡇ ⡷⢾   ⣎⣱ ⡷⣸ ⡏⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸   ⣏⡱ ⣎⣱ ⡷⣸ ⣏⡉ ⢎⡑
@@ -688,14 +698,24 @@ let g:rainbow_conf = {
 Plug 'dbeniamine/cheat.sh-vim'
 let g:CheatSheetFt=&ft
 
+
+ " ⡇⢸ ⡇ ⣇⠜ ⡇ ⣏⡱ ⣏⡉ ⡏⢱ ⡇ ⣎⣱
+ " ⠟⠻ ⠇ ⠇⠱ ⠇ ⠇  ⠧⠤ ⠧⠜ ⠇ ⠇⠸
+" search and navigate wikipedia from within vim
+" The second plugin is just to enhance syntax highlighting (not required)
+Plug 'el-iot/vim-wikipedia-browser'
+Plug 'chikamichi/mediawiki.vim'
+
+
  " ⡏⢱ ⣏⡉ ⡇⢸ ⡇ ⡎⠑ ⡎⢱ ⡷⣸ ⢎⡑
  " ⠧⠜ ⠧⠤ ⠸⠃ ⠇ ⠣⠔ ⠣⠜ ⠇⠹ ⠢⠜
 " devicons (airline, nerdtree, startify...)
 " requires to be at the end
-Plug 'ryanoasis/vim-devicons'
-let g:webdevicons_enable=1
-let g:webdevicons_enable_airline_statusline = 0
-let g:webdevicons_enable_airline_tabline = 1
+" i don't use any plugin integrated with it but i keep the settings
+" Plug 'ryanoasis/vim-devicons'
+" let g:webdevicons_enable=1
+" let g:webdevicons_enable_airline_statusline = 0
+" let g:webdevicons_enable_airline_tabline = 1
 
 
  " ⣇⠜ ⡇ ⡇  ⡇    ⢎⡑ ⣏⡉ ⣏⡉ ⣏⡱ ⢎⡑   ⡇
@@ -929,7 +949,9 @@ set path+=*,**
 
 " Enable mouse mode for command mode
 set mouse=a
-set ttymouse=sgr
+if has("vim")
+    set ttymouse=sgr
+endif
 " set vertical scroll step (here : 3)
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-e><C-e><C-e>
