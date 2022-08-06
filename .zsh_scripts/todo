@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+
+# command to show todo-list
+alias todo="cat ~/TODO.md | crop | bat --color=auto --style=plain --language=markdown"
+# Force colors when showing the todo-list
+alias todo-colored="cat ~/TODO.md | crop | bat --color=always --style=plain --language=markdown"
+
+
+# length of the longes line in ~/TODO.md
+length=$(awk "{print length}" ~/TODO.md | sort -n | tail -1)
+# horizontal line of that length
+printf "━%.0s" {1..$length}; printf "\n"
+
+crop ~/TODO.md | bat --color=always --style=plain --language=markdown
+
+

@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+pdftoppm -png $1 | img2sixel
+
+fswatch -o $1 | while read foo
+do
+    pdftoppm -png $1 | img2sixel
+done
+

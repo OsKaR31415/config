@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+# that removes blank lines at beginning of file
+# sed '/./,$!d'
+
+# crop from the filename
+printf "%s\n" "$(cat $@)" | sed '/./,$!d'
+
+

@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+clear
+space_tracer $1
+
+fswatch -0 $1 | while read -d "" event
+do
+    clear
+    space_tracer $1
+done
+
+

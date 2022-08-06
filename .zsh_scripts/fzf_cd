@@ -1,0 +1,30 @@
+#!/bin/zsh
+
+
+fzf_preview_contents="if test -f {}; then bat --color=always --number {}; elif test -d; then exa -1 --icons --color=always {}; else echo ''; fi"
+
+# function to create a simple file explorer based on fzf
+while true
+do
+    # select the file/directory
+    # uses $fzf_preview_contents to show the file or directory
+    selected=$(ls -ap | grep $ | fzf --preview=$fzf_preview_contents)
+
+    # if the selection is empty (pressed <C-c>) or "./" (current dir)
+    if [ -z $selected ] || [ $selected = "./" ]
+    then
+        # show the directory contents
+        clear
+        exa --icons
+        # quit the loop
+        return
+    # if the selection is a file
+    elif test -f $selected
+    then
+        v $selected
+        return
+    else
+        cd "$selected"
+    fi
+done
+
