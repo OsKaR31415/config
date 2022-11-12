@@ -7,13 +7,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # add variables to the path
-export PATH=$PATH+":/Users/oscarplaisant/.zsh_scripts/"
+# export PATH=$PATH+":/Users/oscarplaisant/.zsh_scripts/"
+
 
 # terminal type (for tmux etc...)
 export TERM="xterm-256color"
 
 # path for cow files (ascii art for cowsay)
 export COWPATH="$HOME/.cowsay/cowfiles"
+
+# Set vim as the man pager
+# export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+#     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+#     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+#     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
 # completion settings
 autoload -Uz compinit
@@ -89,7 +96,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(dune-quotes fzf-tab)
+plugins=(dune-quotes fzf-tab zsh-autosuggestions)
+# zsh-autosuggestions : fish-like suggestions
 
 # Plugins configuration
 
@@ -153,10 +161,16 @@ fi
 bindkey -v
 # edit current line in vim
 bindkey '^q' edit-command-line
-
-
 # short for escape
 bindkey -s "kl" "\e"
+# ^e brings to end of line
+bindkey -s "^e" "\eA"
+# ^a brings to beginning of line
+bindkey -s "^a" "\eI"
+# ^u deletes up to the beginning
+bindkey -s "^u" "\ed0xi"
+
+
 
 
 # shortcut that starts ranger
@@ -187,6 +201,7 @@ alias v=vim
 alias nv=nvim
 alias c=clear # <c-l> goes to tmux pane right
 alias cl="clear;l" # clear and list files
+alias h="cd ~ && clear"
 alias t=task # task warrior
 
 
@@ -207,8 +222,10 @@ alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | tty
 # encode stdin to qrcode in stdout
 alias to_qr="qrencode -t ascii -o - | tr '#' '█' "
 
-alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 
+# replaced by the script .zsh_scripts/urlencode
+# alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
+source ~/.zsh_scripts/urlencode
 
 # --preview option of fzf to preview file OR directory.
 # {} is the placeholder
@@ -217,10 +234,10 @@ alias start-irc="miniircd --verbose;echo 'default port is 6667'"
 # else -------------> echo ''
 fzf_preview_contents="if test -f {}; then bat --color=always --number {}; elif test -d; then exa -1 --icons --color=always {}; else echo ''; fi"
 
-bindkey -s "^e" ". fzf_cd\n" # the . is to change the env variables with the script, so it actually changes the cwd
+bindkey -s "^z" ". fzf_cd\n" # the . is to change the env variables with the script, so it actually changes the cwd
 bindkey -s "^p" "cd ..\n"
 bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
-bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
+# bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
 bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
 alias fzf="fzf --color=hl:28,hl+:34"
@@ -237,8 +254,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ##################################################
 
 # show todo-list at each session startup
+# todo
 
-todo
 
 
-source /Users/oscarplaisant/.config/broot/launcher/bash/br

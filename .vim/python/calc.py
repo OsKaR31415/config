@@ -1,10 +1,12 @@
 from math import *
 
+
+
 string = input("")
 
 while True:
     try:
-        string += input("")
+        string += "\n" + input("")
     except:
         break
 

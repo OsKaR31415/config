@@ -1,3 +1,4 @@
+"   ▄▄▄▄              ▄▄   ▄▄▄            ▄▄▄▄▄▄     ▄▄▄▄▄      ▄▄▄         ▄▄▄     ▄▄▄     ▄▄▄▄▄▄▄
 "  ██▀▀██             ██  ██▀             ██▀▀▀▀██  █▀▀▀▀██▄   █▀██        ▄███    █▀██     ██▀▀▀▀▀
 " ██    ██  ▄▄█████▄  ██▄██      ▄█████▄  ██    ██       ▄██     ██       █▀ ██      ██     ██▄▄▄▄
 " ██    ██  ██▄▄▄▄ ▀  █████      ▀ ▄▄▄██  ███████     █████      ██     ▄█▀  ██      ██     █▀▀▀▀██▄
@@ -62,7 +63,7 @@ Plug 'kana/vim-arpeggio'
 " have to do it manually
 source ~/.vim/plugged/vim-arpeggio/plugin/arpeggio.vim
 source ~/.vim/plugged/vim-arpeggio/autoload/arpeggio.vim
-let g:arpeggio_timeoutlen=50
+let g:arpeggio_timeoutlen=100
 
  " ⣏⡱ ⣏⡉ ⡎⠑ ⣏⡉ ⢇⡸   ⣎⣱ ⣏⡱ ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸ ⢎⡑
  " ⠇⠱ ⠧⠤ ⠣⠝ ⠧⠤ ⠇⠸   ⠇⠸ ⠧⠜ ⠧⠜ ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹ ⠢⠜
@@ -72,6 +73,16 @@ let g:arpeggio_timeoutlen=50
 Plug 'OsKaR31415/regex-abbreviations'
 let g:regex_abbreviations#expand_symbol = ":"
 
+ " ⢎⡑ ⡷⣸ ⡇ ⣏⡱ ⣏⡱ ⣏⡉ ⢹⠁ ⢎⡑
+ " ⠢⠜ ⠇⠹ ⠇ ⠇  ⠇  ⠧⠤ ⠸  ⠢⠜
+" classic but powerfull snippets : UltiSnips
+Plug 'sirver/ultisnips'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+let g:UltiSnipsEditSplit = 'vertical'
+" Load latex shortcuts in markdown
+" au FileType markdown UltiSnipsAddFiletypes tex.markdown
 
  " ⡇⢸ ⡇   ⢹⠁ ⡎⢱ ⡎⠑ ⡎⠑ ⡇  ⣏⡉
  " ⠣⠜ ⠇   ⠸  ⠣⠜ ⠣⠝ ⠣⠝ ⠧⠤ ⠧⠤
@@ -231,6 +242,8 @@ nnoremap <silent> <leader>, :Calc<cr>
 " emmet abbreviations for html
 " default shortcut to expand is <c-y>,
 Plug 'mattn/emmet-vim', {'for': ['html', 'php']}
+" default expand shortcut is <c-y>,
+" i use <c-l>,
 imap <c-l> <c-y>
 vmap <c-l> <c-y>
 
@@ -245,7 +258,8 @@ Plug 'reedes/vim-pencil'
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex']}
 set conceallevel=2
-set concealcursor=c
+set concealcursor=c  " don't conceal the cursor's line
+au FileType markdown set concealcursor=ci  " also conceal in insert mode
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
@@ -298,6 +312,18 @@ let g:vmt_auto_update_on_save = 1
 " presentations inside vim itself
 Plug 'sotte/presenting.vim', {'for': 'markdown'}
 nnoremap <leader>ps :PresentingStart<cr>
+
+ " " ⡇⢸ ⡇ ⡷⢾   ⡇⢸ ⡇ ⣇⠜ ⡇
+ " " ⠸⠃ ⠇ ⠇⠸   ⠟⠻ ⠇ ⠇⠱ ⠇
+" " support for wikilinks
+" Plug 'vimwiki/vimwiki'
+" " set path to my wiki and prefer markdown
+" let wiki_1 = {}
+" let wiki_1.path = "~/vimwiki/wiki"
+" let wiki_1.path_html = "~/vimwiki/html"
+" let wiki_1.syntax = "markdown"
+" let g:vimwiki_list = [wiki_1]
+
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
@@ -427,7 +453,7 @@ Plug 'vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_statusline_ontop = 0
 let g:airline_powerline_fonts = 0
-let g:airline_theme="powerlineish"
+let g:airline_theme="solarized_flood"
 set laststatus=2
 " ꗯ 𝑽  
 " 🌊🔥🌈🌱
@@ -478,6 +504,7 @@ nnoremap <leader>e :Lexplore<cr>
 " Plug 'rafazq/ranger.vim'
 Plug 'francoiscabrol/ranger.vim'
 " <leader>f --> :Ranger
+
 
 
  " ⣏⡉ ⢉⠝ ⣏⡉   ⡔⠁ ⣏⡉ ⡇⢸ ⢉⠝ ⢉⠝ ⢇⢸   ⣏⡉ ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⣏⡱ ⠈⢢
@@ -565,6 +592,7 @@ map <silent> <leader>z :ZoomToggle<cr>
 
  " ⡎⠑ ⡇⢸ ⢎⡑ ⢹⠁ ⡎⢱ ⡷⢾   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁ ⢎⡑
  " ⠣⠔ ⠣⠜ ⠢⠜ ⠸  ⠣⠜ ⠇⠸   ⠸  ⠧⠤ ⠇⠸ ⠸    ⠣⠜ ⠧⠜ ⠣⠜ ⠧⠤ ⠣⠔ ⠸  ⠢⠜
+" user defined text objects
 Plug 'kana/vim-textobj-user'
 " indentation text object
 " ┏━ ii ai iI aI : text with the same intendation level
@@ -575,12 +603,32 @@ Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-syntax'
 " ┏━ i_ a_ : text between two `_` (underscores)
 Plug 'kana/vim-textobj-underscore'
+" ┏━ i\ a\ inline math surrounded by \( and \)
+" ┣━ i$ a$ inline math surrounded by dollar signs
+" ┣━ iq aq single-quoted text `like this'
+" ┣━ iQ aQ double-quoted text ``like this''
+" ┣━ ae ie Environment \begin{...} to \end{...}
+Plug 'rbonvall/vim-textobj-latex'
+
+ " ⢎⡑ ⣏⡉ ⡇  ⣏⡉ ⡎⠑ ⢹⠁   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⣏⡉ ⢎⡑ ⢹⠁   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁
+ " ⠢⠜ ⠧⠤ ⠧⠤ ⠧⠤ ⠣⠔ ⠸    ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠧⠤ ⠢⠜ ⠸    ⠸  ⠧⠤ ⠇⠸ ⠸    ⠣⠜ ⠧⠜ ⠣⠜ ⠧⠤ ⠣⠔ ⠸
+" select nearest (closest among candidates) text object
+Plug 'gcmt/wildfire.vim'
+" This selects the next closest text object.
+map <BACKSPACE> <Plug>(wildfire-fuel)
+" This selects the previous closest text object.
+vmap <C-BACKSPACE> <Plug>(wildfire-water)
+" which text objects are candidates
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iw"]
+
 
 
  " ⣏⡱ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⣏⡱   ⣏⡱ ⢇⢸ ⢹⠁ ⣇⣸ ⡎⢱ ⡷⣸    ⡜   ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
  " ⠧⠜ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠇⠱   ⠇   ⠇ ⠸  ⠇⠸ ⠣⠜ ⠇⠹   ⠎    ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
 " intelligent support for languages with semantic indentation
 Plug 'tweekmonster/braceless.vim'
+autocmd FileType python BracelessEnable +indent +fold
+autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold
 
 
  " ⣏⡉ ⢇⡸ ⡎⠑ ⣇⣸ ⣎⣱ ⡷⣸ ⡎⠑ ⣏⡉   ⠊⡱   ⣏⡱ ⣏⡉ ⡎⠑ ⡇ ⡎⢱ ⡷⣸ ⢎⡑
@@ -637,8 +685,10 @@ let g:ripple_repls = {
             \ "r": "R",
             \ "ruby": "irb",
             \ "scheme": "guile",
+            \ "sql": "psql postgres",
             \ "shell": "zsh"}
 nmap <cr> yr
+nmap <cr><cr> yrip
 vnoremap <cr> :Ripple<cr>
 nnoremap <leader><cr> :%Ripple<cr>
 
@@ -653,6 +703,13 @@ tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
 tmap <c-j> <c-w>:TmuxNavigateDown<cr>
 tmap <c-k> <c-w>:TmuxNavigateUp<cr>
 tmap <c-l> <c-w>:TmuxNavigateRight<cr>
+
+
+
+ " ⣏⡱ ⣏⡉ ⡷⢾ ⡎⢱ ⢹⠁ ⣏⡉   ⣏⡱ ⣎⣱ ⡇ ⣏⡱   ⣏⡱ ⣏⡱ ⡎⢱ ⡎⠑ ⣏⡱ ⣎⣱ ⡷⢾ ⡷⢾ ⡇ ⡷⣸ ⡎⠑
+ " ⠇⠱ ⠧⠤ ⠇⠸ ⠣⠜ ⠸  ⠧⠤   ⠇  ⠇⠸ ⠇ ⠇⠱   ⠇  ⠇⠱ ⠣⠜ ⠣⠝ ⠇⠱ ⠇⠸ ⠇⠸ ⠇⠸ ⠇ ⠇⠹ ⠣⠝
+" live remote pair programming with vim !
+" Plug 'emgram769/vim-multiuser'
 
 
 
@@ -703,8 +760,9 @@ let g:CheatSheetFt=&ft
  " ⠟⠻ ⠇ ⠇⠱ ⠇ ⠇  ⠧⠤ ⠧⠜ ⠇ ⠇⠸
 " search and navigate wikipedia from within vim
 " The second plugin is just to enhance syntax highlighting (not required)
-Plug 'el-iot/vim-wikipedia-browser'
-Plug 'chikamichi/mediawiki.vim'
+" only works on nix systems currently
+" Plug 'el-iot/vim-wikipedia-browser'
+" Plug 'chikamichi/mediawiki.vim'
 
 
  " ⡏⢱ ⣏⡉ ⡇⢸ ⡇ ⡎⠑ ⡎⢱ ⡷⣸ ⢎⡑
@@ -758,6 +816,7 @@ nnoremap Y y$
 " swap , and ; since the ; is less accessible in my keyboard layout
 nnoremap ; ,
 nnoremap , ;
+
 
 " SAVE
 nnoremap <silent> <leader>k :up<cr>
@@ -835,6 +894,8 @@ call tinykeymap#Map("tabs", "j", "tabmove -1")
 " MISC
 " show a clock
 nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
+
+
 
 " ┏━┓╻ ╻┏┓╻╺┳╸┏━┓╻ ╻   ╻ ╻╻┏━╸╻ ╻╻  ╻┏━╸╻ ╻╺┳╸╻┏┓╻┏━╸
 " ┗━┓┗┳┛┃┗┫ ┃ ┣━┫┏╋┛   ┣━┫┃┃╺┓┣━┫┃  ┃┃╺┓┣━┫ ┃ ┃┃┗┫┃╺┓
@@ -949,13 +1010,15 @@ set path+=*,**
 
 " Enable mouse mode for command mode
 set mouse=a
-if has("vim")
+if !has("nvim")
     set ttymouse=sgr
 endif
 " set vertical scroll step (here : 3)
 nnoremap <ScrollWheelUp> <C-Y><C-Y><C-Y>
 nnoremap <ScrollWheelDown> <C-e><C-e><C-e>
 
+" set vim as the manpager
+" let $PAGER=''
 
 " ┏━┓┏━┓╻  ╻╺┳╸┏━┓
 " ┗━┓┣━┛┃  ┃ ┃ ┗━┓
@@ -994,6 +1057,9 @@ vnoremap Tb5  !toilet  -w 130 -f smbraille -F border<cr>
 " (the script basically just evaluates the input with python)
 nnoremap calc !!python3 ~/.vim/python/calc.py<cr>
 vnoremap calc !python3 ~/.vim/python/calc.py<cr>
+
+
+
 
 " ┏━╸╻ ╻╺┳╸┏━╸┏━┓┏┓╻┏━┓╻     ┏━╸╻╻  ┏━╸┏━┓
 " ┣╸ ┏╋┛ ┃ ┣╸ ┣┳┛┃┗┫┣━┫┃     ┣╸ ┃┃  ┣╸ ┗━┓

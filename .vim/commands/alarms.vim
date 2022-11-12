@@ -25,7 +25,7 @@ fun! s:check_alarms(timer_id)
     elseif strftime('%H%M') == 1959
         call s:alert()
         echo "!!Emma!!"
-    elseif strftime('%H%M') == 2300
+    elseif strftime('%H%M') == 230
         call s:alert()
     elseif strftime('%H%M') == 0001
         call s:alert()

@@ -44,30 +44,17 @@ endfunction
 iabbrev header <C-R>=BuildHeader()<cr>
 
 
-inoremap ^^ ^{}<left>
-inoremap __ _{}<left>
-inoremap // \dfrac{}<left>
 
-inoremap \=> \implies
-inoremap \==> \Longrightarrow
-inoremap \<== \LongLeftarrow
-inoremap \-> \mapsto
-inoremap \--> \longrightarrow
+" " math
+" for letter in ['B', 'C', 'D', 'I', 'N', 'Q', 'R', 'T']
+"     exec "iabbrev \\" . letter . " \\mathbb{" . letter . "}"
+" endfor
 
-iabbrev \>= \geq
-iabbrev \<= \leq
-
-
-" math
-for letter in ['B', 'C', 'D', 'I', 'N', 'Q', 'R', 'T']
-    exec "iabbrev \\" . letter . " \\mathbb{" . letter . "}"
-endfor
-
-" mathscr : \s* (* is an uppercase letter)
-" math
-for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    exec "au filetype tex,markdown iabbrev \s" . letter . " \mathscr{" . letter . "}"
-endfor
+" " mathscr : \s* (* is an uppercase letter)
+" " math
+" for letter in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+"     exec "au filetype tex,markdown iabbrev \s" . letter . " \mathscr{" . letter . "}"
+" endfor
 
 
 iabbrev \u \usepackage[]{
