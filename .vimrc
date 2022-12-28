@@ -186,7 +186,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -384,13 +384,13 @@ let g:diminactive_enable_focus = 1
 Plug 'rafi/awesome-vim-colorschemes'
 
 
- " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
- " ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠱ ⠣⠜ ⠇⠹
-" run asycronously any terminal command, and get the stdout in the quickfix
-" list. but Dispatch is better, even if it needs Makefile / makeprg set
-Plug 'skywind3000/asyncrun.vim'
-let g:asyncrun_open=7
-let $PYTHONUNBUFFERED=1
+ " " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
+ " " ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠱ ⠣⠜ ⠇⠹
+" " run asycronously any terminal command, and get the stdout in the quickfix
+" " list. but Dispatch is better, even if it needs Makefile / makeprg set
+" Plug 'skywind3000/asyncrun.vim'
+" let g:asyncrun_open=7
+" let $PYTHONUNBUFFERED=1
 
 
  " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⡷⢾ ⣎⣱ ⣇⠜ ⣏⡉
@@ -610,16 +610,17 @@ Plug 'kana/vim-textobj-underscore'
 " ┣━ ae ie Environment \begin{...} to \end{...}
 Plug 'rbonvall/vim-textobj-latex'
 
- " ⢎⡑ ⣏⡉ ⡇  ⣏⡉ ⡎⠑ ⢹⠁   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⣏⡉ ⢎⡑ ⢹⠁   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁
- " ⠢⠜ ⠧⠤ ⠧⠤ ⠧⠤ ⠣⠔ ⠸    ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠧⠤ ⠢⠜ ⠸    ⠸  ⠧⠤ ⠇⠸ ⠸    ⠣⠜ ⠧⠜ ⠣⠜ ⠧⠤ ⠣⠔ ⠸
-" select nearest (closest among candidates) text object
-Plug 'gcmt/wildfire.vim'
-" This selects the next closest text object.
-map <BACKSPACE> <Plug>(wildfire-fuel)
-" This selects the previous closest text object.
-vmap <C-BACKSPACE> <Plug>(wildfire-water)
-" which text objects are candidates
-let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iw"]
+
+ " " ⢎⡑ ⣏⡉ ⡇  ⣏⡉ ⡎⠑ ⢹⠁   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⣏⡉ ⢎⡑ ⢹⠁   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁
+ " " ⠢⠜ ⠧⠤ ⠧⠤ ⠧⠤ ⠣⠔ ⠸    ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠧⠤ ⠢⠜ ⠸    ⠸  ⠧⠤ ⠇⠸ ⠸    ⠣⠜ ⠧⠜ ⠣⠜ ⠧⠤ ⠣⠔ ⠸
+" " select nearest (closest among candidates) text object
+" Plug 'gcmt/wildfire.vim'
+" " This selects the next closest text object.
+" map <BACKSPACE> <Plug>(wildfire-fuel)
+" " This selects the previous closest text object.
+" vmap <C-BACKSPACE> <Plug>(wildfire-water)
+" " which text objects are candidates
+" let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "iw"]
 
 
 
@@ -642,13 +643,13 @@ Plug 'tommcdo/vim-exchange'
  " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
  " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
 " support for the BQN (big questions notation) language
-Plug 'mlochbaum/BQN', {'rtp': 'editors/vim'}
+Plug 'mlochbaum/BQN', {'rtp': 'editors/vim', 'for': ['bqn']}
 let g:bqn_prefix_key = "="
 
 " ⣎⣱ ⣏⡱ ⡇    ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
 " ⠇⠸ ⠇  ⠧⠤   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
 " support for the APL language
-Plug 'bollu/vim-apl'
+Plug 'bollu/vim-apl', {'for': ['apl']}
 let g:apl_prefix_key = "="
 
  " ⣎⣱ ⡎⠑ ⡏⢱ ⣎⣱   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
@@ -910,7 +911,7 @@ colorscheme solarized8
 au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none guibg=black
 au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172 guibg=black
 au BufRead,BufNewFile,BufEnter, * hi WildMenu term=standout ctermfg=black ctermbg=148
-au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
+" au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
 
 " add rulers at 80 and 100 lines
 au filetype python,java set cc=80,100

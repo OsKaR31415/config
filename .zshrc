@@ -7,7 +7,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # add variables to the path
-# export PATH=$PATH+":/Users/oscarplaisant/.zsh_scripts/"
+export PATH=$PATH":/Users/oscarplaisant/.zsh_scripts/"  # my own scripts
+export PATH=$PATH":/Users/oscarplaisant/.cargo/bin"  # cargo installations
+
 
 
 # terminal type (for tmux etc...)
@@ -16,6 +18,7 @@ export TERM="xterm-256color"
 # path for cow files (ascii art for cowsay)
 export COWPATH="$HOME/.cowsay/cowfiles"
 
+export PAGER="bat --style=plain"
 # Set vim as the man pager
 # export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
@@ -215,7 +218,7 @@ alias events="icalBuddy -f -n eventsToday+1 | less"
 alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 # alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}' | grep broadcast"
-alias myip="echo $(ipconfig getifaddr en0) $(ipconfig getifaddr en1)"
+alias myip="echo \$(ipconfig getifaddr en0) \$(ipconfig getifaddr en1)"
 
 # graphs of some stats
 alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | ttyplot -t 'ping to google.com' -u ms -s 50"
