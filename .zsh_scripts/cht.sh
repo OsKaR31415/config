@@ -5,13 +5,14 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-read "Enter Query: " query
+echo "Enter Query: " 
+read query
 
 if grep -qs "$selected" ~/.tmux-cht-languages; then
     query=`echo $query | tr ' ' '+'`
     echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done
 else
-    curl -s cht.sh/$selected~$query | bat --style=plain
+    curl -s cht.sh/$selected~$query #  | bat --style=plain
 fi
 
 

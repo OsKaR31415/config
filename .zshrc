@@ -9,7 +9,11 @@ fi
 # add variables to the path
 export PATH=$PATH":/Users/oscarplaisant/.zsh_scripts/"  # my own scripts
 export PATH=$PATH":/Users/oscarplaisant/.cargo/bin"  # cargo installations
+export PATH="/opt/homebrew/bin:"$PATH  # homebrew installations
 
+# pkg-config path
+# export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:/opt/homebrew/Cellar/cairo/1.16.0_5/lib/pkgconfig/:/opt/homebrew/Cellar/pango/1.50.12/lib/pkgconfig/:/opt/homebrew/Cellar/py3cairo/1.23.0/lib/pkgconfig/"
+export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig"
 
 
 # terminal type (for tmux etc...)
@@ -153,6 +157,10 @@ export MDP_LIST_HEAD2=' ┖━> '
 export MDP_LIST_HEAD3=' ┖━> '
 
 
+# change locale (especially, makes sort and sed accept non-ascii)
+# export LC_CTYPE=C
+# export LANG=C
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -200,10 +208,10 @@ ex=4;
 " | tr '\n' ':')
 
 
-alias v=vim
-alias nv=nvim
+# alias v=vim  # sadly, tmux-continuum doesn't support aliases
+# alias nv=nvim
 alias c=clear # <c-l> goes to tmux pane right
-alias cl="clear;l" # clear and list files
+alias cl="clear && l" # clear and list files
 alias h="cd ~ && clear"
 alias t=task # task warrior
 
@@ -215,10 +223,15 @@ alias img="img2sixel"
 
 alias events="icalBuddy -f -n eventsToday+1 | less"
 
+# convert mov to gif
+alias video_to_gif='function video_to_gif(){ ffmpeg -i $1 output.gif && gifsicle -O3 output.gif -o output.gif && say "Vidéo convertie en gif !"};video_to_gif'
+
 alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 # show the current ip from ifconfig
 # alias myip="ifconfig  | grep '\([0-9]\{1,3\}\.\)\{3\}[0-9]\{1,3\}' | grep broadcast"
 alias myip="echo \$(ipconfig getifaddr en0) \$(ipconfig getifaddr en1)"
+
+alias troll="toilet -f smblock 'Just trolling anyone looking at my screen'"
 
 # graphs of some stats
 alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | ttyplot -t 'ping to google.com' -u ms -s 50"
@@ -257,7 +270,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 ##################################################
 
 # show todo-list at each session startup
-# todo
+todo
 
 
 

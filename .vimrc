@@ -19,7 +19,7 @@
 
 set nocompatible
 
-let mapleader=" "
+let g:mapleader="\<space>"
 
 " cool vim logo at starting
 " silent !cat $HOME/.vim/logo_vim.txt
@@ -33,6 +33,11 @@ set backspace=indent,start
 " spelling
 set dictionary="/usr/share/dict/words"
 set nospell spelllang=fr
+" za to select the first replacement for a wrong word
+nnoremap za 1z=
+" <c-z> in insert mode to replace last mistake with first replacement
+" <c-g>u makes a milestone in the undo tree (so you can undo the replacement)
+inoremap <c-z> <c-g>u<esc>[s1z=`]a<c-g>u
 
 " IMPORTANT: i prefer not to set them on since i have a shortcut to toggle
 " both. The shortcut relies on "OsKaR31415/vim-ui-toggle.vim"
@@ -151,6 +156,18 @@ nmap <leader>xx <Plug>(SendToTermLine)
 " Plug 'tpope/vim-tbone'
 Plug 'preservim/vimux'
 
+ " ⡷⢾ ⡎⢱ ⡇⢸ ⡇ ⡷⣸ ⡎⠑   ⡇ ⡷⣸   ⡇⢸ ⡇ ⡷⢾   ⣎⣱ ⡷⣸ ⡏⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸   ⣏⡱ ⣎⣱ ⡷⣸ ⣏⡉ ⢎⡑
+ " ⠇⠸ ⠣⠜ ⠸⠃ ⠇ ⠇⠹ ⠣⠝   ⠇ ⠇⠹   ⠸⠃ ⠇ ⠇⠸   ⠇⠸ ⠇⠹ ⠧⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸   ⠇  ⠇⠸ ⠇⠹ ⠧⠤ ⠢⠜
+" Using the same shortcut to move both in vim buffers and in tmux panes :
+" <C-h>, <C-j>, <C-k> and <C-l>
+" goes with a config in ~/.tmux.conf
+Plug 'christoomey/vim-tmux-navigator'
+tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
+tmap <c-j> <c-w>:TmuxNavigateDown<cr>
+tmap <c-k> <c-w>:TmuxNavigateUp<cr>
+tmap <c-l> <c-w>:TmuxNavigateRight<cr>
+
+
 
  " ⡎⠑ ⡎⢱ ⡎⠑
  " ⠣⠔ ⠣⠜ ⠣⠔
@@ -198,6 +215,7 @@ nnoremap <silent><nowait> <space>a :<C-u>CocList outline<cr>
 nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
 
 
+
  " " ⡎⠑ ⡇⢸ ⢹⠁ ⢹⠁ ⣏⡉ ⡷⣸    ⢹⠁ ⣎⣱ ⡎⠑ ⢎⡑
  " " ⠣⠝ ⠣⠜ ⠸  ⠸  ⠧⠤ ⠇⠹ ⠉⠉ ⠸  ⠇⠸ ⠣⠝ ⠢⠜
 " " auto-update ctags
@@ -241,11 +259,11 @@ nnoremap <silent> <leader>, :Calc<cr>
  " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
 " emmet abbreviations for html
 " default shortcut to expand is <c-y>,
-Plug 'mattn/emmet-vim', {'for': ['html', 'php']}
+Plug 'mattn/emmet-vim'
 " default expand shortcut is <c-y>,
 " i use <c-l>,
-imap <c-l> <c-y>
-vmap <c-l> <c-y>
+let g:user_emmet_leader_key='='
+
 
 
  " ⡇⢸ ⡇ ⡷⢾   ⣏⡱ ⣏⡉ ⡷⣸ ⡎⠑ ⡇ ⡇
@@ -256,7 +274,8 @@ Plug 'reedes/vim-pencil'
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸  ⡜ ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡇ ⡷⣸ ⡇  ⡇ ⡷⣸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
-Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex']}
+" markdown features (conceal, shortcuts...)
+Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex', 'quarto']}
 set conceallevel=2
 set concealcursor=c  " don't conceal the cursor's line
 au FileType markdown set concealcursor=ci  " also conceal in insert mode
@@ -294,6 +313,13 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ }
 
 
+ " ⡎⢱ ⡇⢸ ⣎⣱ ⣏⡱ ⢹⠁ ⡎⢱
+ " ⠣⠪ ⠣⠜ ⠇⠸ ⠇⠱ ⠸  ⠣⠜
+" quarto markdown blog (live preview)
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'quarto-dev/quarto-vim'
+
+
 " Plug 'prabirshrestha/async.vim'
 " Plug 'christianrondeau/vim-base64'
 " " pandoc markdown live preview
@@ -303,14 +329,14 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠸  ⠣⠜ ⠣⠔
 " markdown auto-generated table of contents
 " :GenTocGfm : generate the toc on current cursor position
-Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+Plug 'mzlogin/vim-markdown-toc', {'for': [ 'markdown', 'quarto' ]}
 let g:vmt_auto_update_on_save = 1
 
 
  " ⣏⡱ ⣏⡱ ⣏⡉ ⢎⡑ ⣏⡉ ⡷⣸ ⢹⠁ ⡇ ⡷⣸ ⡎⠑   ⡔⠁ ⡷⢾ ⣇⠜ ⡏⢱   ⣏⡱ ⣏⡱ ⣏⡉ ⢎⡑ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸ ⢎⡑ ⠈⢢
  " ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇ ⠇⠹ ⠣⠝   ⠣⡀ ⠇⠸ ⠇⠱ ⠧⠜   ⠇  ⠇⠱ ⠧⠤ ⠢⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹ ⠢⠜ ⢀⠜
 " presentations inside vim itself
-Plug 'sotte/presenting.vim', {'for': 'markdown'}
+Plug 'sotte/presenting.vim', {'for': [ 'markdown' ]}
 nnoremap <leader>ps :PresentingStart<cr>
 
  " " ⡇⢸ ⡇ ⡷⢾   ⡇⢸ ⡇ ⣇⠜ ⡇
@@ -324,6 +350,11 @@ nnoremap <leader>ps :PresentingStart<cr>
 " let wiki_1.syntax = "markdown"
 " let g:vimwiki_list = [wiki_1]
 
+
+ " ⡇⢸ ⡇ ⡷⢾   ⢉⠝ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⡇  ⣇⠜ ⣎⣱ ⢎⡑ ⢹⠁ ⣏⡉ ⡷⣸
+ " ⠸⠃ ⠇ ⠇⠸   ⠮⠤ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠧⠤ ⠇⠱ ⠇⠸ ⠢⠜ ⠸  ⠧⠤ ⠇⠹
+" manage zettelkasten within vim
+Plug 'chiefnoah/neuron-v2.vim'
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
@@ -694,19 +725,6 @@ vnoremap <cr> :Ripple<cr>
 nnoremap <leader><cr> :%Ripple<cr>
 
 
- " ⡷⢾ ⡎⢱ ⡇⢸ ⡇ ⡷⣸ ⡎⠑   ⡇ ⡷⣸   ⡇⢸ ⡇ ⡷⢾   ⣎⣱ ⡷⣸ ⡏⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸   ⣏⡱ ⣎⣱ ⡷⣸ ⣏⡉ ⢎⡑
- " ⠇⠸ ⠣⠜ ⠸⠃ ⠇ ⠇⠹ ⠣⠝   ⠇ ⠇⠹   ⠸⠃ ⠇ ⠇⠸   ⠇⠸ ⠇⠹ ⠧⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸   ⠇  ⠇⠸ ⠇⠹ ⠧⠤ ⠢⠜
-" Using the same shortcut to move both in vim buffers and in tmux panes :
-" <C-h>, <C-j>, <C-k> and <C-l>
-" goes with a config in ~/.tmux.conf
-Plug 'christoomey/vim-tmux-navigator'
-tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
-tmap <c-j> <c-w>:TmuxNavigateDown<cr>
-tmap <c-k> <c-w>:TmuxNavigateUp<cr>
-tmap <c-l> <c-w>:TmuxNavigateRight<cr>
-
-
-
  " ⣏⡱ ⣏⡉ ⡷⢾ ⡎⢱ ⢹⠁ ⣏⡉   ⣏⡱ ⣎⣱ ⡇ ⣏⡱   ⣏⡱ ⣏⡱ ⡎⢱ ⡎⠑ ⣏⡱ ⣎⣱ ⡷⢾ ⡷⢾ ⡇ ⡷⣸ ⡎⠑
  " ⠇⠱ ⠧⠤ ⠇⠸ ⠣⠜ ⠸  ⠧⠤   ⠇  ⠇⠸ ⠇ ⠇⠱   ⠇  ⠇⠱ ⠣⠜ ⠣⠝ ⠇⠱ ⠇⠸ ⠇⠸ ⠇⠸ ⠇ ⠇⠹ ⠣⠝
 " live remote pair programming with vim !
@@ -739,7 +757,6 @@ let g:rainbow_conf = {
                 \ 'vim': { 'parentheses_options': 'containedin=vimFuncBody' },
                 \ 'perl': { 'syn_name_prefix': 'perlBlockFoldRainbow' },
                 \ 'stylus': { 'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'] },
-                \ 'css': 1,
             \ }
 \ }
 " let g:rainbow_ctermfgs = [197, 214, 81, 148, 141] " monokai
@@ -794,6 +811,7 @@ endif
 " All of your Plugs must be added before the following line
 call plug#end()            " reluire
 
+
 " enable filetype detection
 filetype plugin indent on
 
@@ -803,7 +821,9 @@ filetype plugin indent on
 " ╹ ╹┗━╸┗┻┛   ╹ ╹╹ ╹╹  ╹  ╹╹ ╹┗━┛┗━┛
 " motions or mappings shortcuts i defined myself
 
+
 set timeout timeoutlen=300
+
 
 " reload config file
 command! SO :wa | so ~/.vimrc | e

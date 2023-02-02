@@ -18,6 +18,19 @@ fun! AsyncRunCurrentFile()
 endfun
 command! AsyncRunCurrentFile call AsyncRunCurrentFile()
 
+" Run a file and let the interpreter open after execution
+fun! RunWithInterpreter()
+    wa
+    let the_path = expand('%:p:h')
+    let filename = ''.expand('%')
+    if &ft == "python"
+        call VimuxRunCommandInDir('python3 -i ' . filename, the_path)
+    else
+        echo "no runner for filetype " . &ft
+    endif
+endfun
+command! RunWithInterpreter call RunWithInterpreter()
+
 " Run a file
 fun! RunCurrentFile()
     wa
@@ -75,6 +88,7 @@ nnoremap <silent> <leader>n :up<cr>:Make %<cr>
 nnoremap <leader>a :AsyncRunCurrentFile<cr>
 " with tmux
 nnoremap <leader>j :RunCurrentFile<cr>
+nnoremap <leader>i :RunWithInterpreter<cr>
 nnoremap <C-C> :Tmux <C-v><C-c><cr>
 " run with ripple
 " set in the ripple section

@@ -9,11 +9,28 @@ set ssl_starttls=yes
 # Toujours utiliser SSL lors de la connexion à un serveur
 set ssl_force_tls=yes
 
+
+# adresse de l'expéditeur
+set from = "oscar.plaisant@orange.fr"
+set realname = "Oscar Plaisant"
+# remplir automatiquement le champ from
+set use_from = yes
+set use_envelope_from=yes
+# Lors d'une réponse, utiliser l'adresse originale à laquelle a été envoyé le mail
+set reverse_name
+
+
 # Configuration SMTP
 set smtp_url = "smtps://oscar.plaisant@orange.fr@smtp.orange.fr:465/"
-set smtp_pass = "coding25052005"
-set from = "oscar.plaisant@orange.fr"
-set use_envelope_from=yes
+set smtp_pass = "011DeuxTroisCinqHuit"
+
+
+
+# set signature = ~/path/to/signature
+
+
+# better vim settings to write mails (line wrapping)
+set editor = "vim -c 'set tw=72' -c 'set wrap'"
 
 # # Paramètres locaux, date
 # set locale="fr_FR"
