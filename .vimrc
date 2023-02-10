@@ -33,11 +33,14 @@ set backspace=indent,start
 " spelling
 set dictionary="/usr/share/dict/words"
 set nospell spelllang=fr
+" spelling shortcuts
 " za to select the first replacement for a wrong word
 nnoremap za 1z=
 " <c-z> in insert mode to replace last mistake with first replacement
 " <c-g>u makes a milestone in the undo tree (so you can undo the replacement)
-inoremap <c-z> <c-g>u<esc>[s1z=`]a<c-g>u
+inoremap <c-q> <c-g>u<esc>[s1z=`]a<c-g>u
+nmap <c-q> i<c-q><esc>
+
 
 " IMPORTANT: i prefer not to set them on since i have a shortcut to toggle
 " both. The shortcut relies on "OsKaR31415/vim-ui-toggle.vim"
@@ -81,13 +84,15 @@ let g:regex_abbreviations#expand_symbol = ":"
  " ⢎⡑ ⡷⣸ ⡇ ⣏⡱ ⣏⡱ ⣏⡉ ⢹⠁ ⢎⡑
  " ⠢⠜ ⠇⠹ ⠇ ⠇  ⠇  ⠧⠤ ⠸  ⠢⠜
 " classic but powerfull snippets : UltiSnips
-Plug 'sirver/ultisnips'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-let g:UltiSnipsEditSplit = 'vertical'
-" Load latex shortcuts in markdown
-" au FileType markdown UltiSnipsAddFiletypes tex.markdown
+if !has('nvim')
+    Plug 'sirver/ultisnips'
+    let g:UltiSnipsExpandTrigger = '<tab>'
+    let g:UltiSnipsJumpForwardTrigger = '<tab>'
+    let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+    let g:UltiSnipsEditSplit = 'vertical'
+    " Load latex shortcuts in markdown
+    " au FileType markdown UltiSnipsAddFiletypes tex.markdown
+endif
 
  " ⡇⢸ ⡇   ⢹⠁ ⡎⢱ ⡎⠑ ⡎⠑ ⡇  ⣏⡉
  " ⠣⠜ ⠇   ⠸  ⠣⠜ ⠣⠝ ⠣⠝ ⠧⠤ ⠧⠤
@@ -504,6 +509,7 @@ let g:airline_section_error = ""
  " ⡎⠑ ⡎⢱ ⡷⢾ ⡷⢾ ⣏⡉ ⡷⣸ ⢹⠁
  " ⠣⠔ ⠣⠜ ⠇⠸ ⠇⠸ ⠧⠤ ⠇⠹ ⠸
 " comment by lines
+" custom comment strings are in .vim/after/syntax/...
 Plug 'tpope/vim-commentary'
 map <leader>c gc
 nmap <leader>c gc
@@ -881,16 +887,16 @@ nnoremap <C-W>m <C-W>_<C-W>\|
 " open a terminal on current window
 nnoremap <leader>! :term ++curwin<cr>
 
-" window submode
-call tinykeymap#EnterMap("windows", "<leader>q", {"name": "Windows mode"})
-call tinykeymap#Map("windows", "s", "split")
-call tinykeymap#Map("windows", "v", "vsplit")
-call tinykeymap#Map("windows", "h", "TmuxNavigateLeft")
-call tinykeymap#Map("windows", "j", "TmuxNavigateDown")
-call tinykeymap#Map("windows", "k", "TmuxNavigateUp")
-call tinykeymap#Map("windows", "l", "TmuxNavigateRight")
-call tinykeymap#Map("windows", "z", "ZoomToggle")
-call tinykeymap#Map("windows", "x", "close")
+" " window submode
+" call tinykeymap#EnterMap("windows", "<leader>q", {"name": "Windows mode"})
+" call tinykeymap#Map("windows", "s", "split")
+" call tinykeymap#Map("windows", "v", "vsplit")
+" call tinykeymap#Map("windows", "h", "TmuxNavigateLeft")
+" call tinykeymap#Map("windows", "j", "TmuxNavigateDown")
+" call tinykeymap#Map("windows", "k", "TmuxNavigateUp")
+" call tinykeymap#Map("windows", "l", "TmuxNavigateRight")
+" call tinykeymap#Map("windows", "z", "ZoomToggle")
+" call tinykeymap#Map("windows", "x", "close")
 
 
 " TABS
@@ -900,16 +906,16 @@ nnoremap <left>  gT
 nnoremap <silent> <up> :tabmove +1<cr>
 nnoremap <silent> <down> :tabmove -1<cr>
 
-" tabs submode
-call tinykeymap#EnterMap("tabs", "\<c-t>", {"name": "Tabs mode"})
-call tinykeymap#Map("tabs", "l", "norm! gt")
-call tinykeymap#Map("tabs", "h", "norm! gT")
-call tinykeymap#Map("tabs", "\_", "tabfirst")
-call tinykeymap#Map("tabs", "$", "tablast")
-call tinykeymap#Map("tabs", "c", "tabclose")
-call tinykeymap#Map("tabs", "x", "tabclose")
-call tinykeymap#Map("tabs", "k", "tabmove +1")
-call tinykeymap#Map("tabs", "j", "tabmove -1")
+" " tabs submode
+" call tinykeymap#EnterMap("tabs", "\<c-t>", {"name": "Tabs mode"})
+" call tinykeymap#Map("tabs", "l", "norm! gt")
+" call tinykeymap#Map("tabs", "h", "norm! gT")
+" call tinykeymap#Map("tabs", "\_", "tabfirst")
+" call tinykeymap#Map("tabs", "$", "tablast")
+" call tinykeymap#Map("tabs", "c", "tabclose")
+" call tinykeymap#Map("tabs", "x", "tabclose")
+" call tinykeymap#Map("tabs", "k", "tabmove +1")
+" call tinykeymap#Map("tabs", "j", "tabmove -1")
 
 
 " MISC

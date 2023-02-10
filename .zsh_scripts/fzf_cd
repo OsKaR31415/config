@@ -21,7 +21,7 @@ do
     # if the selection is a file
     elif test -f $selected
     then
-        v $selected
+        vi $selected
         return
     else
         cd "$selected"
