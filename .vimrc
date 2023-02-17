@@ -515,6 +515,11 @@ map <leader>c gc
 nmap <leader>c gc
 
 
+ " ⡇⢸ ⡷⣸ ⡇ ⢇⡸   ⣇⣸ ⣏⡉ ⡇  ⣏⡱ ⣏⡉ ⣏⡱
+ " ⠣⠜ ⠇⠹ ⠇ ⠇⠸   ⠇⠸ ⠧⠤ ⠧⠤ ⠇  ⠧⠤ ⠇⠱
+" unix helper : add usefull unix commands (mkdir, delete, find, locate...)
+Plug 'tpope/vim-eunuch'
+
  " ⡷⣸ ⣏⡉ ⢹⠁ ⣏⡱ ⡇⢸
  " ⠇⠹ ⠧⠤ ⠸  ⠇⠱ ⠟⠻
 " my config to make netrw usable (hard, i admit) (vinegar)
