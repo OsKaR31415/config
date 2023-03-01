@@ -249,7 +249,7 @@ alias daily="vim $OBSIDIAN/\$(daily '+%Y-%m-%d.md')"
 
 # replaced by the script .zsh_scripts/urlencode
 # alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
-source ~/.zsh_scripts/urlencode
+# source ~/.zsh_scripts/urlencode
 
 # --preview option of fzf to preview file OR directory.
 # {} is the placeholder
@@ -272,7 +272,7 @@ alias fzf="fzf --color=hl:28,hl+:34"
 # zsh syntax highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # iterm shell integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 # opam configuration
 [[ ! -r /Users/oscarplaisant/.opam/opam-init/init.zsh ]] || source /Users/oscarplaisant/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 ##################################################

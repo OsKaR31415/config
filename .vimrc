@@ -230,18 +230,18 @@ nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
  " ⢹⠁ ⣎⣱ ⡎⠑ ⢎⡑   ⡇⢸ ⡇ ⢎⡑ ⡇⢸ ⣎⣱ ⡇  ⡇ ⢎⡑ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
  " ⠸  ⠇⠸ ⠣⠝ ⠢⠜   ⠸⠃ ⠇ ⠢⠜ ⠣⠜ ⠇⠸ ⠧⠤ ⠇ ⠢⠜ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " TODO: fix the problem with ctags source not showing anything with python
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 " toggle vista
-nnoremap <leader>v :Vista!!<cr>
-let g:vista#render#enable_icon = 1
-let g:vista_default_executive = 'coc'
-let g:vista_ctags_cmd = {
-      \ 'haskell': 'hasktags -x -o - -c',
-      \ }
-let g:vista#renderer#icons = {
-        \ "function": "",
-        \ "variable": ""
-      \ }
+" nnoremap <leader>v :Vista!!<cr>
+" let g:vista#render#enable_icon = 1
+" let g:vista_default_executive = 'coc'
+" let g:vista_ctags_cmd = {
+"       \ 'haskell': 'hasktags -x -o - -c',
+"       \ }
+" let g:vista#renderer#icons = {
+"         \ "function": "",
+"         \ "variable": ""
+"       \ }
 
 
  " ⡎⠑ ⣎⣱ ⡇  ⡎⠑ ⡇⢸ ⡇  ⣎⣱ ⢹⠁ ⡎⢱ ⣏⡱
@@ -264,7 +264,7 @@ nnoremap <silent> <leader>, :Calc<cr>
  " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
 " emmet abbreviations for html
 " default shortcut to expand is <c-y>,
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['html', 'php']}
 " default expand shortcut is <c-y>,
 " i use <c-l>,
 let g:user_emmet_leader_key='='
@@ -318,11 +318,24 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ }
 
 
+" manipulate wikilinks
+Plug 'vim-scripts/vim-markdown-wiki'
+
  " ⡎⢱ ⡇⢸ ⣎⣱ ⣏⡱ ⢹⠁ ⡎⢱
  " ⠣⠪ ⠣⠜ ⠇⠸ ⠇⠱ ⠸  ⠣⠜
 " quarto markdown blog (live preview)
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'quarto-dev/quarto-vim'
+
+
+ " ⡷⣸ ⣏⡉ ⡇⢸ ⣏⡱ ⡎⢱ ⡷⣸   ⢉⠝ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⡇  ⣇⠜ ⣎⣱ ⢎⡑ ⢹⠁ ⣏⡉ ⡷⣸
+ " ⠇⠹ ⠧⠤ ⠣⠜ ⠇⠱ ⠣⠜ ⠇⠹   ⠮⠤ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠧⠤ ⠇⠱ ⠇⠸ ⠢⠜ ⠸  ⠧⠤ ⠇⠹
+" markdown zettelkasten (obsidian vault) support (neuron)
+" Plug 'chiefnoah/neuron-v2.vim'
+
+
+
+
 
 
 " Plug 'prabirshrestha/async.vim'
@@ -354,12 +367,6 @@ nnoremap <leader>ps :PresentingStart<cr>
 " let wiki_1.path_html = "~/vimwiki/html"
 " let wiki_1.syntax = "markdown"
 " let g:vimwiki_list = [wiki_1]
-
-
- " ⡇⢸ ⡇ ⡷⢾   ⢉⠝ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⡇  ⣇⠜ ⣎⣱ ⢎⡑ ⢹⠁ ⣏⡉ ⡷⣸
- " ⠸⠃ ⠇ ⠇⠸   ⠮⠤ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠧⠤ ⠇⠱ ⠇⠸ ⠢⠜ ⠸  ⠧⠤ ⠇⠹
-" manage zettelkasten within vim
-Plug 'chiefnoah/neuron-v2.vim'
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
