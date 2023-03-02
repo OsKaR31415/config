@@ -60,8 +60,8 @@ set nonumber
 " ██                             ▀████▀▀
 " they are a lot, i don't use all of them, but they are definitely cool
 let g:plugins_loaded = 0
-" source $HOME/.vim/plugins_conf.vim
-" let g:plugins_loaded = 1
+source $HOME/.vim/plugins_conf.vim
+let g:plugins_loaded = 1
 
 
 " enable filetype detection
