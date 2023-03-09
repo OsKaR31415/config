@@ -397,6 +397,7 @@ let g:diminactive_enable_focus = 1
  " ⠣⠔ ⠣⠜ ⠧⠤ ⠣⠜ ⠇⠱   ⠢⠜ ⠣⠔ ⠇⠸ ⠧⠤ ⠇⠸ ⠧⠤ ⠢⠜
 " a good collection of colorschemes, all you need is here
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'vim-scripts/maroloccio'
 
 
  " " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
