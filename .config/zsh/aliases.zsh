@@ -46,5 +46,6 @@ alias daily="vim $OBSIDIAN/\$(daily '+%Y-%m-%d.md')"
 # alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
 # source ~/.zsh_scripts/urlencode
 
+alias fzf="fzf --color=hl:28,hl+:34"
 
 

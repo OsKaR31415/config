@@ -6,6 +6,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
+# ┏━╸┏┓╻╻ ╻╻┏━┓┏━┓┏┓╻┏┳┓┏━╸┏┓╻╺┳╸   ╻ ╻┏━┓┏━┓╻┏━┓┏┓ ╻  ┏━╸┏━┓
+# ┣╸ ┃┗┫┃┏┛┃┣┳┛┃ ┃┃┗┫┃┃┃┣╸ ┃┗┫ ┃    ┃┏┛┣━┫┣┳┛┃┣━┫┣┻┓┃  ┣╸ ┗━┓
+# ┗━╸╹ ╹┗┛ ╹╹┗╸┗━┛╹ ╹╹ ╹┗━╸╹ ╹ ╹    ┗┛ ╹ ╹╹┗╸╹╹ ╹┗━┛┗━╸┗━╸┗━┛
+
 # add variables to the path
 export PATH=$PATH":/Users/oscarplaisant/.zsh_scripts/"  # my own scripts
 export PATH=$PATH":/Users/oscarplaisant/.cargo/bin"  # cargo installations
@@ -31,6 +36,19 @@ export PAGER="bat --style=plain"
 
 # path to obsidian vault
 export OBSIDIAN="/Users/oscarplaisant/devoirs/cours"
+
+# mdp config
+export MDP_LIST_OPEN1=' ┃  '
+export MDP_LIST_OPEN2=' ┃  '
+export MDP_LIST_OPEN3=' ┃  '
+export MDP_LIST_OPEN4=' ┃  '
+export MDP_LIST_HEAD1=' ┗━> '
+export MDP_LIST_HEAD2=' ┖━> '
+export MDP_LIST_HEAD3=' ┖━> '
+
+# ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻
+# ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫
+# ┗━┛╹ ╹   ╹ ╹ ╹    ┗━╸┗━┛╹ ╹
 
 # completion settings
 autoload -Uz compinit
@@ -101,6 +119,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# ┏━┓╻  ╻ ╻┏━╸╻┏┓╻┏━┓
+# ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫┗━┓
+# ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -150,14 +172,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# mdp config
-export MDP_LIST_OPEN1=' ┃  '
-export MDP_LIST_OPEN2=' ┃  '
-export MDP_LIST_OPEN3=' ┃  '
-export MDP_LIST_OPEN4=' ┃  '
-export MDP_LIST_HEAD1=' ┗━> '
-export MDP_LIST_HEAD2=' ┖━> '
-export MDP_LIST_HEAD3=' ┖━> '
 
 
 # change locale (especially, makes sort and sed accept non-ascii)
@@ -170,6 +184,11 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
+
+
+# ┏━┓╻ ╻┏━┓┏━┓╺┳╸┏━╸╻ ╻╺┳╸┏━┓
+# ┗━┓┣━┫┃ ┃┣┳┛ ┃ ┃  ┃ ┃ ┃ ┗━┓
+# ┗━┛╹ ╹┗━┛╹┗╸ ╹ ┗━╸┗━┛ ╹ ┗━┛
 
 # enable vi-mode
 bindkey -v
@@ -185,24 +204,6 @@ bindkey -s "^a" "\eI"
 bindkey -s "^u" "\ed0xi"
 
 
-
-
-# shortcut that starts ranger
-bindkey -s '^f' ". ranger\n"
-
-source $HOME/.config/zsh/aliases.zsh
-
-
-# 38;5;nnn is for 256 colors (replacing the nnn)
-export EXA_COLORS=$(echo -n "di=38;5;40
-fi=38;5;253
-ex=4;
-*.md=38;5;117:*.html=38;5;37:*.css=38;5;37:*.js=38;5;37:*.ts=38;5;37:*.php=38;5;37
-*.java=38;5;172:*.class=38;5;172
-*.pdf=38;5;184
-" | tr '\n' ':')
-
-
 # --preview option of fzf to preview file OR directory.
 # {} is the placeholder
 # if {} is a file --> use bat
@@ -216,7 +217,26 @@ bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents'
 # bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
 bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
-alias fzf="fzf --color=hl:28,hl+:34"
+
+# shortcut that starts ranger
+bindkey -s '^f' ". ranger\n"
+
+# ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
+# ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
+# ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
+source $HOME/.config/zsh/aliases.zsh
+
+
+# 38;5;nnn is for 256 colors (replacing the nnn)
+export EXA_COLORS=$(echo -n "di=38;5;40
+fi=38;5;253
+ex=4;
+*.md=38;5;117:*.html=38;5;37:*.css=38;5;37:*.js=38;5;37:*.ts=38;5;37:*.php=38;5;37
+*.java=38;5;172:*.class=38;5;172
+*.pdf=38;5;184
+" | tr '\n' ':')
+
+
 
 # THINGS TO LOAD AT THE END ######################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

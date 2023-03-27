@@ -255,7 +255,7 @@ Plug 'reedes/vim-pencil'
 Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex', 'quarto']}
 set conceallevel=2
 set concealcursor=c  " don't conceal the cursor's line
-au FileType markdown set concealcursor=ci  " also conceal in insert mode
+" au FileType markdown set concealcursor=ci  " also conceal in insert mode
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
@@ -288,6 +288,10 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
     \ 'content_editable': v:true,
     \ 'disable_filename': 0
     \ }
+" " custom markdown style sheet. must be absolute path (you can use expand)
+" let g:mkdp_markdown_css = expand('~/.vim/markdown_preview_stylesheet.css')
+" recognized filetypes (will have MarkdownPreview.* commands)
+let g:mkdp_filetypes = ['markdown', 'quarto', 'text']
 
 
 " manipulate wikilinks

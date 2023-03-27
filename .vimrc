@@ -47,9 +47,6 @@ nmap <c-q> i<c-q><esc>
 set norelativenumber
 set nonumber
 
-
-
-
 "           ▄▄▄▄                             ██
 "           ▀▀██                             ▀▀
 " ██▄███▄     ██      ██    ██   ▄███▄██   ████     ██▄████▄  ▄▄█████▄

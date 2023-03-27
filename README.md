@@ -2,19 +2,23 @@
 
 Here is the repo of all my configuration files for terminal applications, including vim, tmux, ranger and more.
 
-If you want to reproduce this config, you may simply clone the repository in your home directory.
-In you only want to use a part of it, you may clone it in a directory and use symlinks.
+If you want to install every part of this config, you can simply run the installation script : `install_config.sh`
 
 ## Notes on what i use
 
+ - editor : vim
+ - running everything inside [tmux](https://github.com/tmux/tmux/wiki), to have sessions, tabs, splits and session restauration
 I use vim as my text editor.
-I run everything in tmux, for multiplexing and sessions restauration (even after rebooting).
-My main shell is zsh, and i use oh-my-zsh (mostly as a plugin manager, to get dune-quotes and fzf-tab). My custom prompt is powerlevel10k.
-I sometimes use mutt as a mail client, but graphical clients are less a pain to configure !
+ - shell : [zsh](https://www.zsh.org)
+     - with [oh my zsh](https://ohmyzsh.sh) as a plugin manager
+         - [fzf-tab](https://github.com/Aloxaf/fzf-tab) for better autocompletion
+         - [powerlevel10k](https://github.com/romkatv/powerlevel10k) (custom theme)
 
-## My vim configuration
 
-I have most of my vim configuration in my `.vimrc`, but :
+### Vim configuration
+
+My `.vimrc` contains only the exportable config (that works in vanilla vim).
+
 
  - i try to put language-specific configurations in `~/.vim/after/syntax/<syntax_name>.vim`
  - i used to store part of my config in `~/.vim/commands`, but now only `~/.vim/commands/alarms.vim` is used
