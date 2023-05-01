@@ -364,25 +364,25 @@ Plug 'vim-scripts/DrawIt'
 " call SetDrawIt('┃', '━', '╋', '╲', '╱', '╳', '*')
 
 
- " " ⢉⠝ ⣏⡉ ⡷⣸   ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉
- " " ⠮⠤ ⠧⠤ ⠇⠹   ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤
-" " kind of zen mode
-" " unused for the moment, but could be wit presenting.vim
-" Plug 'junegunn/goyo.vim'
+ " ⢉⠝ ⣏⡉ ⡷⣸   ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉
+ " ⠮⠤ ⠧⠤ ⠇⠹   ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤
+" kind of zen mode
+" unused for the moment, but could be wit presenting.vim
+Plug 'junegunn/goyo.vim'
 " command! Zen Goyo|Limelight!!
 " Arpeggio nnoremap zen :Zen<cr>
-" nnoremap <leader>y :Goyo<cr>
-" let g:goyo_width = "100%"
-" let g:goyo_height = "100%"
+nnoremap <leader>y :Goyo<cr>
+let g:goyo_width = "100%"
+let g:goyo_height = "100%"
 " Plug 'junegunn/limelight.vim'
 " let g:limelight_priority = -1 " -1 to not orverrule hlsearch
 " " Number of preceding/following paragraphs to include (default: 0)
-" let g:limelight_paragraph_span = 2
+" " let g:limelight_paragraph_span = 2
 " " autocmd! User GoyoEnter Limelight
 " " autocmd! User GoyoLeave Limelight!
-" autocmd! User GoyoLeave BackgroundColorReset
-" " Plug 'junegunn/vim-emoji'
-" " let g:limelight_conceal_ctermfg=1
+autocmd! User GoyoLeave BackgroundColorReset
+" Plug 'junegunn/vim-emoji'
+" let g:limelight_conceal_ctermfg=1
 
 
  " ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸ ⢹⠁   ⡎⠑ ⡇⢸ ⣏⡱ ⣏⡱ ⣏⡉ ⡷⣸ ⢹⠁   ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
@@ -451,6 +451,7 @@ vmap s S
 
  " ⣎⣱ ⡇⢸ ⢹⠁ ⡎⢱   ⣏⡱ ⣏⡱ ⣎⣱ ⡎⠑ ⣇⠜ ⣏⡉ ⢹⠁ ⢎⡑   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⡇ ⡷⣸ ⡎⠑
  " ⠇⠸ ⠣⠜ ⠸  ⠣⠜   ⠧⠜ ⠇⠱ ⠇⠸ ⠣⠔ ⠇⠱ ⠧⠤ ⠸  ⠢⠜   ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠇ ⠇⠹ ⠣⠝
+" automatic brackets / parenthesis closing
 " seems like no config is required !
 " Plug 'kana/vim-smartinput'
 Plug 'raimondi/delimitmate'
@@ -463,6 +464,11 @@ inoremap _{ {
 inoremap _$ $
 inoremap _` `
 
+
+ " ⣏⡱ ⣎⣱ ⣏⡱ ⡇ ⡷⣸ ⣏⡉ ⣏⡉ ⣏⡱   ⡔⠁ ⡇  ⡇ ⢎⡑ ⣏⡱ ⠈⢢
+ " ⠇  ⠇⠸ ⠇⠱ ⠇ ⠇⠹ ⠇  ⠧⠤ ⠇⠱   ⠣⡀ ⠧⠤ ⠇ ⠢⠜ ⠇  ⢀⠜
+" vim parinfer (automatic lisp parenthesis)
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
  " ⣎⣱ ⡇ ⣏⡱ ⡇  ⡇ ⡷⣸ ⣏⡉
  " ⠇⠸ ⠇ ⠇⠱ ⠧⠤ ⠇ ⠇⠹ ⠧⠤
@@ -650,12 +656,12 @@ Plug 'rbonvall/vim-textobj-latex'
 
 
 
- " ⣏⡱ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⣏⡱   ⣏⡱ ⢇⢸ ⢹⠁ ⣇⣸ ⡎⢱ ⡷⣸    ⡜   ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
- " ⠧⠜ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠇⠱   ⠇   ⠇ ⠸  ⠇⠸ ⠣⠜ ⠇⠹   ⠎    ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
-" intelligent support for languages with semantic indentation
-Plug 'tweekmonster/braceless.vim'
-autocmd FileType python BracelessEnable +indent +fold
-autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold
+ " " ⣏⡱ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⣏⡱   ⣏⡱ ⢇⢸ ⢹⠁ ⣇⣸ ⡎⢱ ⡷⣸    ⡜   ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⡷⣸ ⢹⠁ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+ " " ⠧⠜ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠇⠱   ⠇   ⠇ ⠸  ⠇⠸ ⠣⠜ ⠇⠹   ⠎    ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠹ ⠸  ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+" " intelligent support for languages with semantic indentation
+" Plug 'tweekmonster/braceless.vim'
+" autocmd FileType python BracelessEnable +indent +fold
+" autocmd FileType haml,yaml,coffee BracelessEnable +indent +fold
 
 
  " ⣏⡉ ⢇⡸ ⡎⠑ ⣇⣸ ⣎⣱ ⡷⣸ ⡎⠑ ⣏⡉   ⠊⡱   ⣏⡱ ⣏⡉ ⡎⠑ ⡇ ⡎⢱ ⡷⣸ ⢎⡑

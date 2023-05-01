@@ -67,7 +67,7 @@ au BufWritePost,CursorHold,CursorHoldI,CursorMoved,CursorMovedI *.md call s:Mark
 let g:markdown_compiler = "xelatex"
 let g:markdown_output_format = "latex"
 let g:markdown_autocompile_enabled = 0
-let &makeprg = "pandoc % --pdf-engine=xelatex -o %:r.pdf -f markdown -t latex"
+setlocal makeprg=pandoc\ %\ --pdf-engine=xelatex\ -o\ %:r.pdf\ -f\ markdown\ -t\ latex
 
 
 fun! MarkdownCompile()

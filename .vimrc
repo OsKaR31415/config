@@ -248,6 +248,7 @@ set hlsearch
 " live preview of search results (incremental search)
 set incsearch
 " remove search highlight temporarly
+nmap <esc> :noh<cr>:update<cr>
 if g:plugins_loaded
     Arpeggionnoremap <silent> noh :noh<cr>
 endif
