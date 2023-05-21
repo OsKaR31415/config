@@ -1,13 +1,13 @@
 " can't use quotes here
-set makeprg=make
+setlocal makeprg=make
 
 
+setlocal foldmethod=marker
 " fold python docstrings
-setlocal foldmethod=manual
-" " just add `fold` to the vim's definition of python docstrings
-" syn region  pythonString matchgroup=pythonTripleQuotes 
-"       \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend fold
-"       \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
+" just add `fold` to the vim's definition of python docstrings
+syn region  pythonString matchgroup=pythonTripleQuotes 
+      \ start=+[uU]\=\z('''\|"""\)+ end="\z1" keepend fold
+      \ contains=pythonEscape,pythonSpaceError,pythonDoctest,@Spell
 
 
 fun AutoPep8()

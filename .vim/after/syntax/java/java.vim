@@ -1,4 +1,4 @@
-set makeprg=make
+setlocal makeprg=make
 
 
 

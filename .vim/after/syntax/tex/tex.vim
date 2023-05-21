@@ -1,4 +1,4 @@
-set makeprg=pdflatex\ %
+setlocal makeprg=pdflatex\ %
 
 " markdown headers coloration
 syn match htmlH1 "^# .\+$"
