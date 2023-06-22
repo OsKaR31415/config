@@ -67,7 +67,12 @@ au BufWritePost,CursorHold,CursorHoldI,CursorMoved,CursorMovedI *.md call s:Mark
 let g:markdown_compiler = "xelatex"
 let g:markdown_output_format = "latex"
 let g:markdown_autocompile_enabled = 0
-setlocal makeprg=pandoc\ %\ --pdf-engine=xelatex\ -o\ %:r.pdf\ -f\ markdown\ -t\ latex
+
+" Good commend to compile markdown through pandoc
+" file name insertion :
+"     %:S to shell escape characters (like space)
+"     :r.pdf to replace the (last) extension with .pdf
+setlocal makeprg=pandoc\ %\ --pdf-engine=xelatex\ -o\ %:S:r.pdf\ -f\ markdown\ -t\ latex
 
 
 fun! MarkdownCompile()
