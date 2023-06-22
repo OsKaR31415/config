@@ -69,6 +69,13 @@ Arpeggio nnoremap <silent> <leader>uq :UItoggle<cr>
 Arpeggio nnoremap <silent> <leader>ur :UIreset<cr>
 
 
+ " ⢎⡑ ⡷⢾ ⡎⢱ ⡎⢱ ⢹⠁ ⣇⣸   ⢎⡑ ⡎⠑ ⣏⡱ ⡎⢱ ⡇  ⡇  ⡇ ⡷⣸ ⡎⠑
+ " ⠢⠜ ⠇⠸ ⠣⠜ ⠣⠜ ⠸  ⠇⠸   ⠢⠜ ⠣⠔ ⠇⠱ ⠣⠜ ⠧⠤ ⠧⠤ ⠇ ⠇⠹ ⠣⠝
+" smooth scrolling
+Plug 'psliwka/vim-smoothie'
+nmap zz <cmd>call smoothie#do('zz') <cr>
+
+
  " " ⢎⡑ ⡇⢸ ⣏⡱ ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉ ⢎⡑
  " " ⠢⠜ ⠣⠜ ⠧⠜ ⠇⠸ ⠣⠜ ⠧⠜ ⠧⠤ ⠢⠜
 " " simple submodes !
@@ -191,6 +198,11 @@ nnoremap <silent><nowait> <space>a :<C-u>CocList outline<cr>
 " fuzzy search symbols
 nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
 
+ " ⡷⢾ ⢇⢸ ⣏⡱ ⢇⢸   ⡇ ⡷⣸ ⢹⠁ ⣏⡉ ⡎⠑ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
+ " ⠇⠸  ⠇ ⠇   ⠇   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
+" mypy integration (static type checker / generator)
+Plug 'integralist/vim-mypy'
+nnoremap <leader>p <cmd>!clear & mypy %<cr>
 
 
  " " ⡎⠑ ⡇⢸ ⢹⠁ ⢹⠁ ⣏⡉ ⡷⣸    ⢹⠁ ⣎⣱ ⡎⠑ ⢎⡑
