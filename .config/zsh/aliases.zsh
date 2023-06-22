@@ -48,4 +48,6 @@ alias daily="vim $OBSIDIAN/\$(daily '+%Y-%m-%d.md')"
 
 alias fzf="fzf --color=hl:28,hl+:34"
 
+alias tmux="tmux -u"  # force unicode mode for tmux
+
 
