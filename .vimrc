@@ -55,6 +55,7 @@ set nonumber
 " ███▄▄██▀    ██▄▄▄   ██▄▄▄███  ▀██▄▄███  ▄▄▄██▄▄▄  ██    ██  █▄▄▄▄▄██
 " ██ ▀▀▀       ▀▀▀▀    ▀▀▀▀ ▀▀   ▄▀▀▀ ██  ▀▀▀▀▀▀▀▀  ▀▀    ▀▀   ▀▀▀▀▀▀
 " ██                             ▀████▀▀
+" plugins
 " they are a lot, i don't use all of them, but they are definitely cool
 let g:plugins_loaded = 0
 source $HOME/.vim/plugins_conf.vim
@@ -113,10 +114,10 @@ vnoremap L dpgvolol
 inoremap jk <right>
 inoremap kj <left>
 " kl for normal mode in a terminal buffer
-" tmap kl <C-w>N
+tmap kl <C-w>N
 " tmap lk <C-w>N
 if g:plugins_loaded
-    Arpeggio inoremap kl <esc>:echo "c'est mal !!"<cr>
+    Arpeggio inoremap kl <esc>
 else
     inoremap kl <esc>:echo "c'est mal !!"<cr>
 endif
@@ -179,6 +180,11 @@ au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none guibg=blac
 au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172 guibg=black
 au BufRead,BufNewFile,BufEnter, * hi WildMenu term=standout ctermfg=black ctermbg=148
 " au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
+"
+" light mode
+
+
+
 
 " add rulers at 80 and 100 lines
 au filetype python,java set cc=80,100
@@ -187,10 +193,10 @@ au filetype python,java set cc=80,100
 " set cursorcolumn
 " set cursorline
 " cursor cross colors :
-hi ColorColumn  ctermbg=235
-hi CursorColumn ctermbg=235
-hi CursorLine   ctermbg=235
-hi EndOfBuffer  ctermbg=235
+hi ColorColumn  ctermbg=234
+hi CursorColumn ctermbg=234
+hi CursorLine   ctermbg=234
+hi EndOfBuffer  ctermbg=234
 hi CursorLineNr ctermfg=256
 
 " folds colors
@@ -254,8 +260,8 @@ if g:plugins_loaded
 endif
 
 " better version of n and N : center the search map
-silent nnoremap <silent> n nzz
-silent nnoremap <silent> N Nzz
+nmap <silent> n nzz
+nmap <silent> N Nzz
 
 
 
