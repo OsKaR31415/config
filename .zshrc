@@ -224,6 +224,7 @@ bindkey -s '^f' ". ranger\n"
 # ┏━┓╻  ╻┏━┓┏━┓┏━╸┏━┓
 # ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
+# my aliases
 source $HOME/.config/zsh/aliases.zsh
 
 
