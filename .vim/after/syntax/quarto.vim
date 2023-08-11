@@ -6,3 +6,5 @@ source ~/.vim/after/syntax/markdown/headers.vim
 
 set commentstring=<!--\ %s\ -->
 
+set filetype=markdown.quarto
+set syntax=markdown.quarto

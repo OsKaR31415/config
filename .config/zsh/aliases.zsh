@@ -9,8 +9,11 @@ alias la="l -a"
 alias lla="l -la"
 alias lt="l -T"
 
-# alias v=vim  # sadly, tmux-continuum doesn't support aliases
+# alias v=vim
 # alias nv=nvim
+alias vi=nvim
+alias v=nvim
+alias g=neovide # edit with Graphical interface
 alias c=clear # <c-l> goes to tmux pane right
 alias cl="clear && l" # clear and list files
 alias h="cd ~ && clear"

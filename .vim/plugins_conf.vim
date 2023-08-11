@@ -46,34 +46,6 @@ if !has('nvim')
     " au FileType markdown UltiSnipsAddFiletypes tex.markdown
 endif
 
- " ⡇⢸ ⡇   ⢹⠁ ⡎⢱ ⡎⠑ ⡎⠑ ⡇  ⣏⡉
- " ⠣⠜ ⠇   ⠸  ⠣⠜ ⠣⠝ ⠣⠝ ⠧⠤ ⠧⠤
-" my first plugin !
-" toggles parts of the ui like tabline, statusline, line numbers or background
-Plug 'OsKaR31415/vim-ui-toggle'
-let g:background_colors_list = ["none", "234", "235", "233", "232"]
-let g:background_color_index = 0
-" UI hide and show
-Arpeggio nnoremap <silent> <leader>us :StatuslineToggle<cr>
-Arpeggio nnoremap <silent> <leader>ut :TablineToggle<cr>
-Arpeggio nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
-Arpeggio nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
-Arpeggio nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
-Arpeggio nnoremap <silent> <leader>ug :SignColumnToggle<cr>
-" cycle between different colors
-Arpeggio nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
-Arpeggio nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
-" toggle all of them
-nnoremap <silent> <leader>uu :UItoggle<cr>
-Arpeggio nnoremap <silent> <leader>uq :UItoggle<cr>
-Arpeggio nnoremap <silent> <leader>ur :UIreset<cr>
-
-
- " ⢎⡑ ⡷⢾ ⡎⢱ ⡎⢱ ⢹⠁ ⣇⣸   ⢎⡑ ⡎⠑ ⣏⡱ ⡎⢱ ⡇  ⡇  ⡇ ⡷⣸ ⡎⠑
- " ⠢⠜ ⠇⠸ ⠣⠜ ⠣⠜ ⠸  ⠇⠸   ⠢⠜ ⠣⠔ ⠇⠱ ⠣⠜ ⠧⠤ ⠧⠤ ⠇ ⠇⠹ ⠣⠝
-" smooth scrolling
-Plug 'psliwka/vim-smoothie'
-nmap zz <cmd>call smoothie#do('zz') <cr>
 
 
  " " ⢎⡑ ⡇⢸ ⣏⡱ ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉ ⢎⡑
@@ -155,7 +127,7 @@ tmap <c-l> <c-w>:TmuxNavigateRight<cr>
 
  " ⡎⠑ ⡎⢱ ⡎⠑
  " ⠣⠔ ⠣⠜ ⠣⠔
-" auto completion and LSP support
+" coc : auto completion and LSP support
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Use <c-space> to trigger completion.
 if has('nvim')
@@ -198,6 +170,7 @@ nnoremap <silent><nowait> <space>a :<C-u>CocList outline<cr>
 " fuzzy search symbols
 nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
 
+
  " ⡷⢾ ⢇⢸ ⣏⡱ ⢇⢸   ⡇ ⡷⣸ ⢹⠁ ⣏⡉ ⡎⠑ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
  " ⠇⠸  ⠇ ⠇   ⠇   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " mypy integration (static type checker / generator)
@@ -235,6 +208,32 @@ Plug 'fedorenchik/VimCalc3'
 let g:VCalc_Win_Size = 5
 let g:VCalc_WindowPosition = 'top'
 nnoremap <silent> <leader>, :Calc<cr>
+
+
+ " ⡇  ⡇ ⡇⢸ ⣏⡉   ⡎⠑ ⡎⢱ ⡏⢱ ⣏⡉   ⣏⡉ ⡇⢸ ⣎⣱ ⡇  ⡇⢸ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
+ " ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠣⠔ ⠣⠜ ⠧⠜ ⠧⠤   ⠧⠤ ⠸⠃ ⠇⠸ ⠧⠤ ⠣⠜ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
+" live preview code execution scratchpad (live preview result)
+Plug 'metakirby5/codi.vim'
+function! s:strip_escape_codes(line)
+    let res = a:line
+    let res = substitute(res, "\<esc>".'\[\d\(\a\|\dm\)', '', 'g')
+    let res = substitute(res, "\n", ' ', 'g')
+    return res
+endfunction
+let g:codi#interpreters = {
+        \ 'python': {
+            \ 'bin': 'python3',
+            \ 'prompt': '^\(>>>\|\.\.\.\) ',
+            \ 'preprocess': function('s:strip_escape_codes'),
+        \ },
+    \ }
+" width : int->number of columns   float->percentage of the screen
+" only when not using virtual text
+let g:codi#width = 40.0
+" print the text next to the current line instead of a different pane
+let g:codi#virtual_text = 1
+let g:codi#raw = 0
+
 
 
  " ⣇⣸ ⢹⠁ ⡷⢾ ⡇    ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
@@ -306,8 +305,12 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
 let g:mkdp_filetypes = ['markdown', 'quarto', 'text']
 
 
+ " ⡇⢸ ⡇ ⣇⠜ ⡇ ⡇  ⡇ ⡷⣸ ⣇⠜ ⢎⡑
+ " ⠟⠻ ⠇ ⠇⠱ ⠇ ⠧⠤ ⠇ ⠇⠹ ⠇⠱ ⠢⠜
 " manipulate wikilinks
-Plug 'vim-scripts/vim-markdown-wiki'
+" Plug 'vim-scripts/vim-markdown-wiki'
+Plug 'mmai/wikilink'
+let wikilinkAutosplit="off"
 
  " ⡎⢱ ⡇⢸ ⣎⣱ ⣏⡱ ⢹⠁ ⡎⢱
  " ⠣⠪ ⠣⠜ ⠇⠸ ⠇⠱ ⠸  ⠣⠜
@@ -322,6 +325,34 @@ Plug 'quarto-dev/quarto-vim'
 " Plug 'chiefnoah/neuron-v2.vim'
 
 
+" ┏┓╻╻ ╻╻┏┳┓   ┏━┓╻  ╻ ╻┏━╸╻┏┓╻┏━┓
+" ┃┗┫┃┏┛┃┃┃┃   ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫┗━┓
+" ╹ ╹┗┛ ╹╹ ╹   ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
+if has('nvim')
+
+
+    " " misc utility functions for plugin writing
+    " " required for epwalsh/obsidian.nvim
+    " Plug 'nvim-lua/plenary.nvim'
+
+     " " ⡷⣸ ⡇⢸ ⡇ ⡷⢾   ⣎⣱ ⡇⢸ ⢹⠁ ⡎⢱ ⡎⠑ ⡎⢱ ⡷⢾ ⣏⡱ ⡇  ⣏⡉ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
+     " " ⠇⠹ ⠸⠃ ⠇ ⠇⠸   ⠇⠸ ⠣⠜ ⠸  ⠣⠜ ⠣⠔ ⠣⠜ ⠇⠸ ⠇  ⠧⠤ ⠧⠤ ⠸  ⠇ ⠣⠜ ⠇⠹
+    " " nvim autocompletion engine
+    " " used by epwalsh/obsidian.nvim
+    " Plug 'hrsh7th/nvim-cmp'
+
+     " " ⡎⢱ ⣏⡱ ⢎⡑ ⡇ ⡏⢱ ⡇ ⣎⣱ ⡷⣸   ⡷⣸ ⡇⢸ ⡇ ⡷⢾
+     " " ⠣⠜ ⠧⠜ ⠢⠜ ⠇ ⠧⠜ ⠇ ⠇⠸ ⠇⠹   ⠇⠹ ⠸⠃ ⠇ ⠇⠸
+    " " obsidian.nvim : read an obsidian vault inside vim
+    " " requires nvim-lua/plenary.nvim
+    " Plug 'epwalsh/obsidian.nvim'
+    " luafile ~/.vim/plugged/obsidian.nvim/lua/obsidian/init.lua
+
+     " ⣏⡉ ⡇⢸ ⢉⠝ ⢉⠝ ⢇⢸   ⣏⡉ ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⣏⡱
+     " ⠇  ⠣⠜ ⠮⠤ ⠮⠤  ⠇   ⠇  ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠱
+    Plug 'nvim-telescope/telescope.nvim'
+
+endif
 
 
 
@@ -392,10 +423,40 @@ let g:goyo_height = "100%"
 " " let g:limelight_paragraph_span = 2
 " " autocmd! User GoyoEnter Limelight
 " " autocmd! User GoyoLeave Limelight!
-autocmd! User GoyoLeave BackgroundColorReset
+" autocmd! User GoyoLeave BackgroundColorReset
 " Plug 'junegunn/vim-emoji'
 " let g:limelight_conceal_ctermfg=1
 
+ " ⡇⢸ ⡇   ⢹⠁ ⡎⢱ ⡎⠑ ⡎⠑ ⡇  ⣏⡉
+ " ⠣⠜ ⠇   ⠸  ⠣⠜ ⠣⠝ ⠣⠝ ⠧⠤ ⠧⠤
+" my first plugin !
+" toggles parts of the ui like tabline, statusline, line numbers or background
+Plug 'OsKaR31415/vim-ui-toggle'
+let g:background_colors_list = ["none", "234", "235", "233", "232"]
+let g:background_color_index = 0
+" UI hide and show
+nnoremap <silent> <leader>us :StatuslineToggle<cr>
+nnoremap <silent> <leader>ut :TablineToggle<cr>
+nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
+nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
+nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
+nnoremap <silent> <leader>ug :SignColumnToggle<cr>
+" cycle between different colors
+nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
+nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
+" toggle all of them
+nnoremap <silent> <leader>uu :UItoggle<cr>
+nnoremap <silent> <leader>uq :UItoggle<cr>
+nnoremap <silent> <leader>ur :UIreset<cr>
+
+
+ " ⢎⡑ ⡷⢾ ⡎⢱ ⡎⢱ ⢹⠁ ⣇⣸   ⢎⡑ ⡎⠑ ⣏⡱ ⡎⢱ ⡇  ⡇  ⡇ ⡷⣸ ⡎⠑
+ " ⠢⠜ ⠇⠸ ⠣⠜ ⠣⠜ ⠸  ⠇⠸   ⠢⠜ ⠣⠔ ⠇⠱ ⠣⠜ ⠧⠤ ⠧⠤ ⠇ ⠇⠹ ⠣⠝
+" smooth scrolling
+if !exists("g:neovide")
+    Plug 'psliwka/vim-smoothie'
+    nmap zz <cmd>call smoothie#do('zz') <cr>
+endif
 
  " ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸ ⢹⠁   ⡎⠑ ⡇⢸ ⣏⡱ ⣏⡱ ⣏⡉ ⡷⣸ ⢹⠁   ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
  " ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸ ⠸    ⠣⠔ ⠣⠜ ⠇⠱ ⠇⠱ ⠧⠤ ⠇⠹ ⠸    ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
@@ -414,6 +475,7 @@ let g:diminactive_enable_focus = 1
 " a good collection of colorschemes, all you need is here
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/maroloccio'
+Plug 'altercation/vim-colors-solarized'
 
 
  " " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
@@ -454,17 +516,16 @@ let g:surround_{char2nr("\\")} = "\\\1\\\1 \r \\\2\\\2"
 let g:surround_{char2nr("m")} = "\\left\1left: \1 \r \\right\2right: \2"
 let g:surround_{char2nr("P")} = "\\left( \r \\right)"
 let g:surround_{char2nr("v")} = "\\lvert \r \\lvert"
-let g:surround_{char2nr("s")} = "\\left\{ \\begin{array}{c} \r \\end{array} \\right."
+" let g:surround_{char2nr("s")} = "\\left\{ \\begin{array}{c} \r \\end{array} \\right."
 nmap gs ys
 nmap g) ysa))
 nmap g( ysa))a
-vmap s S
 
 
  " ⣎⣱ ⡇⢸ ⢹⠁ ⡎⢱   ⣏⡱ ⣏⡱ ⣎⣱ ⡎⠑ ⣇⠜ ⣏⡉ ⢹⠁ ⢎⡑   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⡇ ⡷⣸ ⡎⠑
  " ⠇⠸ ⠣⠜ ⠸  ⠣⠜   ⠧⠜ ⠇⠱ ⠇⠸ ⠣⠔ ⠇⠱ ⠧⠤ ⠸  ⠢⠜   ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠇ ⠇⠹ ⠣⠝
 " automatic brackets / parenthesis closing
-" seems like no config is required !
+" the best one i found : has very intelligent rules
 " Plug 'kana/vim-smartinput'
 Plug 'raimondi/delimitmate'
 " single brackets: prefix name with _
@@ -475,6 +536,7 @@ inoremap _( (
 inoremap _{ {
 inoremap _$ $
 inoremap _` `
+
 
 
  " ⣏⡱ ⣎⣱ ⣏⡱ ⡇ ⡷⣸ ⣏⡉ ⣏⡉ ⣏⡱   ⡔⠁ ⡇  ⡇ ⢎⡑ ⣏⡱ ⠈⢢
@@ -497,14 +559,14 @@ set laststatus=2
 " 🌊🔥🌈🌱
 " 📂 
 "        
-let g:airline_section_a = ""
+" let g:airline_section_a = ""
 let g:airline_section_b = " %F"
-let g:airline_section_c = ""
-let g:airline_section_x = ""
-let g:airline_section_y = "" " section for search match
-let g:airline_section_z = "≡%l/%L ꔖ%c"
-let g:airline_section_warning = ""
-let g:airline_section_error = ""
+" let g:airline_section_c = ""
+" let g:airline_section_x = ""
+" let g:airline_section_y = "" " section for search match
+let g:airline_section_z = "≡%l/%L"
+" let g:airline_section_warning = ""
+" let g:airline_section_error = ""
 " let g:airline_section_gutter = ""
 
 
@@ -653,6 +715,11 @@ Plug 'kana/vim-textobj-underscore'
 " ┣━ iQ aQ double-quoted text ``like this''
 " ┣━ ae ie Environment \begin{...} to \end{...}
 Plug 'rbonvall/vim-textobj-latex'
+" ┏━ function parameters
+Plug 'sgur/vim-textobj-parameter'
+" ┏━ a column delimited by words (ic ac) or WORDS (iC aC)
+Plug 'idbrii/textobj-word-column.vim'
+
 
 
  " " ⢎⡑ ⣏⡉ ⡇  ⣏⡉ ⡎⠑ ⢹⠁   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⣏⡉ ⢎⡑ ⢹⠁   ⢹⠁ ⣏⡉ ⢇⡸ ⢹⠁   ⡎⢱ ⣏⡱ ⠈⢹ ⣏⡉ ⡎⠑ ⢹⠁
@@ -701,10 +768,10 @@ let g:apl_prefix_key = "="
 " support for the Agda language
 " Plug 'derekelkins/agda-vim'
 
- " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
- " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
-Plug 'mhinz/vim-startify'
-let g:startify_fortune_use_unicode = 1
+ " " ⢎⡑ ⢹⠁ ⣎⣱ ⣏⡱ ⢹⠁ ⡇ ⣏⡉ ⢇⢸
+ " " ⠢⠜ ⠸  ⠇⠸ ⠇⠱ ⠸  ⠇ ⠇   ⠇
+" Plug 'mhinz/vim-startify'
+" let g:startify_fortune_use_unicode = 1
 
  " ⣏⡱ ⣏⡉ ⣏⡱ ⡇    ⡇ ⡷⣸ ⢹⠁ ⣏⡉ ⡎⠑ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
  " ⠇⠱ ⠧⠤ ⠇  ⠧⠤   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
@@ -806,6 +873,10 @@ let g:CheatSheetFt=&ft
 " let g:webdevicons_enable_airline_statusline = 0
 " let g:webdevicons_enable_airline_tabline = 1
 
+ " ⡎⠑ ⡎⢱ ⡷⣸ ⢹⠁ ⣏⡱ ⡎⢱ ⡇    ⡷⢾ ⡇⢸ ⢎⡑ ⡇ ⡎⠑   ⡔⠁ ⡎⠑ ⡷⢾ ⡇⢸ ⢎⡑ ⠈⢢
+ " ⠣⠔ ⠣⠜ ⠇⠹ ⠸  ⠇⠱ ⠣⠜ ⠧⠤   ⠇⠸ ⠣⠜ ⠢⠜ ⠇ ⠣⠔   ⠣⡀ ⠣⠔ ⠇⠸ ⠣⠜ ⠢⠜ ⢀⠜
+" control cmus inside vim (music player)
+Plug 'azadkuh/vim-cmus'
 
  " ⣇⠜ ⡇ ⡇  ⡇    ⢎⡑ ⣏⡉ ⣏⡉ ⣏⡱ ⢎⡑   ⡇
  " ⠇⠱ ⠇ ⠧⠤ ⠧⠤   ⠢⠜ ⠧⠤ ⠧⠤ ⠇  ⠢⠜   ⠅
@@ -822,5 +893,21 @@ endif
 
 
 " All of your Plugs must be added before the following line
-call plug#end()            " reluire
+call plug#end()
+
+
+" ▛▀▖▞▀▖▞▀▖▀▛▘ ▛▀▖▌  ▌ ▌▞▀▖▜▘▙ ▌ ▞▀▖▞▀▖▙ ▌▛▀▘▜▘▞▀▖
+" ▙▄▘▌ ▌▚▄  ▌  ▙▄▘▌  ▌ ▌▌▄▖▐ ▌▌▌ ▌  ▌ ▌▌▌▌▙▄ ▐ ▌▄▖
+" ▌  ▌ ▌▖ ▌ ▌  ▌  ▌  ▌ ▌▌ ▌▐ ▌▝▌ ▌ ▖▌ ▌▌▝▌▌  ▐ ▌ ▌
+" ▘  ▝▀ ▝▀  ▘  ▘  ▀▀▘▝▀ ▝▀ ▀▘▘ ▘ ▝▀ ▝▀ ▘ ▘▘  ▀▘▝▀
+
+
+" kana/textobject plugin
+call textobj#user#plugin('braces', {
+\   'equal': {
+\     'pattern': ['=', '='],
+\     'select-a': 'a=',
+\     'select-i': 'i=',
+\   },
+\ })
 

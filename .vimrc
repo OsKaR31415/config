@@ -5,12 +5,6 @@
 " ██    ██   ▀▀▀▀██▄  ██  ██▄   ▄██▀▀▀██  ██  ▀██▄       ▀██     ██     ████████     ██           ██
 "  ██▄▄██   █▄▄▄▄▄██  ██   ██▄  ██▄▄▄███  ██    ██  █▄▄▄▄██▀  ▄▄▄██▄▄▄       ██   ▄▄▄██▄▄▄  █▄▄▄▄██▀
 "   ▀▀▀▀     ▀▀▀▀▀▀   ▀▀    ▀▀   ▀▀▀▀ ▀▀  ▀▀    ▀▀▀  ▀▀▀▀▀    ▀▀▀▀▀▀▀▀       ▀▀   ▀▀▀▀▀▀▀▀   ▀▀▀▀▀
-" my .vimrc
-" a complete mess, full of plugins
-" but i like it
-" since it does the job I want it to :
-" makes me be quick and feel comfortable in vim
-
 
 
 " ╻┏┓╻╻╺┳╸╻┏━┓╻  ╻┏━┓┏━┓╺┳╸╻┏━┓┏┓╻
@@ -55,8 +49,7 @@ set nonumber
 " ███▄▄██▀    ██▄▄▄   ██▄▄▄███  ▀██▄▄███  ▄▄▄██▄▄▄  ██    ██  █▄▄▄▄▄██
 " ██ ▀▀▀       ▀▀▀▀    ▀▀▀▀ ▀▀   ▄▀▀▀ ██  ▀▀▀▀▀▀▀▀  ▀▀    ▀▀   ▀▀▀▀▀▀
 " ██                             ▀████▀▀
-" plugins
-" they are a lot, i don't use all of them, but they are definitely cool
+" they are a lot, i don't use all of them at 100%, but they are definitely cool
 let g:plugins_loaded = 0
 source $HOME/.vim/plugins_conf.vim
 let g:plugins_loaded = 1
@@ -99,28 +92,36 @@ nnoremap <silent> <leader>K :wa<cr>
 " $ does not include newline when doing visual selection
 vnoremap $ $<left>
 " move the lines of visual mode up or down
-" <up><down> to move and keep autoindentation (with =)
-" JK to move keeping the foreign indentation
-vnoremap <silent> J :m '>+1<cr>gv
-vnoremap <silent> <down> :m '>+1<cr>gv=gv
-vnoremap <silent> K :m '<-2<cr>gv
-vnoremap <silent> <up> :m '<-2<cr>gv=gv
-" Move text left or right in visual mode
-vnoremap H dhhpgvohoh
+" <up><down> to move keepint the foreign indentation
+" <c-j><c-k> to move with auto indentation (with =)
+vnoremap <silent> <down> :m '>+1<cr>gv
+vnoremap <silent> <c-j> :m '>+1<cr>gv=gv
+vnoremap <silent> <up> :m '<-2<cr>gv
+vnoremap <silent> <c-k> :m '<-2<cr>gv=gv
+" Move text left or right in visual block mode
+vnoremap H dhPgvohoh
 vnoremap L dpgvolol
+
 
 " K and J
 " left and right equivalents in insert mode
 inoremap jk <right>
 inoremap kj <left>
 " kl for normal mode in a terminal buffer
-tmap kl <C-w>N
-" tmap lk <C-w>N
-if g:plugins_loaded
-    Arpeggio inoremap kl <esc>
+if has('nvim')
+    tmap <C-h> <C-\><C-N><C-h>
+    tmap <C-j> <C-\><C-N><C-j>
+    tmap <C-k> <C-\><C-N><C-k>
+    tmap <C-l> <C-\><C-N><C-l>
 else
-    inoremap kl <esc>:echo "c'est mal !!"<cr>
+    tmap <C-h> <C-w>N<C-h>
+    tmap <C-j> <C-w>N<C-j>
+    tmap <C-k> <C-w>N<C-k>
+    tmap <C-l> <C-w>N<C-l>
 endif
+
+
+
 
 " WINDOWS
 if g:plugins_loaded
@@ -132,7 +133,7 @@ if g:plugins_loaded
     Arpeggio nnoremap sq :quit<cr>
 endif
 " replacement for <C-W>
-nnoremap <leader>w <C-W>
+nmap <leader>w <C-W>
 " <c-w>m: maximize
 nnoremap <C-W>m <C-W>_<C-W>\|
 " open a terminal on current window
@@ -146,12 +147,20 @@ nnoremap <left>  gT
 nnoremap <silent> <up> :tabmove +1<cr>
 nnoremap <silent> <down> :tabmove -1<cr>
 
+" tabs with tmux tabs
+" keys       ,         ;        :        =
+" action tmux-prev vim-prev vim-next tmux-next
+nnoremap <C-;> gT
+nnoremap <C-:> gt
 
 " MISC
 " show a clock
 nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
 
-
+if exists("g:neovide")
+    " because i have remapped the right command to control in my terminal
+    imap <D-w> <C-w>
+endif
 
 " ┏━┓╻ ╻┏┓╻╺┳╸┏━┓╻ ╻   ╻ ╻╻┏━╸╻ ╻╻  ╻┏━╸╻ ╻╺┳╸╻┏┓╻┏━╸
 " ┗━┓┗┳┛┃┗┫ ┃ ┣━┫┏╋┛   ┣━┫┃┃╺┓┣━┫┃  ┃┃╺┓┣━┫ ┃ ┃┃┗┫┃╺┓
@@ -159,31 +168,60 @@ nnoremap <silent> <leader>h :!tty-clock -sc<cr><cr>
 " syntax highlighting
 
 
-fun! Is_default_colorsheme(name)
-    return system('ls $(find /usr/share/vim -name "colors") | grep ".vim$" |sed "s/\(.*\)\.vim$/\1/" | grep "' . a:name .'"') == a:name . "\n"
-endfun
 
 " colorscheme
-" set termguicolors
 syntax on
+set termguicolors
 set bg=dark
+
+fun!   MyHighlights()
+    hi Normal       ctermbg=none  ctermfg=none guibg=black   guifg=NONE
+    hi Conceal      ctermbg=none  ctermfg=172  guibg=NONE    guifg=#d78700
+    hi WildMenu     term=standout ctermbg=148  ctermfg=black guibg=#afd700
+    hi LineNr       ctermbg=233   ctermfg=246
+    " cursor cross color
+    hi CursorColumn ctermbg=234   guibg=#1c1c1c
+    hi CursorLine   ctermbg=234   guibg=#1c1c1c
+    " Color Column color (usefull for the diminactive plugin)
+    hi ColorColumn  ctermbg=234   guibg=#1c1c1c
+    hi EndOfBuffer  ctermbg=234   guibg=#1c1c1c
+    hi CursorLineNr ctermfg=256   guibg=#ffffff
+    " " Tabline colors
+    " hi Tabline      ctermbg=none  ctermfg=239  guibg=NONE    guifg=#4e4e4e
+    " hi TabLineSel   ctermbg=34    ctermfg=233  guibg=#00af00 guifg=#121212
+    " hi TabLineFill  cterm=none    ctermbg=239  ctermfg=none  guibg=#4e4e4e guifg=NONE gui=NONE
+    " hi Title        ctermbg=none  ctermfg=none guibg=NONE    guifg=NONE
+    " incsearch current match color
+    hi IncSearch    cterm=reverse ctermfg=28   guifg=#008700
+    " Base colors
+    " hi Statement    ctermfg=34    guifg=#00af00
+    " folds colors
+    hi Folded       ctermbg=none  ctermfg=236  guibg=#303030
+    " hi ActiveWindow ctermbg=None ctermfg=None guibg=#21242b
+    " hi InactiveWindow ctermbg=darkgray ctermfg=gray guibg=#282c34
+    " set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfun
+
+augroup MyColors
+    au!
+    au ColorScheme * call MyHighlights()
+augroup END
+
+
+" test if a colorscheme is installed
+fun! Colorscheme_exists(name)
+    return system('ls $(find /usr/share/vim -name "colors") | grep ".vim$" | sed "s/\(.*\)\.vim$/\1/" | grep "' . a:name .'"') == a:name . "\n"
+endfun
+
 if g:plugins_loaded
     colorscheme solarized8
 else
-    if Is_default_colorsheme('habamax')
+    if Colorscheme_exists('habamax')
         colorscheme habamax
     else
         colorscheme desert
     endif
 endif
-au BufRead,BufNewFile,BufEnter, * hi Normal ctermbg=none ctermfg=none guibg=black
-au BufRead,BufNewFile,BufEnter, * hi Conceal ctermbg=none ctermfg=172 guibg=black
-au BufRead,BufNewFile,BufEnter, * hi WildMenu term=standout ctermfg=black ctermbg=148
-" au BufRead,BufNewFile,BufEnter, * hi LineNr ctermbg=233 ctermfg=246
-"
-" light mode
-
-
 
 
 " add rulers at 80 and 100 lines
@@ -192,25 +230,6 @@ au filetype python,java set cc=80,100
 " show the cursor cross :
 " set cursorcolumn
 " set cursorline
-" cursor cross colors :
-hi ColorColumn  ctermbg=234
-hi CursorColumn ctermbg=234
-hi CursorLine   ctermbg=234
-hi EndOfBuffer  ctermbg=234
-hi CursorLineNr ctermfg=256
-
-" folds colors
-hi Folded ctermbg=none ctermfg=236
-
-" Tabline colors
-hi Tabline ctermfg=239 ctermbg=none
-hi TabLineSel ctermbg=148 ctermfg=233
-hi TabLineFill cterm=none ctermbg=239 ctermfg=none
-hi Title ctermbg=none ctermfg=none
-
-" incsearch current match color
-" also used by Vista to show the current method
-hi IncSearch cterm=reverse ctermfg=106
 
 
 
@@ -260,9 +279,25 @@ if g:plugins_loaded
 endif
 
 " better version of n and N : center the search map
-nmap <silent> n nzz
-nmap <silent> N Nzz
+" The arpeggio-default:n is to avoid a confict with arpeggio mappings
+nnoremap <silent> <Plug>(arpeggio-default:n) nzz
+nnoremap <silent> N Nzz
 
+
+" ┏┓╻┏━╸┏━┓╻ ╻╻╺┳┓┏━╸
+" ┃┗┫┣╸ ┃ ┃┃┏┛┃ ┃┃┣╸
+" ╹ ╹┗━╸┗━┛┗┛ ╹╺┻┛┗━╸
+if exists("g:neovide")
+    " loaded only withing neovide
+    set guifont=Fira_Code:h18:#e-subpixelantialias
+    let g:neovide_scale_factor=1.0
+
+    function! ChangeScaleFactor(delta)
+        let g:neovide_scale_factor = g:neovide_scale_factor * a:delta
+    endfunction
+    nnoremap <expr><D-=> ChangeScaleFactor(1.15)
+    nnoremap <expr><D--> ChangeScaleFactor(1/1.15)
+endif
 
 
 " ┏━┓╺┳╸╻ ╻┏━╸┏━┓   ┏━┓┏━╸╺┳╸╺┳╸╻┏┓╻┏━╸┏━┓
@@ -286,6 +321,25 @@ nnoremap <ScrollWheelDown> <C-e><C-e><C-e>
 
 " set vim as the manpager
 " let $PAGER=''
+
+" folding method
+set foldmethod=marker
+
+" ⣏⡱ ⣏⡉ ⣏⡱ ⢎⡑ ⡇ ⢎⡑ ⢹⠁ ⣏⡉ ⡷⣸ ⢹⠁   ⡇⢸ ⡷⣸ ⡏⢱ ⡎⢱
+" ⠇  ⠧⠤ ⠇⠱ ⠢⠜ ⠇ ⠢⠜ ⠸  ⠧⠤ ⠇⠹ ⠸    ⠣⠜ ⠇⠹ ⠧⠜ ⠣⠜
+" guard for distributions lacking the feature
+if has("persistent_undo")
+    " define a path to store persistent undo files.
+    let target_path = expand('~/.config/vim-persisted-undo/')
+    " create the directory and any parent directories if not existing
+    if !isdirectory(target_path)
+        call system('mkdir -p ' . target_path)
+    endif
+    " point Vim to the defined undo directory.
+    let &undodir = target_path
+    " finally, enable undo persistence.
+    set undofile
+endif
 
 
 
@@ -323,9 +377,8 @@ vnoremap Tb5  !toilet  -w 130 -f smbraille -F border<cr>
 
 " calculating values
 " (the script basically just evaluates the input with python)
-nnoremap calc !!python3 ~/.vim/python/calc.py<cr>
-vnoremap calc !python3 ~/.vim/python/calc.py<cr>
-
+nnoremap calc !!xargs qalc<cr>
+vnoremap calc !xargs qalc<cr>
 
 
 " ┏━╸╻ ╻╺┳╸┏━╸┏━┓┏┓╻┏━┓╻     ┏━╸╻╻  ┏━╸┏━┓

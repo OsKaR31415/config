@@ -27,7 +27,6 @@ export TERM="xterm-256color"
 # path for cow files (ascii art for cowsay)
 export COWPATH="$HOME/.cowsay/cowfiles"
 
-export PAGER="bat --style=plain"
 # Set vim as the man pager
 # export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
@@ -178,11 +177,14 @@ source $ZSH/oh-my-zsh.sh
 # export LC_CTYPE=C
 # export LANG=C
 
-# Preferred editor for local and remote sessions
+# Preferred editor and pager for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  # default editor
+  export EDITOR='nvim'
+  # man pager
+  export PAGER='bat --style=plain'
 fi
 
 
@@ -252,5 +254,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # show todo-list at each session startup
 todo
-
 

@@ -18,12 +18,45 @@ syn match htmlH4 "^#### .\+$"
 syn match htmlH5 "^##### .\+$"
 syn match htmlH6 "^###### .\+$"
 
-hi htmlH1 cterm=bold,underline ctermfg=208
-hi htmlH2 cterm=bold,underline ctermfg=33
-hi htmlH3 cterm=bold ctermfg=28
-hi htmlH4 cterm=bold ctermfg=38
-hi htmlH5 cterm=bold ctermfg=25
-hi htmlH6 cterm=bold ctermfg=240
+
+" Block quotes (and callouts) (even nested !)
+syn match mkdBlockquote  "\(^\|> \)\@<=> " conceal cchar=┃
+
+" > [!test] super
+
+" syn match mkdBlockquote "\(> \)\@<=\[!\ze.*\]" conceal cchar= 
+" syn match mkdBlockquote "\(\(> \)\@<=\[!.*\)\@<=\]"  conceal cchar= 
+
+
+syn match mkdBlockquote "\(> \)\@<=\[!note\]" conceal cchar=✏
+syn match mkdBlockquote "\(> \)\@<=\[!info\]" conceal cchar=ℹ
+syn match mkdBlockquote "\(> \)\@<=\[!\(done\|success\|check\)\]" conceal cchar=✓
+syn match mkdBlockquote "\(> \)\@<=\[!\(question\|help\|faq\)\]" conceal cchar=❓
+syn match mkdBlockquote "\(> \)\@<=\[!\(fail\|failure\|missing\)\]" conceal cchar=✕
+syn match mkdBlockquote "\(> \)\@<=\[!\(danger\|error\)\]" conceal cchar=⚡
+syn match mkdBlockquote "\(> \)\@<=\[!\(quote\|cite\)\]" conceal cchar=”
+syn match mkdBlockquote "\(> \)\@<=\[!\(warning\|caution\|attention\)\]" conceal cchar=⚠
+syn match mkdBlockquote "\(> \)\@<=\[!\(bug\)\]" conceal cchar=🐞
+syn match mkdBlockquote "\(> \)\@<=\[!\(example\)\]" conceal cchar=🗒
+syn match mkdBlockquote "\(> \)\@<=\[!\(todo\)\]" conceal cchar=☑
+syn match mkdBlockquote "\(> \)\@<=\[!\(tip\|hint\|important\)\]" conceal cchar=🔥
+syn match mkdBlockquote "\(> \)\@<=\[!\(abstract\|summary\|tldr\)\]" conceal cchar=☰
+syn match mkdBlockquote "\(> \)\@<=\[!\(query\|smallquery\)\]" conceal cchar=🛢
+syn match mkdBlockquote "\(> \)\@<=\[!\(definition\|définition\)\]" conceal cchar=🪶
+syn match mkdBlockquote "\(> \)\@<=\[!\(idea\)\]" conceal cchar=💡
+
+
+
+fun! MarkdownHighlight()
+    hi htmlH1 cterm=bold,underline gui=bold,underline ctermfg=208 guifg=#1B9419
+    hi htmlH2 cterm=bold,underline gui=bold,underline ctermfg=33  guifg=#2967B3
+    hi htmlH3 cterm=bold           gui=bold           ctermfg=28  guifg=#C9893A
+    hi htmlH4 cterm=bold           gui=bold           ctermfg=38  guifg=#6C9ABB
+    hi htmlH5 cterm=bold           gui=bold           ctermfg=25  guifg=#9D85C8
+    hi htmlH6 cterm=bold           gui=bold           ctermfg=240 guifg=#789278
+endfun
+
+call MarkdownHighlight()
 
 
 
