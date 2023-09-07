@@ -6,10 +6,10 @@ command! MarkdownTableNoAlign     s/|\zs\(-\|:\)\ze\|\zs\(-\|:\)\ze|/-/g
 command! MarkdownTableAlignRight  s/|\zs\(-\|:\)\ze/-/g
 command! MarkdownTableAlignLeft   s/\zs\(-\|:\)\ze|/-/g
 
-command! MarpPreview    :AsyncRun marp % -p
-command! MarpPdfPreview :AsyncRun marp % --pdf -p
-command! MarpCompile    :AsyncRun marp %
-command! MarpPdfCompile :AsyncRun marp % --pdf
+" command! MarpPreview    :AsyncRun marp % -p
+" command! MarpPdfPreview :AsyncRun marp % --pdf -p
+" command! MarpCompile    :AsyncRun marp %
+" command! MarpPdfCompile :AsyncRun marp % --pdf
 
 syn match htmlH1 "^# .\+$"
 syn match htmlH2 "^## .\+$"
@@ -19,10 +19,8 @@ syn match htmlH5 "^##### .\+$"
 syn match htmlH6 "^###### .\+$"
 
 
-" Block quotes (and callouts) (even nested !)
+" conceal Block quotes (and callouts) (even nested !)
 syn match mkdBlockquote  "\(^\|> \)\@<=> " conceal cchar=┃
-
-" > [!test] super
 
 " syn match mkdBlockquote "\(> \)\@<=\[!\ze.*\]" conceal cchar= 
 " syn match mkdBlockquote "\(\(> \)\@<=\[!.*\)\@<=\]"  conceal cchar= 
@@ -82,18 +80,16 @@ iabbrev :link:  🔗
 
 
 
-
-
 " Slides
 " copy current slide
-Arpeggio nnoremap cs ?^----\+$<cr>jVNyNpNk:noh<cr>
+Arpeggio nnoremap cs ?^---\+$<cr>jVNyNpNk:noh<cr>
 " slide separator
 call AddAbbreviation(" *-----*$", "\<esc>bD50a-\<esc>")
 
 
 " go to next slide
-Arpeggio nnoremap gsj /^----\+$<cr>j:noh<cr>
-Arpeggio nnoremap gsk ?^----\+$<cr>j:noh<cr>
+Arpeggio nnoremap gsj /^---\+$<cr>j:noh<cr>
+Arpeggio nnoremap gsk ?^---\+$<cr>j:noh<cr>
 
 
 au BufWritePost,CursorHold,CursorHoldI,CursorMoved,CursorMovedI *.md call s:MarkdownAutoCompile()
