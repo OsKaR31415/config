@@ -7,7 +7,7 @@ set realname = "Oscar Plaisant"
 # Activer TLS si disponible sur le serveur
 set ssl_starttls=yes
 # Toujours utiliser SSL lors de la connexion à un serveur
-set ssl_force_tls=yes
+# set ssl_force_tls=yes
 
 
 # adresse de l'expéditeur
@@ -19,11 +19,21 @@ set use_envelope_from=yes
 # Lors d'une réponse, utiliser l'adresse originale à laquelle a été envoyé le mail
 set reverse_name
 
+# Configuration imap
+# set imap_user = "oscar.plaisant@orange.fr"
+# set imap_pass = "100%DesGensMeurentUnJour"
+# set folder = "imaps://imap.orange.fr/"
 
 # Configuration SMTP
-set smtp_url = "smtps://oscar.plaisant@orange.fr@smtp.orange.fr:465/"
-set smtp_pass = "011DeuxTroisCinqHuit"
+# set smtp_url = "smtps://oscar.plaisant@orange.fr@smtp.orange.fr:465/"
+# set smtp_pass = "011DeuxTroisCinqHuit"
 
+# Configuration pop
+set pop_user = "oscar.plaisant@orange.fr"
+set pop_pass = "100%DesGensMeurentUnJour"
+set pop_delete = no
+set pop_host = "pops://pop.orange.fr:995"
+set pop_last = yes
 
 
 # set signature = ~/path/to/signature
