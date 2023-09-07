@@ -27,7 +27,9 @@ export TERM="xterm-256color"
 # path for cow files (ascii art for cowsay)
 export COWPATH="$HOME/.cowsay/cowfiles"
 
-# Set vim as the man pager
+# Set neovim as the man pager
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999 # use nvim's wrapping instead of default hard wrapping
 # export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
 #     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
 #     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
@@ -36,14 +38,14 @@ export COWPATH="$HOME/.cowsay/cowfiles"
 # path to obsidian vault
 export OBSIDIAN="/Users/oscarplaisant/devoirs/cours"
 
-# mdp config
-export MDP_LIST_OPEN1=' ┃  '
-export MDP_LIST_OPEN2=' ┃  '
-export MDP_LIST_OPEN3=' ┃  '
-export MDP_LIST_OPEN4=' ┃  '
-export MDP_LIST_HEAD1=' ┗━> '
-export MDP_LIST_HEAD2=' ┖━> '
-export MDP_LIST_HEAD3=' ┖━> '
+# # mdp config
+# export MDP_LIST_OPEN1=' ┃  '
+# export MDP_LIST_OPEN2=' ┃  '
+# export MDP_LIST_OPEN3=' ┃  '
+# export MDP_LIST_OPEN4=' ┃  '
+# export MDP_LIST_HEAD1=' ┗━> '
+# export MDP_LIST_HEAD2=' ┖━> '
+# export MDP_LIST_HEAD3=' ┖━> '
 
 # ┏━┓╻ ╻   ┏┳┓╻ ╻   ╺━┓┏━┓╻ ╻
 # ┃ ┃┣━┫╺━╸┃┃┃┗┳┛╺━╸┏━┛┗━┓┣━┫
@@ -162,15 +164,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 
 
 # change locale (especially, makes sort and sed accept non-ascii)
@@ -192,6 +185,9 @@ fi
 # ┗━┓┣━┫┃ ┃┣┳┛ ┃ ┃  ┃ ┃ ┃ ┗━┓
 # ┗━┛╹ ╹┗━┛╹┗╸ ╹ ┗━╸┗━┛ ╹ ┗━┛
 
+# get default zsh keybindings
+source /opt/homebrew/Cellar/fzf/0.42.0/shell/key-bindings.zsh
+
 # enable vi-mode
 bindkey -v
 # edit current line in vim
@@ -205,6 +201,9 @@ bindkey -s "^a" "\eI"
 # ^u deletes up to the beginning
 bindkey -s "^u" "\ed0xi"
 
+# ⣏⡉ ⢉⠝ ⣏⡉
+# ⠇  ⠮⠤ ⠇
+# FZF configuration
 
 # --preview option of fzf to preview file OR directory.
 # {} is the placeholder
@@ -213,11 +212,13 @@ bindkey -s "^u" "\ed0xi"
 # else -------------> echo ''
 fzf_preview_contents="if test -f {}; then bat --color=always --number {}; elif test -d; then exa -1 --icons --color=always {}; else echo ''; fi"
 
+export FZF_DEFAULT_OPTS="--color=hl:28,hl+:34 --bind ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:toggle-all"
+
 bindkey -s "^z" ". fzf_cd\n" # the . is to change the env variables with the script, so it actually changes the cwd
-bindkey -s "^p" "cd ..\n"
-bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
+# bindkey -s "^p" "cd ..\n"
+# bindkey -s "^n" "cd \"\$(ls -ap | grep $ | fzf --preview='$fzf_preview_contents')\";clear;la\n"
 # bindkey -s "^o" "ls -a | fzf --preview='$fzf_preview_contents' | xargs vim\n"
-bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
+# bindkey -s "^s" "\"\$(ls -a | fzf --preview='$fzf_preview_contents')\"\n"
 
 
 # shortcut that starts ranger
@@ -227,6 +228,7 @@ bindkey -s '^f' ". ranger\n"
 # ┣━┫┃  ┃┣━┫┗━┓┣╸ ┗━┓
 # ╹ ╹┗━╸╹╹ ╹┗━┛┗━╸┗━┛
 # my aliases
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
 source $HOME/.config/zsh/aliases.zsh
 
 
