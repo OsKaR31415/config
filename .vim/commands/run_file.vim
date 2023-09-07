@@ -1,5 +1,5 @@
 " default value for the file running command
-let g:file_running_command = "VimuxRunCommand "
+let g:file_running_command = "Dispatch "
 
 " Run a file with AsyncRun
 fun! AsyncRunCurrentFile()
@@ -34,33 +34,32 @@ command! RunWithInterpreter call RunWithInterpreter()
 " Run a file
 fun! RunCurrentFile()
     wa
-    let the_path = expand('%:p:h')
-    let filename = ''.expand('%')
+    let filename = ''.expand('%:p')
 
-    if &ft == "haskell"
-        call VimuxRunCommandInDir('ghc ' . filename, the_path)
+    if &ft =~ "haskell"
+        exec g:file_running_command . ' ghc ' . filename
 
-    elseif &ft == "java"
-        let classname = expand('%:t:r')
-        call VimuxRunCommandInDir('java ' . filename, the_path)
+    elseif &ft =~ "java"
+        " let classname = expand('%:t:r')
+        exec g:file_running_command . ' java ' . filename
 
-    elseif &ft == "markdown"
+    elseif &ft =~ "markdown"
         MarkdownCompile
 
-    elseif &ft == "python"
-        call VimuxRunCommandInDir('python3 ' . filename, the_path)
+    elseif &ft =~ "python"
+        " call VimuxRunCommandInDir('python3 ' . filename, the_path)
+        exec g:file_running_command . " python3 " . filename
 
-    elseif &ft == "scheme"
-        call VimuxRunCommandInDir('cat ' . filename . ' | guile', the_path)
+    elseif &ft =~ "scheme"
+        exec "Dispatch cat " . filename . " | guile"
 
     elseif &ft == "tex" || &ft == "latex"
         if !exists(g:latex_compiler)
             let g:latex_compiler = "pdflatex"
         endif
-        exec run . g:latex_compiler . ' -- ' . filename . '"'
-        call VimuxRunCommandInDir(g:latex_compiler . ' -- ' . filename . '"', the_path)
+        exec g:file_running_command . " " . g:latex_compiler . ' -- ' . filename
 
-    elseif &ft == "agda"
+    elseif &ft =~ "agda"
         AgdaLoad
 
     else
@@ -70,26 +69,25 @@ endfun
 command! RunCurrentFile call RunCurrentFile()
 
 fun! RunnerSettings()
-    let method = input("what running method to use ? [t]mux or [v]im terminal >")
+    let method = input("what running method to use ? [v]mux or [d]ispatch >")
     if method == "t"
         let g:file_running_command = "VimuxRunCommand "
-    elseif method == "v"
-        let g:file_running_command = "SendToTerm "
+    elseif method == "d"
+        let g:file_running_command = "Dispatch "
     endif
 endfun
 command! RunnerSettings call RunnerSettings()
 
 " running file
-" with make (the dispatch plugin's `:Make`
+" with make (the dispatch plugin's `:Make`)
 nnoremap <silent> <leader>m :up<cr>:Make<cr>
-" this is to run make only for the current file (if it's in the makefile)
+" this is to run make with the current file name as the target
 nnoremap <silent> <leader>n :up<cr>:Make %<cr>
-" with asycrun.vim
-nnoremap <leader>a :AsyncRunCurrentFile<cr>
+
 " with tmux
-nnoremap <leader>j :RunCurrentFile<cr>
-nnoremap <leader>i :RunWithInterpreter<cr>
-nnoremap <C-C> :Tmux <C-v><C-c><cr>
+nnoremap <leader>j <cmd>RunCurrentFile<cr>
+nnoremap <leader>i <cmd>RunWithInterpreter<cr>
+" nnoremap <C-C> :Tmux <C-v><C-c><cr>
 " run with ripple
 " set in the ripple section
 " nnoremap <leader>ri :%Ripple<cr>
