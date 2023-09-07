@@ -77,6 +77,10 @@ endif
 " " call tinykeymap#Map("tabs", "k", "tabmove +1")
 " " call tinykeymap#Map("tabs", "j", "tabmove -1")
 
+" tiling submodes !
+Plug 'OsKaR31415/vim-tiling-submode'
+nmap <leader>q :TilingSubmode<cr>
+
 
  " ⡇⢸ ⡷⣸ ⡏⢱ ⡎⢱   ⢹⠁ ⣏⡱ ⣏⡉ ⣏⡉
  " ⠣⠜ ⠇⠹ ⠧⠜ ⠣⠜   ⠸  ⠇⠱ ⠧⠤ ⠧⠤
@@ -111,6 +115,17 @@ nmap <leader>xx <Plug>(SendToTermLine)
 " Plug 'christoomey/vim-tmux-runner'
 " Plug 'tpope/vim-tbone'
 Plug 'preservim/vimux'
+nnoremap <leader>vo <cmd>VimuxOpenRunner<cr>
+nnoremap <leader>vq <cmd>VimuxCloseRunner<cr>
+nnoremap <leader>v! <cmd>VimuxTogglePane<cr>
+nnoremap <leader>vl <cmd>VimuxClearTerminalScreen<cr>
+nnoremap <leader>vv <cmd>VimuxPromptCommand<cr>
+nnoremap <leader>vz <cmd>VimuxZoomRunner<cr>
+nnoremap <leader>vi <cmd>VimuxInspectRunner<cr>
+nnoremap <leader>vu <cmd>VimuxScrollUpInspect<cr>
+nnoremap <leader>vd <cmd>VimuxScrollDownInspect<cr>
+nnoremap <leader>v. <cmd>VimuxRunLastCommand<cr>
+
 
  " ⡷⢾ ⡎⢱ ⡇⢸ ⡇ ⡷⣸ ⡎⠑   ⡇ ⡷⣸   ⡇⢸ ⡇ ⡷⢾   ⣎⣱ ⡷⣸ ⡏⢱   ⢹⠁ ⡷⢾ ⡇⢸ ⢇⡸   ⣏⡱ ⣎⣱ ⡷⣸ ⣏⡉ ⢎⡑
  " ⠇⠸ ⠣⠜ ⠸⠃ ⠇ ⠇⠹ ⠣⠝   ⠇ ⠇⠹   ⠸⠃ ⠇ ⠇⠸   ⠇⠸ ⠇⠹ ⠧⠜   ⠸  ⠇⠸ ⠣⠜ ⠇⠸   ⠇  ⠇⠸ ⠇⠹ ⠧⠤ ⠢⠜
@@ -118,10 +133,11 @@ Plug 'preservim/vimux'
 " <C-h>, <C-j>, <C-k> and <C-l>
 " goes with a config in ~/.tmux.conf
 Plug 'christoomey/vim-tmux-navigator'
-tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
-tmap <c-j> <c-w>:TmuxNavigateDown<cr>
-tmap <c-k> <c-w>:TmuxNavigateUp<cr>
-tmap <c-l> <c-w>:TmuxNavigateRight<cr>
+" do not extend it to terminal windows
+" tmap <c-h> <c-w>:TmuxNavigateLeft<cr>
+" tmap <c-j> <c-w>:TmuxNavigateDown<cr>
+" tmap <c-k> <c-w>:TmuxNavigateUp<cr>
+" tmap <c-l> <c-w>:TmuxNavigateRight<cr>
 
 
 
@@ -155,6 +171,7 @@ endif
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-cr> coc#_select_confirm()
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
@@ -175,7 +192,7 @@ nnoremap <silent><nowait> <space>s :<C-u>CocList -I symbols<cr>
  " ⠇⠸  ⠇ ⠇   ⠇   ⠇ ⠇⠹ ⠸  ⠧⠤ ⠣⠝ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
 " mypy integration (static type checker / generator)
 Plug 'integralist/vim-mypy'
-nnoremap <leader>p <cmd>!clear & mypy %<cr>
+nnoremap <leader>p <cmd>mypy %<cr>
 
 
  " " ⡎⠑ ⡇⢸ ⢹⠁ ⢹⠁ ⣏⡉ ⡷⣸    ⢹⠁ ⣎⣱ ⡎⠑ ⢎⡑
@@ -189,7 +206,7 @@ nnoremap <leader>p <cmd>!clear & mypy %<cr>
 " TODO: fix the problem with ctags source not showing anything with python
 " Plug 'liuchengxu/vista.vim'
 " toggle vista
-" nnoremap <leader>v :Vista!!<cr>
+" nnoremap <leader>v <cmd>Vista!!<cr>
 " let g:vista#render#enable_icon = 1
 " let g:vista_default_executive = 'coc'
 " let g:vista_ctags_cmd = {
@@ -207,7 +224,7 @@ nnoremap <leader>p <cmd>!clear & mypy %<cr>
 Plug 'fedorenchik/VimCalc3'
 let g:VCalc_Win_Size = 5
 let g:VCalc_WindowPosition = 'top'
-nnoremap <silent> <leader>, :Calc<cr>
+nnoremap <leader>, <cmd>Calc<cr>
 
 
  " ⡇  ⡇ ⡇⢸ ⣏⡉   ⡎⠑ ⡎⢱ ⡏⢱ ⣏⡉   ⣏⡉ ⡇⢸ ⣎⣱ ⡇  ⡇⢸ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
@@ -242,7 +259,6 @@ let g:codi#raw = 0
 " Plug 'flomotlik/vim-livereload' " , {'for': ['html', 'css', 'js']}
 " Plug 'greyblake/vim-preview'
 
-
  " ⣏⡉ ⡷⢾ ⡷⢾ ⣏⡉ ⢹⠁
  " ⠧⠤ ⠇⠸ ⠇⠸ ⠧⠤ ⠸
 " emmet abbreviations for html
@@ -260,22 +276,151 @@ let g:user_emmet_leader_key='='
 " wrap by words (not splitting in the middle of a word)
 Plug 'reedes/vim-pencil'
 
+
+ " ⣏⡱ ⣎⣱ ⡷⣸ ⡏⢱ ⡎⢱ ⡎⠑   ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸
+ " ⠇  ⠇⠸ ⠇⠹ ⠧⠜ ⠣⠜ ⠣⠔   ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸
+" pandoc flavored markdown documents syntax highlight
+Plug 'vim-pandoc/vim-pandoc-syntax'
+let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#syntax#conceal#urls = 1
+
+
+ " ⣏⡱ ⣎⣱ ⡷⣸ ⡏⢱ ⡎⢱ ⡎⠑   ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸
+ " ⠇  ⠇⠸ ⠇⠹ ⠧⠜ ⠣⠜ ⠣⠔   ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸
+" pandoc flavored markdown documents syntax highlight
+Plug 'vim-pandoc/vim-pandoc-syntax'
+let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#syntax#conceal#urls = 1
+
+
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸  ⡜ ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡇ ⡷⣸ ⡇  ⡇ ⡷⣸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
  " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹ ⠎  ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠇ ⠇⠹ ⠧⠤ ⠇ ⠇⠹ ⠧⠤   ⠇  ⠇⠱ ⠧⠤ ⠸⠃ ⠇ ⠧⠤ ⠟⠻
 " markdown features (conceal, shortcuts...)
-Plug 'plasticboy/vim-markdown', {'for': ['markdown', 'tex', 'latex', 'quarto']}
-set conceallevel=2
-set concealcursor=c  " don't conceal the cursor's line
+Plug 'preservim/vim-markdown', {'for': ['markdown', 'tex', 'latex', 'quarto']}
+" set conceallevel=2
+" set concealcursor=c  " don't conceal the cursor's line
 " au FileType markdown set concealcursor=ci  " also conceal in insert mode
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_emphasis_multiline = 0
 let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_math = 1
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_fenced_languages = ['csharp=cs', 'python3=python', 'py=python']
+" syntax extensions
 let g:vim_markdown_yaml_frontmatter = 1
-"
+let g:vim_markdown_math = 1
+let g:vim_markdown_strikethrough = 1 " ~~strikethrough~~
+" link jumping features
+let g:vim_markdown_no_extensions_in_markdown = 1 " dont require the .md
+let g:vim_markdown_autowrite = 1 " auto-write when folowing link
+" let g:vim_markdown_edit_url_in = 'tab' " where to open a followed link : tab, vsplit, hsplit, current
+" Table of contents
+let g:vim_markdown_toc_autofit = 0 " make it as small as possible
+" Automatically update the Toc
+let g:auto_update_toc = 0 " set to 1 to enable by default
+command TocAutoUpdateToggle let g:auto_update_toc=!g:auto_update_toc
+command TocAutoUpdate let g:auto_update_toc=1
+command TocAutoUpdateDisable let g:auto_update_toc=0
+fun! TocUpdateTrigger()
+    if g:auto_update_toc
+        silent! Toc
+    endif
+endfun
+au filetype markdown au BufWritePost * call TocUpdateTrigger()
+" Editing
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+
+
+
+
+ " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⣏⡉ ⡏⢱ ⡇ ⢹⠁ ⡇ ⡷⣸ ⡎⠑   ⣏⡉ ⣏⡉ ⣎⣱ ⢹⠁ ⡇⢸ ⣏⡱ ⣏⡉ ⢎⡑
+ " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠧⠤ ⠧⠜ ⠇ ⠸  ⠇ ⠇⠹ ⠣⠝   ⠇  ⠧⠤ ⠇⠸ ⠸  ⠣⠜ ⠇⠱ ⠧⠤ ⠢⠜
+" cool features for markdown editing
+Plug 'SidOfc/mkdx'
+" markdown editing leader (prefix). see :h mkdx-setting-map-prefix
+let g:mkdx#settings = {
+            \ 'image_extension_pattern': 'a\?png\|jpe\?g\|gif',
+            \ 'insert_indent_mappings':  1,
+            \ 'gf_on_steroids':          1,
+            \ 'restore_visual':          1,
+            \ 'enter':                   { 'enable': 1, 'shift': 0, 'o': 1,
+            \                              'shifto': 0, 'malformed': 1 },
+            \ 'map':                     { 'prefix': 'ù', 'enable': 1 },
+            \ 'tokens':                  { 'enter':  ['-', '*', '>'],
+            \                              'bold':   '**', 'italic': '*',
+            \                              'strike': '',
+            \                              'list':   '-',  'fence':  '',
+            \                              'header': '#' },
+            \ 'checkbox':                { 'toggles': [' ', '/', 'x'],
+            \                              'update_tree': 2,
+            \                              'initial_state': ' ',
+            \                              'match_attrs': {
+            \                                 'mkdxCheckboxEmpty': '',
+            \                                 'mkdxCheckboxPending': '/',
+            \                                 'mkdxCheckboxComplete': 'x',
+            \                               }, },
+            \ 'toc':                     { 'text':       "TOC",
+            \                              'list_token': '-',
+            \                              'position':   0,
+            \                              'update_on_write':   0,
+            \                              'details':    {
+            \                                 'enable':  0,
+            \                                 'summary': '{{toc.text}}',
+            \                                 'nesting_level': -1,
+            \                                 'child_count': 5,
+            \                                 'child_summary': 'show {{count}} items'
+            \                              },
+            \                            },
+            \ 'table':                   { 'divider': '|',
+            \                              'header_divider': '-',
+            \                              'align': {
+            \                                 'left':    [],
+            \                                 'right':   [],
+            \                                 'center':  [],
+            \                                 'default': 'center'
+            \                              },
+            \                            },
+            \ 'links':                   { 'external': {
+            \                                 'enable':     0,
+            \                                 'timeout':    3,
+            \                                 'host':       '',
+            \                                 'relative':   1,
+            \                                 'user_agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/9001.0.0000.000 vim-mkdx/1.10.0',
+            \                              },
+            \                              'fragment': {
+            \                                 'jumplist': 1,
+            \                                 'complete': 1
+            \                              },
+            \                              'conceal': 1,
+            \                            },
+            \ 'highlight':               {
+            \                              'enable': 0,
+            \                              'frontmatter': {
+            \                                'yaml': 1,
+            \                                'toml': 0,
+            \                                'json': 0,
+            \                              }
+            \                            },
+            \ 'auto_update':             { 'enable': 1 },
+            \ 'fold':                    { 'enable': 0, 'components': ['toc', 'fence'] }
+            \ }
+
+
+ " ⡇⢸ ⡇ ⣇⠜ ⡇ ⡇  ⡇ ⡷⣸ ⣇⠜ ⢎⡑
+ " ⠟⠻ ⠇ ⠇⠱ ⠇ ⠧⠤ ⠇ ⠇⠹ ⠇⠱ ⠢⠜
+" manipulate wikilinks
+" Plug 'vim-scripts/vim-markdown-wiki'
+Plug 'mmai/wikilink', {'for': ['markdown', 'quarto']}
+let wikilinkAutosplit="off"
+
+
+ " ⡇  ⣎⣱ ⢹⠁ ⣏⡉ ⢇⡸   ⡎⠑ ⡎⢱ ⡷⣸ ⡎⠑ ⣏⡉ ⣎⣱ ⡇
+ " ⠧⠤ ⠇⠸ ⠸  ⠧⠤ ⠇⠸   ⠣⠔ ⠣⠜ ⠇⠹ ⠣⠔ ⠧⠤ ⠇⠸ ⠧⠤
 " better Latex conceal for live preview !!
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': ['markdown', 'tex', 'latex']}
-let g:tex_conceal = "abdmgs" " enable vim builtin latex preview
+let g:tex_conceal = "abdmgs"
 let g:tex_conceal_frac = 1
+set conceallevel=2
 
 
  " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⡇  ⡇ ⡇⢸ ⣏⡉   ⣏⡱ ⣏⡱ ⣏⡉ ⡇⢸ ⡇ ⣏⡉ ⡇⢸
@@ -305,31 +450,32 @@ let g:mkdp_preview_options = { 'mkit': {}, 'katex': {}, 'uml': {}, 'maid': {},
 let g:mkdp_filetypes = ['markdown', 'quarto', 'text']
 
 
- " ⡇⢸ ⡇ ⣇⠜ ⡇ ⡇  ⡇ ⡷⣸ ⣇⠜ ⢎⡑
- " ⠟⠻ ⠇ ⠇⠱ ⠇ ⠧⠤ ⠇ ⠇⠹ ⠇⠱ ⠢⠜
-" manipulate wikilinks
-" Plug 'vim-scripts/vim-markdown-wiki'
-Plug 'mmai/wikilink'
-let wikilinkAutosplit="off"
-
  " ⡎⢱ ⡇⢸ ⣎⣱ ⣏⡱ ⢹⠁ ⡎⢱
  " ⠣⠪ ⠣⠜ ⠇⠸ ⠇⠱ ⠸  ⠣⠜
-" quarto markdown blog (live preview)
-Plug 'vim-pandoc/vim-pandoc-syntax'
+" quarto markdowg blog (live preview)
 Plug 'quarto-dev/quarto-vim'
 
 
- " ⡷⣸ ⣏⡉ ⡇⢸ ⣏⡱ ⡎⢱ ⡷⣸   ⢉⠝ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⡇  ⣇⠜ ⣎⣱ ⢎⡑ ⢹⠁ ⣏⡉ ⡷⣸
- " ⠇⠹ ⠧⠤ ⠣⠜ ⠇⠱ ⠣⠜ ⠇⠹   ⠮⠤ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠧⠤ ⠇⠱ ⠇⠸ ⠢⠜ ⠸  ⠧⠤ ⠇⠹
-" markdown zettelkasten (obsidian vault) support (neuron)
-" Plug 'chiefnoah/neuron-v2.vim'
+ " ⡷⢾ ⣎⣱ ⣏⡱ ⣇⠜ ⡏⢱ ⡎⢱ ⡇⢸ ⡷⣸   ⡇  ⡇ ⢹⠁ ⣏⡉ ⣏⡱ ⣎⣱ ⢹⠁ ⣏⡉   ⣏⡱ ⣏⡱ ⡎⢱ ⡎⠑ ⣏⡱ ⣎⣱ ⡷⢾ ⡷⢾ ⡇ ⡷⣸ ⡎⠑
+ " ⠇⠸ ⠇⠸ ⠇⠱ ⠇⠱ ⠧⠜ ⠣⠜ ⠟⠻ ⠇⠹   ⠧⠤ ⠇ ⠸  ⠧⠤ ⠇⠱ ⠇⠸ ⠸  ⠧⠤   ⠇  ⠇⠱ ⠣⠜ ⠣⠝ ⠇⠱ ⠇⠸ ⠇⠸ ⠇⠸ ⠇ ⠇⠹ ⠣⠝
+" markdown literate programming
+" Plug 'https://github.com/grwlf/litrepl.vim' , { 'rtp': 'vim' }
+Plug 'dbridges/vim-markdown-runner'
+augroup VimMarkdownRunner
+    au!
+    au SourcePost let g:markdown_runners['python'] = 'python3'
+augroup end
+nnoremap <c-cr> :MarkdownRunnerInsert<cr>
 
 
 " ┏┓╻╻ ╻╻┏┳┓   ┏━┓╻  ╻ ╻┏━╸╻┏┓╻┏━┓
 " ┃┗┫┃┏┛┃┃┃┃   ┣━┛┃  ┃ ┃┃╺┓┃┃┗┫┗━┓
 " ╹ ╹┗┛ ╹╹ ╹   ╹  ┗━╸┗━┛┗━┛╹╹ ╹┗━┛
-if has('nvim')
-
+if has('nvim') " neovim plugins
+    " ⡇  ⣏⡉ ⣎⣱ ⣏⡱ ⡷⣸   ⣏⡱ ⣏⡉ ⡇  ⣎⣱ ⢹⠁ ⡇ ⡇⢸ ⣏⡉   ⡷⣸ ⡇⢸ ⡷⢾ ⣏⡱ ⣏⡉ ⣏⡱ ⡇ ⡷⣸ ⡎⠑
+    " ⠧⠤ ⠧⠤ ⠇⠸ ⠇⠱ ⠇⠹   ⠇⠱ ⠧⠤ ⠧⠤ ⠇⠸ ⠸  ⠇ ⠸⠃ ⠧⠤   ⠇⠹ ⠣⠜ ⠇⠸ ⠧⠜ ⠧⠤ ⠇⠱ ⠇ ⠇⠹ ⠣⠝
+    Plug 'ThePrimeagen/vim-be-good'
+    let g:vim_be_good_delete_me_offset = 100
 
     " " misc utility functions for plugin writing
     " " required for epwalsh/obsidian.nvim
@@ -350,9 +496,12 @@ if has('nvim')
 
      " ⣏⡉ ⡇⢸ ⢉⠝ ⢉⠝ ⢇⢸   ⣏⡉ ⡇ ⡷⣸ ⡏⢱ ⣏⡉ ⣏⡱
      " ⠇  ⠣⠜ ⠮⠤ ⠮⠤  ⠇   ⠇  ⠇ ⠇⠹ ⠧⠜ ⠧⠤ ⠇⠱
-    Plug 'nvim-telescope/telescope.nvim'
+    " Plug 'nvim-telescope/telescope.nvim'
+
 
 endif
+
+
 
 
 
@@ -387,6 +536,12 @@ nnoremap <leader>ps :PresentingStart<cr>
 " let wiki_1.syntax = "markdown"
 " let g:vimwiki_list = [wiki_1]
 
+ " ⡎⠑ ⣏⡉ ⡷⢾ ⡇ ⡷⣸ ⡇
+ " ⠣⠝ ⠧⠤ ⠇⠸ ⠇ ⠇⠹ ⠇
+" read gemini webpages from vim
+" gemini syntax higlighting
+Plug 'https://git.sr.ht/~torresjrjr/gemini.vim/'
+
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸    ⣎⣱ ⡇  ⡇ ⡎⠑ ⡷⣸
  " ⠧⠤ ⠇⠸ ⠢⠜  ⠇ ⠉⠉ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠹
@@ -413,8 +568,8 @@ Plug 'vim-scripts/DrawIt'
 " unused for the moment, but could be wit presenting.vim
 Plug 'junegunn/goyo.vim'
 " command! Zen Goyo|Limelight!!
-" Arpeggio nnoremap zen :Zen<cr>
-nnoremap <leader>y :Goyo<cr>
+" Arpeggio nnoremap zen <cmd>Zen<cr>
+nnoremap <leader>y <cmd>Goyo<cr>
 let g:goyo_width = "100%"
 let g:goyo_height = "100%"
 " Plug 'junegunn/limelight.vim'
@@ -435,31 +590,31 @@ Plug 'OsKaR31415/vim-ui-toggle'
 let g:background_colors_list = ["none", "234", "235", "233", "232"]
 let g:background_color_index = 0
 " UI hide and show
-nnoremap <silent> <leader>us :StatuslineToggle<cr>
-nnoremap <silent> <leader>ut :TablineToggle<cr>
-nnoremap <silent> <leader>ul :LineNumbersToggle<cr>
-nnoremap <silent> <leader>un :RelativeNumberingToggle<cr>
-nnoremap <silent> <leader>uc :CursorCrossToggle<cr>
-nnoremap <silent> <leader>ug :SignColumnToggle<cr>
+nnoremap <silent> <leader>us <cmd>StatuslineToggle<cr>
+nnoremap <silent> <leader>ut <cmd>TablineToggle<cr>
+nnoremap <silent> <leader>ul <cmd>LineNumbersToggle<cr>
+nnoremap <silent> <leader>un <cmd>RelativeNumberingToggle<cr>
+nnoremap <silent> <leader>uc <cmd>CursorCrossToggle<cr>
+nnoremap <silent> <leader>ug <cmd>SignColumnToggle<cr>
 " cycle between different colors
-nnoremap <silent> <leader>ub :BackgroundColorCycle<cr>
-nnoremap <silent> <leader>uB :BackgroundColorReset<cr>
+nnoremap <silent> <leader>ub <cmd>BackgroundColorCycle<cr>
+nnoremap <silent> <leader>uB <cmd>BackgroundColorReset<cr>
 " toggle all of them
-nnoremap <silent> <leader>uu :UItoggle<cr>
-nnoremap <silent> <leader>uq :UItoggle<cr>
-nnoremap <silent> <leader>ur :UIreset<cr>
+nnoremap <silent> <leader>uu <cmd>UItoggle<cr>
+nnoremap <silent> <leader>uq <cmd>UItoggle<cr>
+nnoremap <silent> <leader>ur <cmd>UIreset<cr>
 
 
- " ⢎⡑ ⡷⢾ ⡎⢱ ⡎⢱ ⢹⠁ ⣇⣸   ⢎⡑ ⡎⠑ ⣏⡱ ⡎⢱ ⡇  ⡇  ⡇ ⡷⣸ ⡎⠑
- " ⠢⠜ ⠇⠸ ⠣⠜ ⠣⠜ ⠸  ⠇⠸   ⠢⠜ ⠣⠔ ⠇⠱ ⠣⠜ ⠧⠤ ⠧⠤ ⠇ ⠇⠹ ⠣⠝
+" ⢎⡑ ⡷⢾ ⡎⢱ ⡎⢱ ⢹⠁ ⣇⣸   ⢎⡑ ⡎⠑ ⣏⡱ ⡎⢱ ⡇  ⡇  ⡇ ⡷⣸ ⡎⠑
+" ⠢⠜ ⠇⠸ ⠣⠜ ⠣⠜ ⠸  ⠇⠸   ⠢⠜ ⠣⠔ ⠇⠱ ⠣⠜ ⠧⠤ ⠧⠤ ⠇ ⠇⠹ ⠣⠝
 " smooth scrolling
 if !exists("g:neovide")
     Plug 'psliwka/vim-smoothie'
     nmap zz <cmd>call smoothie#do('zz') <cr>
 endif
 
- " ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸ ⢹⠁   ⡎⠑ ⡇⢸ ⣏⡱ ⣏⡱ ⣏⡉ ⡷⣸ ⢹⠁   ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
- " ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸ ⠸    ⠣⠔ ⠣⠜ ⠇⠱ ⠇⠱ ⠧⠤ ⠇⠹ ⠸    ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
+" ⣇⣸ ⡇ ⡎⠑ ⣇⣸ ⡇  ⡇ ⡎⠑ ⣇⣸ ⢹⠁   ⡎⠑ ⡇⢸ ⣏⡱ ⣏⡱ ⣏⡉ ⡷⣸ ⢹⠁   ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
+" ⠇⠸ ⠇ ⠣⠝ ⠇⠸ ⠧⠤ ⠇ ⠣⠝ ⠇⠸ ⠸    ⠣⠔ ⠣⠜ ⠇⠱ ⠇⠱ ⠧⠤ ⠇⠹ ⠸    ⠟⠻ ⠇ ⠇⠹ ⠧⠜ ⠣⠜ ⠟⠻
 " dim inactive panes (highlight current)
 " used in conjunction with tmux settings for the panes bg color
 Plug 'blueyed/vim-diminactive'
@@ -470,16 +625,16 @@ let g:diminactive_use_syntax = 0
 let g:diminactive_enable_focus = 1
 
 
- " ⡎⠑ ⡎⢱ ⡇  ⡎⢱ ⣏⡱   ⢎⡑ ⡎⠑ ⣇⣸ ⣏⡉ ⡷⢾ ⣏⡉ ⢎⡑
- " ⠣⠔ ⠣⠜ ⠧⠤ ⠣⠜ ⠇⠱   ⠢⠜ ⠣⠔ ⠇⠸ ⠧⠤ ⠇⠸ ⠧⠤ ⠢⠜
+" ⡎⠑ ⡎⢱ ⡇  ⡎⢱ ⣏⡱   ⢎⡑ ⡎⠑ ⣇⣸ ⣏⡉ ⡷⢾ ⣏⡉ ⢎⡑
+" ⠣⠔ ⠣⠜ ⠧⠤ ⠣⠜ ⠇⠱   ⠢⠜ ⠣⠔ ⠇⠸ ⠧⠤ ⠇⠸ ⠧⠤ ⠢⠜
 " a good collection of colorschemes, all you need is here
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'vim-scripts/maroloccio'
 Plug 'altercation/vim-colors-solarized'
 
 
- " " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
- " " ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠱ ⠣⠜ ⠇⠹
+" " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⣏⡱ ⡇⢸ ⡷⣸
+" " ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠱ ⠣⠜ ⠇⠹
 " " run asycronously any terminal command, and get the stdout in the quickfix
 " " list. but Dispatch is better, even if it needs Makefile / makeprg set
 " Plug 'skywind3000/asyncrun.vim'
@@ -487,120 +642,149 @@ Plug 'altercation/vim-colors-solarized'
 " let $PYTHONUNBUFFERED=1
 
 
- " ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⡷⢾ ⣎⣱ ⣇⠜ ⣏⡉
- " ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠸ ⠇⠸ ⠇⠱ ⠧⠤
+" ⣎⣱ ⢎⡑ ⢇⢸ ⡷⣸ ⡎⠑   ⡷⢾ ⣎⣱ ⣇⠜ ⣏⡉
+" ⠇⠸ ⠢⠜  ⠇ ⠇⠹ ⠣⠔   ⠇⠸ ⠇⠸ ⠇⠱ ⠧⠤
 " asyncronous version of make
 " integrates with tmux (and that is awsome)
 " :Make and :Copen (also `:Dispatch [compiler] [file]`)
 Plug 'tpope/vim-dispatch'
-Arpeggio nnoremap cop :Cope<cr>
+Arpeggio nnoremap cop <cmd>Cope<cr>
 
 
- " ⡇⢸ ⡇ ⡷⢾   ⣏⡱ ⣏⡉ ⣏⡱ ⣏⡉ ⣎⣱ ⢹⠁
- " ⠸⠃ ⠇ ⠇⠸   ⠇⠱ ⠧⠤ ⠇  ⠧⠤ ⠇⠸ ⠸
+" ⡇⢸ ⡇ ⡷⢾   ⣏⡱ ⣏⡉ ⣏⡱ ⣏⡉ ⣎⣱ ⢹⠁
+" ⠸⠃ ⠇ ⠇⠸   ⠇⠱ ⠧⠤ ⠇  ⠧⠤ ⠇⠸ ⠸
 " make plugin commads repeatable
 Plug 'tpope/vim-repeat'
 
 
- " ⡷⢾ ⣎⣱ ⢹⠁ ⡎⠑ ⣇⣸ ⡇ ⢹⠁
- " ⠇⠸ ⠇⠸ ⠸  ⠣⠔ ⠇⠸ ⠇ ⠸
-" matchit extanded % matching
-Plug 'tmhedberg/matchit'
+" ⢎⡑ ⣏⡱ ⣎⣱ ⡎⠑ ⣏⡉
+" ⠢⠜ ⠇  ⠇⠸ ⠣⠔ ⠧⠤
+" Repeat last motion / command / action
+Plug 'spiiph/vim-space'
 
 
- " ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⡇⢸ ⡷⣸ ⡏⢱
- " ⠢⠜ ⠣⠜ ⠇⠱ ⠇⠱ ⠣⠜ ⠣⠜ ⠇⠹ ⠧⠜
-" surround with brackets, with tags...
-Plug 'tpope/vim-surround'
-let g:surround_{char2nr("\\")} = "\\\1\\\1 \r \\\2\\\2"
-let g:surround_{char2nr("m")} = "\\left\1left: \1 \r \\right\2right: \2"
-let g:surround_{char2nr("P")} = "\\left( \r \\right)"
-let g:surround_{char2nr("v")} = "\\lvert \r \\lvert"
-" let g:surround_{char2nr("s")} = "\\left\{ \\begin{array}{c} \r \\end{array} \\right."
-nmap gs ys
-nmap g) ysa))
-nmap g( ysa))a
+" unimpaired : complementary pair of mappings
+Plug 'tpope/vim-unimpaired'
+nmap ç [
+    nmap à ]
+    omap ç [
+        omap à ]
+        xmap ç [
+            xmap à ]
+            vmap ç [
+                vmap à ]
 
 
- " ⣎⣱ ⡇⢸ ⢹⠁ ⡎⢱   ⣏⡱ ⣏⡱ ⣎⣱ ⡎⠑ ⣇⠜ ⣏⡉ ⢹⠁ ⢎⡑   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⡇ ⡷⣸ ⡎⠑
- " ⠇⠸ ⠣⠜ ⠸  ⠣⠜   ⠧⠜ ⠇⠱ ⠇⠸ ⠣⠔ ⠇⠱ ⠧⠤ ⠸  ⠢⠜   ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠇ ⠇⠹ ⠣⠝
-" automatic brackets / parenthesis closing
-" the best one i found : has very intelligent rules
-" Plug 'kana/vim-smartinput'
-Plug 'raimondi/delimitmate'
-" single brackets: prefix name with _
-inoremap _" "
-inoremap _' '
-inoremap _[ [
-inoremap _( (
-inoremap _{ {
-inoremap _$ $
-inoremap _` `
+                " ⡷⢾ ⣎⣱ ⢹⠁ ⡎⠑ ⣇⣸ ⡇ ⢹⠁
+                " ⠇⠸ ⠇⠸ ⠸  ⠣⠔ ⠇⠸ ⠇ ⠸
+                " matchit extanded % matching
+                Plug 'tmhedberg/matchit'
+
+
+                " ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⡇⢸ ⡷⣸ ⡏⢱
+                " ⠢⠜ ⠣⠜ ⠇⠱ ⠇⠱ ⠣⠜ ⠣⠜ ⠇⠹ ⠧⠜
+                " surround with brackets, with tags...
+                Plug 'tpope/vim-surround'
+                let g:surround_{char2nr("\\")} = "\\\1\\\1 \r \\\2\\\2"
+                let g:surround_{char2nr("m")} = "\\left\1left: \1 \r \\right\2right: \2"
+                let g:surround_{char2nr("P")} = "\\left( \r \\right)"
+                let g:surround_{char2nr("v")} = "\\lvert \r \\lvert"
+                " let g:surround_{char2nr("s")} = "\\left\{ \\begin{array}{c} \r \\end{array} \\right."
+                nmap gs ys
+                nmap g) ysa))
+                nmap g( ysa))a
+
+
+                " ⣎⣱ ⡇⢸ ⢹⠁ ⡎⢱   ⣏⡱ ⣏⡱ ⣎⣱ ⡎⠑ ⣇⠜ ⣏⡉ ⢹⠁ ⢎⡑   ⡎⠑ ⡇  ⡎⢱ ⢎⡑ ⡇ ⡷⣸ ⡎⠑
+                " ⠇⠸ ⠣⠜ ⠸  ⠣⠜   ⠧⠜ ⠇⠱ ⠇⠸ ⠣⠔ ⠇⠱ ⠧⠤ ⠸  ⠢⠜   ⠣⠔ ⠧⠤ ⠣⠜ ⠢⠜ ⠇ ⠇⠹ ⠣⠝
+                " automatic brackets / parenthesis closing
+                " the best one i found : has very intelligent rules
+                " Plug 'kana/vim-smartinput'
+                Plug 'raimondi/delimitmate'
+                " single brackets: prefix name with _
+                inoremap _" "
+                inoremap _' '
+                inoremap _[ [
+                    inoremap _( (
+                    inoremap _{ {
+                        inoremap _$ $
+                        inoremap _` `
 
 
 
- " ⣏⡱ ⣎⣱ ⣏⡱ ⡇ ⡷⣸ ⣏⡉ ⣏⡉ ⣏⡱   ⡔⠁ ⡇  ⡇ ⢎⡑ ⣏⡱ ⠈⢢
- " ⠇  ⠇⠸ ⠇⠱ ⠇ ⠇⠹ ⠇  ⠧⠤ ⠇⠱   ⠣⡀ ⠧⠤ ⠇ ⠢⠜ ⠇  ⢀⠜
-" vim parinfer (automatic lisp parenthesis)
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+                        " ⣏⡱ ⣎⣱ ⣏⡱ ⡇ ⡷⣸ ⣏⡉ ⣏⡉ ⣏⡱   ⡔⠁ ⡇  ⡇ ⢎⡑ ⣏⡱ ⠈⢢
+                        " ⠇  ⠇⠸ ⠇⠱ ⠇ ⠇⠹ ⠇  ⠧⠤ ⠇⠱   ⠣⡀ ⠧⠤ ⠇ ⠢⠜ ⠇  ⢀⠜
+                        " vim parinfer (automatic lisp parenthesis)
+                        Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 
- " ⣎⣱ ⡇ ⣏⡱ ⡇  ⡇ ⡷⣸ ⣏⡉
- " ⠇⠸ ⠇ ⠇⠱ ⠧⠤ ⠇ ⠇⠹ ⠧⠤
-" better statusline style
-" TODO: try to do the same without a plugin
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_statusline_ontop = 0
-let g:airline_powerline_fonts = 0
-let g:airline_theme="solarized_flood"
-set laststatus=2
-" ꗯ 𝑽  
-" 🌊🔥🌈🌱
-" 📂 
-"        
-" let g:airline_section_a = ""
-let g:airline_section_b = " %F"
-" let g:airline_section_c = ""
-" let g:airline_section_x = ""
-" let g:airline_section_y = "" " section for search match
-let g:airline_section_z = "≡%l/%L"
-" let g:airline_section_warning = ""
-" let g:airline_section_error = ""
-" let g:airline_section_gutter = ""
-
-
- " ⡎⠑ ⡎⢱ ⡷⢾ ⡷⢾ ⣏⡉ ⡷⣸ ⢹⠁
- " ⠣⠔ ⠣⠜ ⠇⠸ ⠇⠸ ⠧⠤ ⠇⠹ ⠸
-" comment by lines
-" custom comment strings are in .vim/after/syntax/...
-Plug 'tpope/vim-commentary'
-map <leader>c gc
-nmap <leader>c gc
+                        " ⣎⣱ ⡇ ⣏⡱ ⡇  ⡇ ⡷⣸ ⣏⡉
+                        " ⠇⠸ ⠇ ⠇⠱ ⠧⠤ ⠇ ⠇⠹ ⠧⠤
+                        " better statusline style
+                        " TODO: try to do the same without a plugin
+                        Plug 'vim-airline/vim-airline'
+                        Plug 'vim-airline/vim-airline-themes'
+                        let g:airline#extensions#tabline#enabled = 0
+                        let g:airline_statusline_ontop = 0
+                        let g:airline_powerline_fonts = 0
+                        let g:airline_theme="solarized_flood"
+                        set laststatus=2
+                        " ꗯ 𝑽  
+                        " 🌊🔥🌈🌱
+                        " 📂 
+                        "        
+                        " let g:airline_section_a = ""
+                        let g:airline_section_b = " %F"
+                        " let g:airline_section_c = ""
+                        " let g:airline_section_x = ""
+                        " let g:airline_section_y = "" " section for search match
+                        let g:airline_section_z = "≡%l/%L"
+                        " let g:airline_section_warning = ""
+                        " let g:airline_section_error = ""
+                        " let g:airline_section_gutter = ""
 
 
- " ⡇⢸ ⡷⣸ ⡇ ⢇⡸   ⣇⣸ ⣏⡉ ⡇  ⣏⡱ ⣏⡉ ⣏⡱
- " ⠣⠜ ⠇⠹ ⠇ ⠇⠸   ⠇⠸ ⠧⠤ ⠧⠤ ⠇  ⠧⠤ ⠇⠱
-" unix helper : add usefull unix commands (mkdir, delete, find, locate...)
-Plug 'tpope/vim-eunuch'
+                        " ⡎⠑ ⡎⢱ ⡷⢾ ⡷⢾ ⣏⡉ ⡷⣸ ⢹⠁
+                        " ⠣⠔ ⠣⠜ ⠇⠸ ⠇⠸ ⠧⠤ ⠇⠹ ⠸
+                        " comment by lines
+                        " custom comment strings are in .vim/after/syntax/...
+                        Plug 'tpope/vim-commentary'
+                        map <leader>c gc
+                        nmap <leader>c gc
 
- " ⡷⣸ ⣏⡉ ⢹⠁ ⣏⡱ ⡇⢸
- " ⠇⠹ ⠧⠤ ⠸  ⠇⠱ ⠟⠻
-" my config to make netrw usable (hard, i admit) (vinegar)
-" not a plugin but it could almost be one
-Plug 'tpope/vim-vinegar'
-let g:netrw_banner         = 0  " get rid of the annoying banner
-let g:netrw_browse_split   = 4  " make netrw to open selected file in previous window
-let g:netrw_keepdir        = 0  " make vim root follow netrw's one
-let g:netrw_winsize        = 25 " defauld win size
-let g:netrw_liststyle      = 3  " tree style
-let g:netrw_special_syntax = 1 " show per-extension coloration
-" use - to toggle explorer in current pane
-" nnoremap - :Explore<cr>
-" au filetype netrw silent! nnoremap - :Rexplore<cr>
-" shortcut to explore
-nnoremap <leader>e :Lexplore<cr>
 
+                        " ⡇⢸ ⡷⣸ ⡇ ⢇⡸   ⣇⣸ ⣏⡉ ⡇  ⣏⡱ ⣏⡉ ⣏⡱
+                        " ⠣⠜ ⠇⠹ ⠇ ⠇⠸   ⠇⠸ ⠧⠤ ⠧⠤ ⠇  ⠧⠤ ⠇⠱
+                        " unix helper : add usefull unix commands (mkdir, delete, find, locate...)
+                        Plug 'tpope/vim-eunuch'
+
+                        " " ⡷⣸ ⣏⡉ ⢹⠁ ⣏⡱ ⡇⢸
+                        " " ⠇⠹ ⠧⠤ ⠸  ⠇⠱ ⠟⠻
+                        " " my config to make netrw usable (hard, i admit) (vinegar)
+                        " " not a plugin but it could almost be one
+                        " Plug 'tpope/vim-vinegar'
+                        " let g:netrw_banner         = 0  " get rid of the annoying banner
+                        " let g:netrw_browse_split   = 4  " make netrw to open selected file in previous window
+                        " let g:netrw_keepdir        = 0  " make vim root follow netrw's one
+                        " let g:netrw_winsize        = 25 " defauld win size
+                        " let g:netrw_liststyle      = 3  " tree style
+                        " let g:netrw_special_syntax = 1 " show per-extension coloration
+                        " " use - to toggle explorer in current pane
+" " nnoremap - :Explore<cr>
+" " au filetype netrw silent! nnoremap - :Rexplore<cr>
+" " shortcut to explore
+" nnoremap <leader>e :Lexplore<cr>
+
+ " ⣏⡱ ⣏⡉ ⢹⠁ ⢹⠁ ⣏⡉ ⣏⡱   ⣏⡉ ⡇ ⡇  ⣏⡉   ⣏⡉ ⢇⡸ ⣏⡱ ⡇  ⡎⢱ ⣏⡱ ⣏⡉ ⣏⡱
+ " ⠧⠜ ⠧⠤ ⠸  ⠸  ⠧⠤ ⠇⠱   ⠇  ⠇ ⠧⠤ ⠧⠤   ⠧⠤ ⠇⠸ ⠇  ⠧⠤ ⠣⠜ ⠇⠱ ⠧⠤ ⠇⠱
+" better file explorer than netrw
+Plug 'justinmk/vim-dirvish'
+" a:create-file  A:create-directory dd:delete-under-cursor
+" r:rename-under-cursor yy:yank-under-cursor pp:copy-file-to-current-directory
+" PP:move-file-to-current-directory
+" intuitive vim shortcuts for dirvish :
+" Plug 'roginfarrer/vim-dirvish-dovish', {'branch': 'main'}
+au filetype dirvish nmap <buffer> sq gq
+au filetype dirvish set nonumber relativenumber numberwidth=1
 
  " ⣏⡱ ⣎⣱ ⡷⣸ ⡎⠑ ⣏⡉ ⣏⡱
  " ⠇⠱ ⠇⠸ ⠇⠹ ⠣⠝ ⠧⠤ ⠇⠱
@@ -639,13 +823,33 @@ let g:fzf_colors =
             \ 'marker':  ['fg', 'Keyword'],
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
-nnoremap <silent> <leader>d :Files .<cr>
-nnoremap <silent> <leader>D :Files<cr>
-nnoremap <silent> <leader>l :BLines<cr>
-nnoremap <silent> <leader>L :Lines<cr>
-nnoremap <silent> <leader>b :Buffers<cr>
-nnoremap <silent> <leader>W :Windows<cr>
-nnoremap <silent> <leader>: :Commands<cr>
+nnoremap <silent> <leader>d  <cmd>Files .<cr>
+nnoremap <silent> <leader>D  <cmd>Files<cr>
+nnoremap <silent> <leader>l  <cmd>BLines<cr>
+nnoremap <silent> <leader>L  <cmd>Lines<cr>
+nnoremap <silent> <leader>b  <cmd>Buffers<cr>
+nnoremap <silent> <leader>W  <cmd>Windows<cr>
+nnoremap <silent> <leader>:  <cmd>Commands<cr>
+nnoremap <silent> <leader>rg <cmd>Rg<cr>
+nnoremap <silent> <leader>ag <cmd>Ag<cr>
+
+
+" ⣏⡉ ⡇⢸ ⢉⠝ ⢉⠝ ⢇⢸   ⡇⢸ ⡇ ⡇  ⡏⢱ ⡷⢾ ⣏⡉ ⡷⣸ ⡇⢸
+" ⠇  ⠣⠜ ⠮⠤ ⠮⠤  ⠇   ⠟⠻ ⠇ ⠧⠤ ⠧⠜ ⠇⠸ ⠧⠤ ⠇⠹ ⠣⠜
+" wildmenu fuzzy auto completion
+if has('nvim')
+    function! UpdateRemotePlugins(...)
+        " Needed to refresh runtime files
+        let &rtp=&rtp
+        UpdateRemotePlugins
+    endfunction
+    Plug 'gelguy/wilder.nvim', { 'do': function('UpdateRemotePlugins') }
+else
+    Plug 'gelguy/wilder.nvim'
+    " To use Python remote plugin features in Vim, can be skipped
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 
  " ⣏⡉ ⣎⣱ ⢎⡑ ⢇⢸ ⡷⢾ ⡎⢱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
@@ -654,29 +858,35 @@ nnoremap <silent> <leader>: :Commands<cr>
 " still, i don't use it a lot...
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_keys='jklqsdfghnmwcxvbazertyuiop,:'
+" let g:EasyMotion_do_mapping = 0 " don't load default mappings
+map <tab> <Plug>(easymotion-prefix)
 " <Leader>f{char} to move to {char}
-map  =f <Plug>(easymotion-bd-f)
-nmap =f <Plug>(easymotion-overwin-f)
-" s{char}{char} to move to {char}{char}
-nmap =s <Plug>(easymotion-overwin-f2)
-" Move to line
-map =l <Plug>(easymotion-bd-jk)
-nmap =l <Plug>(easymotion-overwin-line)
-" Move to word
-map  =w <Plug>(easymotion-w)
-nmap =w <Plug>(easymotion-w)
-map  =W <Plug>(easymotion-W)
-nmap =W <Plug>(easymotion-W)
-" repeat last easymotion
-map =. <Plug>(easymotion-repeat)
-nmap =. <Plug>(easymotion-repeat)
-" next and previous
-map =n <Plug>(easymotion-next)
-nmap =n <Plug>(easymotion-next)
-map =N <Plug>(easymotion-prev)
-nmap =N <Plug>(easymotion-prev)
-" searching
-nmap <leader>/ <Plug>(easymotion-bd-fn)
+" map  =f <Plug>(easymotion-bd-f)
+" nmap =f <Plug>(easymotion-overwin-f)
+" " s{char}{char} to move to {char}{char}
+" nmap =s <Plug>(easymotion-overwin-f2)
+" " Move to line
+" map <silent>=l <Plug>(easymotion-bd-jk)
+nmap <tab>l <Plug>(easymotion-overwin-line)
+" " repeat last easymotion
+" map =. <Plug>(easymotion-repeat)
+" nmap =. <Plug>(easymotion-repeat)
+" " next and previous
+" map =n <Plug>(easymotion-next)
+" nmap =n <Plug>(easymotion-next)
+" map =N <Plug>(easymotion-prev)
+" nmap =N <Plug>(easymotion-prev)
+" " searching
+" nmap <leader>/ <Plug>(easymotion-bd-fn)
+
+
+ " ⣇⣸ ⡇ ⡷⣸ ⢹⠁ ⢎⡑   ⡇⢸ ⣇⣸ ⣏⡉ ⡷⣸   ⡇⢸ ⢎⡑ ⡇ ⡷⣸ ⡎⠑   ⣏⡉   ⡎⢱ ⣏⡱   ⢹⠁
+ " ⠇⠸ ⠇ ⠇⠹ ⠸  ⠢⠜   ⠟⠻ ⠇⠸ ⠧⠤ ⠇⠹   ⠣⠜ ⠢⠜ ⠇ ⠇⠹ ⠣⠝   ⠇    ⠣⠜ ⠇⠱   ⠸
+" hint to see where f,F,t or T can bring you
+Plug 'unblevable/quick-scope'
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']  " doesn't work with 
+" let g:qs_buftype_blacklist = ['terminal', 'nofile']
+let g:qs_delay = 50
 
 
 " ⢉⠝ ⡎⢱ ⡎⢱ ⡷⢾   ⡎⢱ ⡷⣸   ⣎⣱   ⡇⢸ ⡇ ⡷⣸ ⡏⢱ ⡎⢱ ⡇⢸
@@ -684,7 +894,7 @@ nmap <leader>/ <Plug>(easymotion-bd-fn)
 " toggles a vim window to be maximized or not
 " keeps the windows sizes in memory
 Plug 'markstory/vim-zoomwin'
-map <silent> <leader>z :ZoomToggle<cr>
+map <silent> <leader>z <cmd>ZoomToggle<cr>
 
 
  " ⢹⠁ ⡇ ⡇  ⡇ ⡷⣸ ⡎⠑   ⢎⡑ ⡇⢸ ⣏⡱ ⡷⢾ ⡎⢱ ⡏⢱ ⣏⡉
@@ -751,11 +961,11 @@ Plug 'idbrii/textobj-word-column.vim'
 Plug 'tommcdo/vim-exchange'
 
 
- " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
- " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
-" support for the BQN (big questions notation) language
-Plug 'mlochbaum/BQN', {'rtp': 'editors/vim', 'for': ['bqn']}
-let g:bqn_prefix_key = "="
+ " " ⣏⡱ ⡎⢱ ⡷⣸   ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
+ " " ⠧⠜ ⠣⠪ ⠇⠹   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
+" " support for the BQN (big questions notation) language
+" Plug 'mlochbaum/BQN', {'rtp': 'editors/vim', 'for': ['bqn']}
+" let g:bqn_prefix_key = "="
 
 " ⣎⣱ ⣏⡱ ⡇    ⢎⡑ ⡇⢸ ⣏⡱ ⣏⡱ ⡎⢱ ⣏⡱ ⢹⠁
 " ⠇⠸ ⠇  ⠧⠤   ⠢⠜ ⠣⠜ ⠇  ⠇  ⠣⠜ ⠇⠱ ⠸
@@ -799,10 +1009,11 @@ let g:ripple_repls = {
             \ "scheme": "guile",
             \ "sql": "psql postgres",
             \ "shell": "zsh"}
+nmap gr yr
 nmap <cr> yr
 nmap <cr><cr> yrip
-vnoremap <cr> :Ripple<cr>
-nnoremap <leader><cr> :%Ripple<cr>
+vnoremap <cr> <cmd>Ripple<cr>
+nnoremap <leader><cr> <cmd>%Ripple<cr>
 
 
  " ⣏⡱ ⣏⡉ ⡷⢾ ⡎⢱ ⢹⠁ ⣏⡉   ⣏⡱ ⣎⣱ ⡇ ⣏⡱   ⣏⡱ ⣏⡱ ⡎⢱ ⡎⠑ ⣏⡱ ⣎⣱ ⡷⢾ ⡷⢾ ⡇ ⡷⣸ ⡎⠑
@@ -851,7 +1062,7 @@ let g:rainbow_conf = {
 " queries the current line
 " use :Cheat
 Plug 'dbeniamine/cheat.sh-vim'
-let g:CheatSheetFt=&ft
+" let g:CheatSheetFt=&ft
 
 
  " ⡇⢸ ⡇ ⣇⠜ ⡇ ⣏⡱ ⣏⡉ ⡏⢱ ⡇ ⣎⣱
@@ -873,24 +1084,35 @@ let g:CheatSheetFt=&ft
 " let g:webdevicons_enable_airline_statusline = 0
 " let g:webdevicons_enable_airline_tabline = 1
 
- " ⡎⠑ ⡎⢱ ⡷⣸ ⢹⠁ ⣏⡱ ⡎⢱ ⡇    ⡷⢾ ⡇⢸ ⢎⡑ ⡇ ⡎⠑   ⡔⠁ ⡎⠑ ⡷⢾ ⡇⢸ ⢎⡑ ⠈⢢
- " ⠣⠔ ⠣⠜ ⠇⠹ ⠸  ⠇⠱ ⠣⠜ ⠧⠤   ⠇⠸ ⠣⠜ ⠢⠜ ⠇ ⠣⠔   ⠣⡀ ⠣⠔ ⠇⠸ ⠣⠜ ⠢⠜ ⢀⠜
-" control cmus inside vim (music player)
-Plug 'azadkuh/vim-cmus'
+
+ " ⡇  ⡇ ⡇⢸ ⣏⡉   ⡎⠑ ⡎⢱ ⡇  ⡇  ⣎⣱ ⣏⡱ ⡎⢱ ⣏⡱ ⣎⣱ ⢹⠁ ⡇ ⡎⢱ ⡷⣸
+ " ⠧⠤ ⠇ ⠸⠃ ⠧⠤   ⠣⠔ ⠣⠜ ⠧⠤ ⠧⠤ ⠇⠸ ⠧⠜ ⠣⠜ ⠇⠱ ⠇⠸ ⠸  ⠇ ⠣⠜ ⠇⠹
+" live remote collaboration
+Plug 'jbyuki/instant.nvim'
+let g:instant_username = "OSKAR"
+
 
  " ⣇⠜ ⡇ ⡇  ⡇    ⢎⡑ ⣏⡉ ⣏⡉ ⣏⡱ ⢎⡑   ⡇
  " ⠇⠱ ⠇ ⠧⠤ ⠧⠤   ⠢⠜ ⠧⠤ ⠧⠤ ⠇  ⠢⠜   ⠅
 " little kill-the-sheep game (space invaders-like)
 Plug 'vim/killersheep'
 
+ " ⢎⡑ ⣇⣸ ⡎⢱ ⡇⢸   ⡇⢸ ⣇⣸ ⣎⣱ ⢹⠁   ⢎⡑ ⣇⣸ ⡎⢱ ⣏⡱ ⢹⠁ ⡇⢸ ⡎⠑ ⢹⠁ ⢎⡑   ⣎⣱ ⣏⡱ ⣏⡉   ⣎⣱ ⡇⢸ ⣎⣱ ⡇ ⡇  ⣎⣱ ⣏⡱ ⡇  ⣏⡉
+ " ⠢⠜ ⠇⠸ ⠣⠜ ⠟⠻   ⠟⠻ ⠇⠸ ⠇⠸ ⠸    ⠢⠜ ⠇⠸ ⠣⠜ ⠇⠱ ⠸  ⠣⠜ ⠣⠔ ⠸  ⠢⠜   ⠇⠸ ⠇⠱ ⠧⠤   ⠇⠸ ⠸⠃ ⠇⠸ ⠇ ⠧⠤ ⠇⠸ ⠧⠜ ⠧⠤ ⠧⠤
+" like emacs-which-key. Shows what keys you can press next
+Plug 'liuchengxu/vim-which-key'
+" show it for the mkdx prefix
+nnoremap <silent> ù :WhichKey 'ù'<cr>
+vnoremap <silent> ù :<c-u>WhichKey 'ù'<cr>
+" show it for the vimux prefix
+nnoremap <silent> <leader>v :WhichKey '<leader>v'<cr>
+" show it for the leader
+" nnoremap <silent> <leader> :WhichKey '<Space>'<cr>
 
- " ⡇  ⣏⡉ ⣎⣱ ⣏⡱ ⡷⣸   ⣏⡱ ⣏⡉ ⡇  ⣎⣱ ⢹⠁ ⡇ ⡇⢸ ⣏⡉   ⡷⣸ ⡇⢸ ⡷⢾ ⣏⡱ ⣏⡉ ⣏⡱ ⡇ ⡷⣸ ⡎⠑
- " ⠧⠤ ⠧⠤ ⠇⠸ ⠇⠱ ⠇⠹   ⠇⠱ ⠧⠤ ⠧⠤ ⠇⠸ ⠸  ⠇ ⠸⠃ ⠧⠤   ⠇⠹ ⠣⠜ ⠇⠸ ⠧⠜ ⠧⠤ ⠇⠱ ⠇ ⠇⠹ ⠣⠝
-if has('nvim')  " sadly only works on neovim...
-    Plug 'ThePrimeagen/vim-be-good'
-    let g:vim_be_good_delete_me_offset = 100
-endif
-
+ " ⡷⣸ ⣏⡉ ⡎⢱ ⡇⢸ ⡇ ⡷⢾   ⡇ ⡷⣸ ⢎⡑ ⡇ ⡏⢱ ⣏⡉   ⣏⡉ ⡇ ⣏⡱ ⣏⡉ ⣏⡉ ⡎⢱ ⢇⡸
+ " ⠇⠹ ⠧⠤ ⠣⠜ ⠸⠃ ⠇ ⠇⠸   ⠇ ⠇⠹ ⠢⠜ ⠇ ⠧⠜ ⠧⠤   ⠇  ⠇ ⠇⠱ ⠧⠤ ⠇  ⠣⠜ ⠇⠸
+" neovim integration inside firefox (edit any text field)
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " All of your Plugs must be added before the following line
 call plug#end()
@@ -911,3 +1133,35 @@ call textobj#user#plugin('braces', {
 \   },
 \ })
 
+
+
+" gelguy/wilder.nvim
+call wilder#setup({'modes': [':', '/', '?']})
+" set the pipleline (the way the fuzzy match is processed
+call wilder#set_option('pipeline', [
+            \   wilder#branch(
+            \     wilder#cmdline_pipeline({
+            \       'language': 'python',
+            \       'fuzzy': 1,
+            \     }),
+            \     wilder#python_search_pipeline({
+            \       'pattern': wilder#python_fuzzy_pattern(),
+            \       'sorter': wilder#python_difflib_sorter(),
+            \       'engine': 're',
+            \     }),
+            \   ),
+            \ ])
+" set the renderer (the way the wildmenu is printed)
+" highlight for matching characters
+let hl = wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
+
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'highlights': {
+      \   'accent': hl,
+      \ },
+      \ }))
+
+" vim-scripts/vim-markdown-wiki
+nunmap <cr>
+nmap <c-cr> :WikilinkGotoLink<cr>
