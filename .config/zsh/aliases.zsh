@@ -19,10 +19,14 @@ alias cl="clear && l" # clear and list files
 alias h="cd ~ && clear"
 alias t=task # task warrior
 
+alias tmux="tmux -u"  # force unicode mode for tmux
+
+alias discord="discordo --token Njk2NjM0NjUxODc1MjEzMzIy.GnWbtu.sBqhRs06NsL9BlQokG2mCnQAZjzKq8LjJ5kyAE"
 alias google="w3m -sixel google.com"
+
 alias imgls="~/iterm2/imgls"
 alias imgcat="~/iterm2/imgcat"
-alias img="img2sixel"
+
 
 alias noel="python3 ~/devoirs/informatique/python/noel/arbre_de_noel.py"
 alias troll="toilet -f smblock 'Just trolling anyone looking at my screen'"
@@ -43,14 +47,11 @@ alias graphping="ping -i 0.3 google.com | sed -u 's/^.*time=//g; s/ ms//g' | tty
 # encode stdin to qrcode in stdout
 alias to_qr="qrencode -t ascii -o - | tr '#' '█' "
 
-alias daily="vim $OBSIDIAN/\$(daily '+%Y-%m-%d.md')"
+alias daily="v $OBSIDIAN/daily\$(date '+%Y-%m-%d.md')"
 
 # replaced by the script .zsh_scripts/urlencode
 # alias urlencode='node --eval "console.log(encodeURIComponent(process.argv[1]))"'
 # source ~/.zsh_scripts/urlencode
 
-alias fzf="fzf --color=hl:28,hl+:34"
-
-alias tmux="tmux -u"  # force unicode mode for tmux
 
 
