@@ -317,8 +317,7 @@ if has('nvim') " nvim specific settings
 endif
 
 " firenvim specific settings
-au UIEnter * if exists('g:started_by_firenvim') | call FirenvimSettings() | endif
-fun! FirenvimSettings()
+if exists('g:started_by_firenvim')
     set cmdheight=0 " command line height, breaks easymotion
     set laststatus=0 " hide status line
     set nonumber norelativenumber
@@ -329,7 +328,7 @@ fun! FirenvimSettings()
                 \ 'takeover': "never"
                 \ },
                 \ }
-endfun
+endif
 
 " better version of n and N : center the search map
 " The arpeggio-default:n is to avoid a confict with arpeggio mappings

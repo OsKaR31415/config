@@ -266,6 +266,8 @@ let g:codi#raw = 0
 Plug 'mattn/emmet-vim', {'for': ['html', 'php']}
 " default expand shortcut is <c-y>,
 " i use <c-l>,
+let g:user_emmet_mode='n'    "only enable normal mode functions.
+let g:user_emmet_mode='a'    "enable all function in all mode.
 let g:user_emmet_leader_key='='
 
 
@@ -1112,7 +1114,7 @@ nnoremap <silent> <leader>v :WhichKey '<leader>v'<cr>
  " ⡷⣸ ⣏⡉ ⡎⢱ ⡇⢸ ⡇ ⡷⢾   ⡇ ⡷⣸ ⢎⡑ ⡇ ⡏⢱ ⣏⡉   ⣏⡉ ⡇ ⣏⡱ ⣏⡉ ⣏⡉ ⡎⢱ ⢇⡸
  " ⠇⠹ ⠧⠤ ⠣⠜ ⠸⠃ ⠇ ⠇⠸   ⠇ ⠇⠹ ⠢⠜ ⠇ ⠧⠜ ⠧⠤   ⠇  ⠇ ⠇⠱ ⠧⠤ ⠇  ⠣⠜ ⠇⠸
 " neovim integration inside firefox (edit any text field)
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+" Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " All of your Plugs must be added before the following line
 call plug#end()
